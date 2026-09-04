@@ -68,7 +68,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   a{ color: inherit; text-decoration: none; }
 
-  a:focus-visible, button:focus-visible{
+  a:focus-visible, button:focus-visible, summary:focus-visible{
     outline: 2px solid var(--gold);
     outline-offset: 3px;
     border-radius: 6px;
@@ -444,44 +444,88 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     line-height: 1.5;
   }
 
-  /* ---------- Setup / Ficha Técnica ---------- */
-  .setup-card{
+  /* ---------- La DrakyMachine (Acordeón Desplegable) ---------- */
+  .setup-details{
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
-    padding: 22px;
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    overflow: hidden;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
   }
-  .setup-header{
+  .setup-details[open]{
+    border-color: rgba(227,162,60,0.35);
+    box-shadow: 0 12px 34px rgba(0,0,0,0.45);
+  }
+
+  .setup-summary{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 20px 22px;
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+    transition: background 0.2s ease;
   }
-  .setup-header h2{ margin: 0; }
+  .setup-summary::-webkit-details-marker{ display: none; }
+  .setup-summary:hover{
+    background: rgba(244,236,230,0.03);
+  }
+
+  .setup-summary-left{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .setup-summary-left h2{
+    margin: 0;
+    font-size: 1.1rem;
+  }
+
   .setup-tag{
     font-family: 'Unbounded', sans-serif;
-    font-size: 0.7rem;
+    font-size: 0.68rem;
     font-weight: 700;
     color: var(--gold);
     background: rgba(227,162,60,0.12);
     border: 1px solid rgba(227,162,60,0.25);
-    padding: 4px 10px;
+    padding: 3px 9px;
     border-radius: 999px;
     letter-spacing: 0.02em;
   }
+
+  .setup-arrow{
+    width: 20px;
+    height: 20px;
+    color: var(--gold);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    flex-shrink: 0;
+  }
+  .setup-details[open] .setup-arrow{
+    transform: rotate(180deg);
+  }
+
   .setup-body{
     display: flex;
     align-items: center;
     gap: 18px;
+    padding: 0 22px 22px;
+    border-top: 1px solid var(--border);
+    margin-top: 4px;
+    animation: accordionFade 0.3s ease;
   }
+  @keyframes accordionFade{
+    from{ opacity: 0; transform: translateY(-6px); }
+    to{ opacity: 1; transform: translateY(0); }
+  }
+
   .setup-img-wrap{
     width: 120px;
     flex-shrink: 0;
     filter: drop-shadow(0 8px 18px rgba(0,0,0,0.6));
     transition: transform 0.25s ease;
+    padding-top: 10px;
   }
   .setup-img-wrap:hover{
     transform: scale(1.04);
@@ -492,12 +536,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     display: block;
     object-fit: contain;
   }
+
   .setup-list{
     flex: 1;
     display: flex;
     flex-direction: column;
     gap: 7px;
     min-width: 0;
+    padding-top: 10px;
   }
   .spec-item{
     display: flex;
@@ -846,13 +892,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </section>
 
-  <!-- SETUP / HARDWARE -->
-  <section aria-label="Mi Setup">
-    <div class="setup-card">
-      <div class="setup-header">
-        <h2>Mi Estación de Trabajo</h2>
-        <span class="setup-tag">Battle Station</span>
-      </div>
+  <!-- LA DRAKYMACHINE (SETUP EN ACORDEÓN) -->
+  <section aria-label="La DrakyMachine">
+    <details class="setup-details">
+      <summary class="setup-summary">
+        <div class="setup-summary-left">
+          <h2>La DrakyMachine</h2>
+          <span class="setup-tag">Specs</span>
+        </div>
+        <svg class="setup-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </summary>
       <div class="setup-body">
         <div class="setup-img-wrap">
           <img src="assets/smart.webp" alt="CoolerMaster MasterBox K501L Setup">
@@ -884,7 +935,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </div>
         </div>
       </div>
-    </div>
+    </details>
   </section>
 
   <!-- MÉTRICAS / MEDIA KIT (¿TRABAJAMOS JUNTOS?) -->
@@ -1003,4 +1054,3 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </script>
 </body>
 </html>
-
