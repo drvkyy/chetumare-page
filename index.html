@@ -10,6 +10,7 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="Draky — Gaming, tecnología y cultura pop">
 <meta property="og:description" content="KICK Partner, creador de contenido y cultura gamer. Métricas y proyectos.">
+<meta property="og:image" content="https://drvkyy.github.io/chetumare-page/assets/Imagenperfil.webp">
 <meta name="theme-color" content="#150E1C">
 
 <!-- Favicon vectorial integrado -->
@@ -375,32 +376,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   }
   .btn:active{ transform: translateY(0); }
 
-  /* ---------- About ---------- */
-  .about{
-    display: flex;
-    gap: 16px;
-    align-items: center;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    padding: 20px;
-  }
-  .about-portrait{
-    width: 84px;
-    height: 84px;
-    flex-shrink: 0;
-    border-radius: 50%;
-    overflow: hidden;
-    border: 2px solid var(--border-strong);
-  }
-  .about-portrait img{ width: 100%; height: 100%; object-fit: cover; display: block; }
-  .about-body p{
-    margin: 0;
-    color: var(--text-muted);
-    font-size: 0.93rem;
-    line-height: 1.5;
-  }
-
   /* ---------- Featured content ---------- */
   .video-grid{
     display: grid;
@@ -441,6 +416,117 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     font-weight: 600;
     color: var(--text);
     line-height: 1.35;
+  }
+
+  /* ---------- About ---------- */
+  .about{
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 20px;
+  }
+  .about-portrait{
+    width: 84px;
+    height: 84px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid var(--border-strong);
+  }
+  .about-portrait img{ width: 100%; height: 100%; object-fit: cover; display: block; }
+  .about-body p{
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 0.93rem;
+    line-height: 1.5;
+  }
+
+  /* ---------- Setup / Ficha Técnica ---------- */
+  .setup-card{
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  }
+  .setup-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .setup-header h2{ margin: 0; }
+  .setup-tag{
+    font-family: 'Unbounded', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--gold);
+    background: rgba(227,162,60,0.12);
+    border: 1px solid rgba(227,162,60,0.25);
+    padding: 4px 10px;
+    border-radius: 999px;
+    letter-spacing: 0.02em;
+  }
+  .setup-body{
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+  .setup-img-wrap{
+    width: 120px;
+    flex-shrink: 0;
+    filter: drop-shadow(0 8px 18px rgba(0,0,0,0.6));
+    transition: transform 0.25s ease;
+  }
+  .setup-img-wrap:hover{
+    transform: scale(1.04);
+  }
+  .setup-img-wrap img{
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+  }
+  .setup-list{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    min-width: 0;
+  }
+  .spec-item{
+    display: flex;
+    flex-direction: column;
+    padding: 6px 10px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+  .spec-item:hover{
+    transform: translateX(2px);
+    border-color: rgba(227,162,60,0.25);
+  }
+  .spec-label{
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--gold);
+    line-height: 1.2;
+  }
+  .spec-val{
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   /* ---------- Métricas / Media Kit ---------- */
@@ -551,7 +637,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     box-shadow: 0 2px 10px rgba(209,213,219,0.25);
   }
 
-  /* Zona de contacto dentro de la tarjeta de métricas */
   .brand-contact-wrap {
     display: flex;
     flex-direction: column;
@@ -641,7 +726,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     color: var(--text-faint);
   }
 
-  @media (max-width: 400px){
+  @media (max-width: 450px){
+    .setup-body{ flex-direction: column; align-items: center; }
+    .setup-img-wrap{ width: 140px; margin-bottom: 8px; }
+    .setup-list{ width: 100%; }
     .metric-row{ flex-wrap: wrap; }
     .metric-stats{ justify-content: flex-start; width: 100%; }
     .kick-inner{ max-width: 100%; }
@@ -754,6 +842,47 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div class="about-body">
         <p>Diseñador, creador de contenido y <em>KICK Partner</em> desde Chile. Exploro videojuegos retro, tecnología, rarezas de internet y cultura pop con un toque de humor y edición al detalle.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SETUP / HARDWARE -->
+  <section aria-label="Mi Setup">
+    <div class="setup-card">
+      <div class="setup-header">
+        <h2>Mi Estación de Trabajo</h2>
+        <span class="setup-tag">Battle Station</span>
+      </div>
+      <div class="setup-body">
+        <div class="setup-img-wrap">
+          <img src="assets/smart.webp" alt="CoolerMaster MasterBox K501L Setup">
+        </div>
+        <div class="setup-list">
+          <div class="spec-item">
+            <span class="spec-label">GPU</span>
+            <span class="spec-val">ASUS ROG Strix RTX 3070 (8GB)</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-label">CPU &amp; Cooler</span>
+            <span class="spec-val">Ryzen 5 5600 + BeQuiet Pure Rock 2</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-label">Placa Madre</span>
+            <span class="spec-val">Gigabyte B450 Gaming X</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-label">RAM</span>
+            <span class="spec-val">16GB (8x2) 3600MHz Crucial Ballistix</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-label">Almacenamiento</span>
+            <span class="spec-val">500GB NVMe Samsung 980</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-label">Fuente &amp; Chasis</span>
+            <span class="spec-val">DeepCool DA600 Bronze / CM MasterBox K501L</span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
