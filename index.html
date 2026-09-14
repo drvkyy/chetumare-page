@@ -3,22 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Draky — Tech, Gaming & Cultura Pop</title>
-<meta name="description" content="Draky: Creador de contenido, análisis técnico de videojuegos, hardware y cultura de internet.">
+<title>Draky — Chetumare</title>
+<meta name="description" content="Draky: Gaming, tecnología, internet y cultura popular.">
 
 <!-- Open Graph & Redes Sociales -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="Draky — Gaming, tecnología y cultura pop">
 <meta property="og:description" content="KICK Partner, creador de contenido y cultura gamer. Métricas y proyectos.">
 <meta property="og:image" content="https://drvkyy.github.io/chetumare-page/assets/Imagenperfil.webp">
-<meta name="theme-color" content="#120A18">
+<meta name="theme-color" content="#150E1C">
 
 <!-- Favicon vectorial -->
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='25' fill='%23170F1F'/><path d='M30 42h40v16H30zm8-14h24v40H38z' fill='%23E3A23C'/><circle cx='68' cy='40' r='5' fill='%238FBF5B'/></svg>">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,600&family=Unbounded:wght@600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,500;1,700&family=Unbounded:wght@600;700;800;900&display=swap" rel="stylesheet">
 
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -30,28 +30,26 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <style>
   :root {
-    --bg: #0F0914;
-    --surface: rgba(26, 17, 36, 0.75);
-    --surface-solid: #1C1226;
-    --surface-elevated: #261833;
-    --surface-hover: #311F42;
+    --bg: #130B19;
+    --surface: rgba(28, 18, 38, 0.75);
+    --surface-solid: #1F132B;
+    --surface-elevated: #281938;
+    --surface-2: #2E1B40;
     --wine: #A8384A;
-    --wine-glow: rgba(168, 56, 74, 0.25);
+    --wine-glow: rgba(168, 56, 74, 0.28);
     --gold: #E3A23C;
     --gold-dim: #B9832F;
-    --gold-glow: rgba(227, 162, 60, 0.18);
     --live: #8FBF5B;
-    --live-glow: rgba(143, 191, 91, 0.25);
-    --text: #F6F1EC;
+    --text: #F4ECE6;
     --text-muted: #BBA9C9;
-    --text-faint: #7E6D91;
-    --border: rgba(246, 241, 236, 0.08);
-    --border-strong: rgba(246, 241, 236, 0.15);
-    --radius-xl: 24px;
-    --radius-lg: 18px;
+    --text-faint: #8A7A9E;
+    --border: rgba(244, 236, 230, 0.09);
+    --border-strong: rgba(244, 236, 230, 0.16);
+    --radius-xl: 22px;
+    --radius-lg: 16px;
     --radius-md: 12px;
-    --radius-sm: 8px;
-    --max: 740px;
+    --radius-sm: 9px;
+    --max: 680px;
   }
 
   * { box-sizing: border-box; }
@@ -76,10 +74,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   .mono { font-family: 'JetBrains Mono', monospace; }
 
-  /* Luces ambientales cinemáticas */
-  .ambient-glow-top {
+  .ambient-glow {
     position: absolute;
-    top: -120px;
+    top: -100px;
     left: 50%;
     transform: translateX(-50%);
     width: 600px;
@@ -93,471 +90,242 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .wrap {
     max-width: var(--max);
     margin: 0 auto;
-    padding: 32px 20px 80px;
+    padding: 36px 20px 72px;
     position: relative;
     z-index: 1;
   }
 
-  /* ---------- Top Status Bar ---------- */
-  .status-bar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 8px 14px;
-    background: var(--surface);
-    backdrop-filter: blur(12px);
-    border: 1px solid var(--border);
-    border-radius: 999px;
-    margin-bottom: 28px;
-  }
-  .status-pill {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: var(--text-muted);
-  }
-  .status-dot {
-    width: 7px;
-    height: 7px;
-    background: var(--live);
-    border-radius: 50%;
-    box-shadow: 0 0 8px var(--live);
-  }
-  .status-loc {
-    font-size: 0.72rem;
-    color: var(--text-faint);
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-  }
-
   /* ---------- Hero ---------- */
   .hero {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 24px;
-    align-items: center;
+    position: relative;
     background: var(--surface);
-    backdrop-filter: blur(16px);
+    backdrop-filter: blur(14px);
     border: 1px solid var(--border);
     border-radius: var(--radius-xl);
-    padding: 32px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-    position: relative;
-    overflow: hidden;
-  }
-  .hero::after {
-    content: "";
-    position: absolute;
-    top: 0; right: 0; width: 180px; height: 180px;
-    background: radial-gradient(circle, var(--gold-glow), transparent 70%);
-    pointer-events: none;
+    padding: 28px;
+    box-shadow: 0 16px 36px rgba(0,0,0,0.35);
   }
 
-  .hero-titles {
+  .hero-top {
     display: flex;
-    align-items: center;
-    gap: 12px;
-    flex-wrap: wrap;
-    margin-bottom: 8px;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .hero-text {
+    flex: 1;
+    min-width: 0;
   }
 
   h1.name {
     font-family: 'Unbounded', sans-serif;
-    font-weight: 900;
-    font-size: clamp(2rem, 6vw, 2.7rem);
-    line-height: 1;
+    font-weight: 800;
+    font-size: clamp(2.2rem, 9vw, 3rem);
+    line-height: 0.98;
     margin: 0;
-    letter-spacing: -0.03em;
+    letter-spacing: -0.02em;
   }
 
-  .tag-badge {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.78rem;
+  .exclaim {
+    display: inline-flex;
+    align-items: center;
+    font-family: 'Unbounded', sans-serif;
     font-weight: 700;
+    font-size: 0.9rem;
     color: var(--gold);
-    background: rgba(227, 162, 60, 0.12);
-    border: 1px solid rgba(227, 162, 60, 0.3);
-    padding: 3px 10px;
+    background: linear-gradient(135deg, rgba(227,162,60,0.16), rgba(168,56,74,0.14));
+    border: 1px solid rgba(227,162,60,0.32);
+    padding: 4px 14px;
     border-radius: 999px;
+    transform: rotate(-3deg);
+    margin: 10px 0 0;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+    backdrop-filter: blur(8px);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .exclaim:hover {
+    transform: rotate(0deg) scale(1.03);
+    box-shadow: 0 6px 18px rgba(227,162,60,0.25);
   }
 
   .tagline {
-    margin: 0 0 18px;
+    margin: 14px 0 0;
     color: var(--text-muted);
     font-size: 0.96rem;
-    line-height: 1.5;
-    max-width: 44ch;
-  }
-
-  .hero-chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-  .chip {
-    font-size: 0.74rem;
-    font-family: 'JetBrains Mono', monospace;
-    padding: 4px 10px;
-    background: rgba(246, 241, 236, 0.03);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-sm);
-    color: var(--text-muted);
+    max-width: 36ch;
+    line-height: 1.45;
   }
 
   .hero-portrait {
-    width: 110px;
-    height: 110px;
+    width: 102px;
+    height: 102px;
+    flex-shrink: 0;
     border-radius: 50%;
     overflow: hidden;
-    border: 2px solid var(--gold);
-    box-shadow: 0 0 24px var(--gold-glow);
-    flex-shrink: 0;
+    border: 3px solid var(--gold);
+    box-shadow: 0 10px 26px rgba(0,0,0,0.5), 0 0 20px rgba(227,162,60,0.2);
+    transition: transform 0.25s ease;
   }
+  .hero-portrait:hover { transform: scale(1.03); }
   .hero-portrait img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
     display: block;
+    object-fit: cover;
   }
 
-  /* ---------- Bento Grid Core ---------- */
-  .bento-section {
-    margin-top: 24px;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 20px 0 0;
   }
-  .bento-full { grid-column: span 2; }
+  .chip {
+    font-size: 0.78rem;
+    font-weight: 500;
+    padding: 5px 12px;
+    background: rgba(244,236,230,0.04);
+    border: 1px solid var(--border-strong);
+    border-radius: 999px;
+    color: var(--text-muted);
+  }
 
-  /* Bento Platform Tiles */
-  .platform-deck {
+  /* ---------- Secciones Bento ---------- */
+  section { margin-top: 26px; }
+
+  h2.section-heading {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 600;
+    font-size: 1.15rem;
+    margin: 0 0 14px;
+    color: var(--text);
+    letter-spacing: -0.01em;
+  }
+
+  /* ---------- Plataformas ---------- */
+  .platform-row {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 12px;
-    margin-top: 24px;
+    gap: 10px;
   }
-  .p-tile {
+  .pbtn {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 8px;
-    padding: 16px 8px;
+    gap: 7px;
+    padding: 14px 6px;
     background: var(--surface);
-    backdrop-filter: blur(12px);
+    backdrop-filter: blur(10px);
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
     transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease, box-shadow 0.2s ease;
   }
-  .p-tile:hover {
+  .pbtn:hover {
     transform: translateY(-3px);
+    box-shadow: 0 8px 22px rgba(0,0,0,0.4);
     border-color: var(--border-strong);
-    box-shadow: 0 10px 24px rgba(0,0,0,0.4);
   }
-  .p-tile svg { width: 22px; height: 22px; color: var(--gold); }
-  .p-tile span { font-size: 0.82rem; font-weight: 600; }
-  .p-tile em { font-family: 'JetBrains Mono', monospace; font-style: normal; font-size: 0.72rem; color: var(--text-faint); }
+  .pbtn svg { width: 22px; height: 22px; color: var(--gold); }
+  .pbtn-kick svg { width: 19px; height: 19px; }
+  .pbtn-ig:hover svg { color: #E1306C; }
+  .pbtn-tt:hover svg { color: #25F4EE; }
+  .pbtn-yt:hover svg { color: #FF2E2E; }
+  .pbtn-kick:hover svg { color: var(--live); }
 
-  .p-tile-ig:hover svg { color: #E1306C; }
-  .p-tile-tt:hover svg { color: #25F4EE; }
-  .p-tile-yt:hover svg { color: #FF2E2E; }
-  .p-tile-kick:hover svg { color: var(--live); }
-
-  /* Kick Streamer Card */
-  .bento-kick {
-    background: linear-gradient(135deg, rgba(122, 40, 54, 0.45), var(--surface-solid));
-    border: 1px solid rgba(143, 191, 91, 0.3);
-    border-radius: var(--radius-xl);
-    padding: 26px;
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .kick-content { max-width: 65%; z-index: 1; }
-  .kick-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-family: 'JetBrains Mono', monospace;
+  .pbtn span { font-size: 0.8rem; font-weight: 600; }
+  .pbtn em {
+    font-style: normal;
     font-size: 0.72rem;
+    color: var(--text-faint);
+  }
+
+  /* ---------- Kick Block ---------- */
+  .kick {
+    position: relative;
+    background: linear-gradient(145deg, rgba(122, 40, 54, 0.55), var(--surface-solid) 65%);
+    border: 1px solid rgba(143,191,91,0.35);
+    border-radius: var(--radius-xl);
+    padding: 24px 22px;
+    overflow: hidden;
+    box-shadow: 0 10px 28px rgba(143,191,91,0.12);
+  }
+  .kick-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 72%;
+  }
+  .live-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  .live-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--live);
+    box-shadow: 0 0 8px var(--live);
+  }
+  .live-label {
+    font-size: 0.76rem;
     font-weight: 700;
     color: var(--live);
-    margin-bottom: 8px;
     text-transform: uppercase;
+    letter-spacing: 0.04em;
   }
-  .kick-badge::before {
-    content: "";
-    width: 6px; height: 6px;
-    background: var(--live);
-    border-radius: 50%;
-    box-shadow: 0 0 6px var(--live);
-  }
-  .bento-kick h2 {
+  .kick h2 {
     font-family: 'Unbounded', sans-serif;
     font-size: 1.15rem;
     margin: 0 0 6px;
   }
-  .bento-kick p {
-    font-size: 0.88rem;
-    color: var(--text-muted);
+  .kick p {
     margin: 0 0 16px;
-    line-height: 1.4;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    line-height: 1.45;
   }
   .btn-kick {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
     background: var(--live);
-    color: #0E1A06;
+    color: #122008;
     font-weight: 700;
-    font-size: 0.84rem;
-    padding: 10px 18px;
+    font-size: 0.86rem;
+    padding: 10px 20px;
     border-radius: 999px;
     transition: transform 0.2s ease, background 0.2s ease;
   }
   .btn-kick:hover {
-    background: #A6DB6F;
+    background: #A1D373;
     transform: translateY(-2px);
   }
-  .kick-mascot {
-    width: 130px;
+  .kick-accent {
     position: absolute;
-    right: 10px;
-    bottom: -15px;
-    opacity: 0.9;
-    filter: drop-shadow(0 8px 16px rgba(0,0,0,0.6));
+    right: -10px;
+    bottom: -10px;
+    width: 120px;
+    z-index: 0;
     pointer-events: none;
+    filter: drop-shadow(0 8px 16px rgba(0,0,0,0.5));
   }
-  .kick-mascot img { width: 100%; display: block; }
+  .kick-accent img { width: 100%; display: block; }
 
-  /* Media Kit / Métricas Bento */
-  .bento-media-kit {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-xl);
-    padding: 28px;
-    box-shadow: 0 16px 36px rgba(0,0,0,0.3);
-  }
-  .media-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 20px;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-  .media-header h2 {
-    font-family: 'Unbounded', sans-serif;
-    font-size: 1.25rem;
-    margin: 0 0 4px;
-  }
-  .media-header p {
-    font-size: 0.88rem;
-    color: var(--text-muted);
-    margin: 0;
-  }
-  .verified-pill {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.72rem;
-    color: var(--gold);
-    background: var(--gold-glow);
-    border: 1px solid rgba(227, 162, 60, 0.35);
-    padding: 4px 10px;
-    border-radius: 999px;
-  }
-
-  .metrics-bento-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 12px;
-    margin-bottom: 20px;
-  }
-  .m-box {
-    background: var(--surface-solid);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    padding: 16px 14px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: 10px;
-  }
-  .m-box-lead {
-    background: linear-gradient(145deg, rgba(227, 162, 60, 0.12), var(--surface-elevated));
-    border-color: rgba(227, 162, 60, 0.3);
-  }
-  .m-label {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: var(--text-muted);
-  }
-  .m-num {
-    font-family: 'Unbounded', sans-serif;
-    font-size: 1.35rem;
-    font-weight: 800;
-    color: var(--text);
-    line-height: 1;
-  }
-  .m-num-gold { color: var(--gold); }
-  .m-sub {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.68rem;
-    color: var(--text-faint);
-  }
-
-  .cta-block {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 12px;
-    align-items: center;
-    background: var(--surface-solid);
-    border: 1px solid var(--border-strong);
-    padding: 12px 16px;
-    border-radius: var(--radius-lg);
-  }
-  .email-txt {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.85rem;
-    color: var(--text-muted);
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-  .cta-actions { display: flex; gap: 8px; }
-  .btn-mail {
-    background: var(--gold);
-    color: #1A0F03;
-    font-weight: 700;
-    font-size: 0.82rem;
-    padding: 8px 16px;
-    border-radius: 999px;
-    border: none;
-    cursor: pointer;
-    transition: transform 0.2s ease, background 0.2s ease;
-  }
-  .btn-mail:hover { background: #EDB25C; transform: translateY(-1px); }
-  .btn-copy {
-    background: rgba(246, 241, 236, 0.06);
-    border: 1px solid var(--border-strong);
-    color: var(--text);
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.78rem;
-    padding: 8px 14px;
-    border-radius: 999px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-  }
-  .btn-copy:hover { border-color: var(--gold); color: var(--gold); }
-
-  /* Hardware Blueprint (DrakyMachine) */
-  .bento-rig {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-xl);
-    overflow: hidden;
-  }
-  .rig-details { width: 100%; }
-  .rig-summary {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 22px 26px;
-    cursor: pointer;
-    list-style: none;
-    user-select: none;
-    background: transparent;
-    transition: background 0.2s ease;
-  }
-  .rig-summary::-webkit-details-marker { display: none; }
-  .rig-summary:hover { background: rgba(246, 241, 236, 0.02); }
-  .rig-summary-left {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-  .rig-summary-left h2 {
-    font-family: 'Unbounded', sans-serif;
-    font-size: 1.15rem;
-    margin: 0;
-  }
-  .rig-arrow {
-    width: 20px; height: 20px;
-    color: var(--gold);
-    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  .rig-details[open] .rig-arrow { transform: rotate(180deg); }
-
-  .rig-body {
-    display: grid;
-    grid-template-columns: 140px 1fr;
-    gap: 24px;
-    align-items: center;
-    padding: 0 26px 26px;
-    border-top: 1px solid var(--border);
-    margin-top: 6px;
-  }
-  .rig-img {
-    width: 100%;
-    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.6));
-    padding-top: 14px;
-  }
-  .rig-img img { width: 100%; display: block; object-fit: contain; }
-
-  .specs-blueprint {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 8px;
-    padding-top: 14px;
-  }
-  .spec-item {
-    background: var(--surface-solid);
-    border: 1px solid var(--border);
-    padding: 8px 12px;
-    border-radius: var(--radius-sm);
-  }
-  .spec-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    color: var(--gold);
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    display: block;
-    margin-bottom: 2px;
-  }
-  .spec-val {
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: var(--text);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: block;
-  }
-
-  /* Featured Showcase Grid */
-  .section-title {
-    font-family: 'Unbounded', sans-serif;
-    font-size: 1.15rem;
-    margin: 0 0 14px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .video-showcase {
+  /* ---------- Contenido Destacado ---------- */
+  .video-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 14px;
+    gap: 12px;
   }
-  .v-card-featured {
+
+  /* Video Hero para equilibrar los 5 videos */
+  .video-card-lead {
     grid-column: span 2;
     display: grid;
-    grid-template-columns: 140px 1fr;
+    grid-template-columns: 130px 1fr;
     background: var(--surface);
     border: 1px solid var(--border-strong);
     border-radius: var(--radius-lg);
@@ -565,92 +333,333 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     align-items: center;
     transition: transform 0.2s ease, border-color 0.2s ease;
   }
-  .v-card-featured:hover {
+  .video-card-lead:hover {
     transform: translateY(-2px);
     border-color: var(--gold);
   }
-  .v-card-featured .v-thumb {
-    height: 100%;
+  .video-card-lead .lead-thumb {
     aspect-ratio: 9/16;
+    height: 100%;
     overflow: hidden;
   }
-  .v-card-featured img {
+  .video-card-lead img {
     width: 100%; height: 100%; object-fit: cover;
   }
-  .v-featured-info {
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-  .v-featured-info b {
-    font-family: 'Unbounded', sans-serif;
-    font-size: 1rem;
-    line-height: 1.3;
-  }
-  .v-featured-info p {
-    margin: 0;
-    font-size: 0.84rem;
-    color: var(--text-muted);
+  .video-card-lead .lead-title {
+    padding: 16px 20px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    line-height: 1.4;
+    color: var(--text);
   }
 
-  .v-card {
+  .video-card {
     position: relative;
+    display: block;
     aspect-ratio: 9 / 16;
     border-radius: var(--radius-lg);
     overflow: hidden;
     background: var(--surface);
     border: 1px solid var(--border);
-    display: block;
-    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease;
   }
-  .v-card:hover {
+  .video-card:hover {
     transform: translateY(-3px);
     border-color: var(--border-strong);
   }
-  .v-card img {
-    width: 100%; height: 100%; object-fit: cover; display: block;
+  .video-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
     transition: transform 0.3s ease;
   }
-  .v-card:hover img { transform: scale(1.04); }
-  .v-card-label {
+  .video-card:hover img { transform: scale(1.04); }
+  .video-card .video-label {
     position: absolute;
-    bottom: 0; left: 0; right: 0;
-    padding: 28px 12px 12px;
-    background: linear-gradient(to top, rgba(15, 9, 20, 0.95) 20%, transparent);
-    font-size: 0.8rem;
+    left: 0; right: 0; bottom: 0;
+    padding: 26px 12px 12px;
+    background: linear-gradient(to top, rgba(10,6,14,0.95) 15%, transparent);
+    font-size: 0.82rem;
     font-weight: 600;
-    line-height: 1.3;
+    color: var(--text);
+    line-height: 1.35;
   }
 
-  /* About Bento */
-  .bento-about {
+  /* ---------- Sobre Mí ---------- */
+  .about {
+    display: flex;
+    gap: 16px;
+    align-items: center;
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: var(--radius-xl);
-    padding: 24px;
-    display: flex;
-    gap: 20px;
-    align-items: center;
+    padding: 20px;
   }
-  .about-avatar {
-    width: 80px; height: 80px;
+  .about-portrait {
+    width: 84px;
+    height: 84px;
+    flex-shrink: 0;
     border-radius: 50%;
     overflow: hidden;
     border: 2px solid var(--border-strong);
-    flex-shrink: 0;
   }
-  .about-avatar img { width: 100%; height: 100%; object-fit: cover; }
+  .about-portrait img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .about-body p {
     margin: 0;
-    font-size: 0.92rem;
     color: var(--text-muted);
+    font-size: 0.92rem;
     line-height: 1.5;
   }
 
-  /* Footer */
+  /* ---------- La DrakyMachine ---------- */
+  .setup-details {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    transition: border-color 0.25s ease;
+  }
+  .setup-details[open] { border-color: rgba(227,162,60,0.35); }
+  .setup-summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+  }
+  .setup-summary::-webkit-details-marker { display: none; }
+  .setup-summary:hover { background: rgba(244,236,230,0.02); }
+  .setup-summary-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .setup-summary-left h2 {
+    font-family: 'Unbounded', sans-serif;
+    margin: 0;
+    font-size: 1.1rem;
+  }
+  .setup-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--gold);
+    background: rgba(227,162,60,0.12);
+    border: 1px solid rgba(227,162,60,0.25);
+    padding: 2px 8px;
+    border-radius: 999px;
+  }
+  .setup-arrow {
+    width: 20px; height: 20px;
+    color: var(--gold);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .setup-details[open] .setup-arrow { transform: rotate(180deg); }
+
+  .setup-body {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 0 24px 24px;
+    border-top: 1px solid var(--border);
+    margin-top: 4px;
+  }
+  .setup-img-wrap {
+    width: 130px;
+    flex-shrink: 0;
+    filter: drop-shadow(0 8px 18px rgba(0,0,0,0.6));
+    padding-top: 10px;
+  }
+  .setup-img-wrap img { width: 100%; height: auto; display: block; object-fit: contain; }
+
+  .setup-list {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+    padding-top: 10px;
+  }
+  .spec-item {
+    display: flex;
+    flex-direction: column;
+    padding: 6px 10px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+  }
+  .spec-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--gold);
+  }
+  .spec-val {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* ---------- Métricas / Media Kit ---------- */
+  .brand-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    padding: 24px 22px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  }
+  .brand-card h2 {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 1.25rem;
+    margin: 0 0 6px;
+  }
+  .brand-subtitle {
+    margin: 0 0 20px;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+  }
+
+  .metrics-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .metric-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 13px 14px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+  }
+  .metric-lead {
+    background: linear-gradient(135deg, rgba(227,162,60,0.12), var(--surface-2));
+    border-color: rgba(227,162,60,0.3);
+  }
+
+  .metric-platform {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 110px;
+  }
+  .metric-platform svg {
+    width: 20px; height: 20px;
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+  .metric-platform span {
+    font-size: 0.88rem;
+    font-weight: 600;
+  }
+
+  .metric-stats {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex: 1;
+    justify-content: flex-end;
+    text-align: right;
+  }
+  .metric-stat-group {
+    display: flex;
+    flex-direction: column;
+  }
+  .metric-stat-group b {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.1;
+  }
+  .metric-stat-group em {
+    font-style: normal;
+    font-size: 0.68rem;
+    color: var(--text-faint);
+  }
+
+  .ribbon-badge {
+    font-size: 0.7rem;
+    font-weight: 800;
+    padding: 4px 9px;
+    border-radius: 999px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .ribbon-gold {
+    background: linear-gradient(135deg, #FFE082 0%, #E3A23C 55%, #B9832F 100%);
+    color: #1F1206;
+  }
+  .ribbon-silver {
+    background: linear-gradient(135deg, #FFFFFF 0%, #D1D5DB 60%, #9CA3AF 100%);
+    color: #111827;
+  }
+
+  .brand-contact-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .btn-full {
+    width: 100%;
+    text-align: center;
+    padding: 13px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--gold);
+    color: #21140B;
+    font-weight: 700;
+    font-size: 0.88rem;
+    border-radius: 999px;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.2s ease;
+  }
+  .btn-full:hover { background: #EDB25C; transform: translateY(-2px); }
+
+  .contact-copy-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--surface-2);
+    border: 1px solid var(--border-strong);
+    padding: 9px 14px;
+    border-radius: var(--radius-md);
+  }
+  .contact-email-val {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.84rem;
+    color: var(--text-muted);
+  }
+  .copy-btn {
+    background: rgba(227,162,60,0.15);
+    border: 1px solid rgba(227,162,60,0.3);
+    color: var(--gold);
+    font-size: 0.74rem;
+    font-weight: 700;
+    padding: 5px 12px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .copy-btn:hover { background: var(--gold); color: #120803; }
+
+  /* ---------- Footer ---------- */
   footer {
-    margin-top: 60px;
+    margin-top: 56px;
     padding-top: 24px;
     border-top: 1px solid var(--border);
     display: flex;
@@ -659,37 +668,41 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     gap: 14px;
     text-align: center;
   }
-  .foot-row { display: flex; gap: 12px; }
-  .foot-row a {
-    width: 40px; height: 40px;
-    border-radius: 50%;
-    border: 1px solid var(--border);
+  .foot-icons { display: flex; gap: 12px; }
+  .foot-icons a {
+    width: 42px; height: 42px;
     display: flex;
     align-items: center;
     justify-content: center;
+    border: 1px solid var(--border-strong);
+    border-radius: 50%;
     color: var(--text-muted);
     transition: all 0.2s ease;
   }
-  .foot-row a:hover {
+  .foot-icons a:hover {
     color: var(--gold);
     border-color: var(--gold);
     transform: translateY(-2px);
   }
-  .foot-row svg { width: 18px; height: 18px; }
+  .foot-icons svg { width: 19px; height: 19px; }
 
-  @media (max-width: 650px) {
-    .metrics-bento-grid { grid-template-columns: repeat(2, 1fr); }
-    .platform-deck { grid-template-columns: repeat(2, 1fr); }
-    .specs-blueprint { grid-template-columns: 1fr; }
-    .rig-body { grid-template-columns: 1fr; text-align: center; }
-    .rig-img { max-width: 140px; margin: 0 auto; }
-    .kick-content { max-width: 100%; }
-    .kick-mascot { opacity: 0.2; }
-    .v-card-featured { grid-template-columns: 1fr; }
-    .v-card-featured .v-thumb { aspect-ratio: 16/9; }
-    .cta-block { grid-template-columns: 1fr; }
-    .hero { grid-template-columns: 1fr; text-align: left; }
-    .hero-portrait { display: none; }
+  footer p.copy {
+    margin: 0;
+    font-size: 0.78rem;
+    color: var(--text-faint);
+  }
+
+  @media (max-width: 520px) {
+    .platform-row { grid-template-columns: repeat(2, 1fr); }
+    .video-card-lead { grid-template-columns: 1fr; }
+    .video-card-lead .lead-thumb { aspect-ratio: 16/9; }
+    .setup-body { flex-direction: column; align-items: center; }
+    .setup-img-wrap { width: 140px; margin-bottom: 8px; }
+    .setup-list { width: 100%; }
+    .metric-row { flex-wrap: wrap; }
+    .metric-stats { justify-content: flex-start; width: 100%; }
+    .kick-inner { max-width: 100%; }
+    .kick-accent { opacity: 0.25; right: -25px; }
   }
 </style>
 </head>
@@ -700,239 +713,263 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
-<div class="ambient-glow-top"></div>
+<div class="ambient-glow"></div>
 
 <div class="wrap">
 
-  <!-- TOP BAR -->
-  <div class="status-bar">
-    <div class="status-pill">
-      <span class="status-dot"></span>
-      <span>Disponible para colaboraciones</span>
-    </div>
-    <span class="status-loc mono">Chile // 2026</span>
-  </div>
-
   <!-- HERO -->
-  <header class="hero">
-    <div class="hero-left">
-      <div class="hero-titles">
-        <h1 class="name">DRAKY</h1>
-        <span class="tag-badge">¡Chetumare!</span>
+  <div class="hero">
+    <div class="hero-top">
+      <div class="hero-text">
+        <h1 class="name">Draky</h1>
+        <span class="exclaim">¡Chetumare!</span>
+        <p class="tagline">Gaming, tecnología, internet y cultura popular.</p>
       </div>
-      <p class="tagline">Diseñador y creador de contenido. Análisis técnico de hardware, misterios y retrogaming.</p>
-      <div class="hero-chips">
-        <span class="chip">Hardware &amp; PC</span>
-        <span class="chip">Retro Gaming</span>
-        <span class="chip">Unreal Engine</span>
-        <span class="chip">Cultura Pop</span>
+      <div class="hero-portrait">
+        <img src="assets/Imagenperfil.webp" alt="Avatar de Draky">
       </div>
     </div>
-    <div class="hero-portrait">
-      <img src="assets/Imagenperfil.webp" alt="Draky">
+    <div class="chips">
+      <span class="chip">Gaming &amp; esports</span>
+      <span class="chip">Entretenimiento</span>
+      <span class="chip">Cultura pop &amp; memes</span>
     </div>
-  </header>
-
-  <!-- PLATAFORMAS BENTO -->
-  <div class="platform-deck">
-    <a class="p-tile p-tile-tt" href="https://tiktok.com/@by.draky" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 4v9.5a3.5 3.5 0 1 1-3-3.46"/><path d="M14 4c.6 2.3 2.2 3.7 4.5 4"/></svg>
-      <span>TikTok</span>
-      <em>11.6K</em>
-    </a>
-    <a class="p-tile p-tile-ig" href="https://instagram.com/by.draky" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg>
-      <span>Instagram</span>
-      <em>3.0K</em>
-    </a>
-    <a class="p-tile p-tile-yt" href="https://youtube.com/@bydraky" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5.5" width="18" height="13" rx="4"/><path d="M10.5 9.5l5 2.5-5 2.5z" fill="currentColor" stroke="none"/></svg>
-      <span>YouTube</span>
-      <em>1.8K</em>
-    </a>
-    <a class="p-tile p-tile-kick" href="https://kick.com/srdraky" target="_blank" rel="noopener">
-      <svg viewBox="0 0 512 512" fill="currentColor"><path d="M37 .036h164.448v113.621h54.71v-56.82h54.731V.036h164.448v170.777h-54.73v56.82h-54.711v56.8h54.71v56.82h54.73V512.03H310.89v-56.82h-54.73v-56.8h-54.711v113.62H37V.036z"/></svg>
-      <span>Kick</span>
-      <em>Partner</em>
-    </a>
   </div>
 
-  <!-- MEDIA KIT / MÉTRICAS VERIFICADAS -->
-  <section class="bento-section">
-    <div class="bento-media-kit bento-full">
-      <div class="media-header">
-        <div>
-          <h2>Métricas de Impacto</h2>
-          <p>Rendimiento consolidado mensual (Meta &amp; TikTok Studio)</p>
-        </div>
-        <span class="verified-pill">● Datos Verificados</span>
-      </div>
-
-      <div class="metrics-bento-grid">
-        <div class="m-box m-box-lead">
-          <div class="m-label">
-            <span>Impacto Total</span>
-            <span class="mono">GLOBAL</span>
-          </div>
-          <div class="m-num m-num-gold">460K+</div>
-          <div class="m-sub">vistas / mes</div>
-        </div>
-        <div class="m-box">
-          <div class="m-label">
-            <span>Descubrimiento</span>
-            <span class="mono">ALGORITMO</span>
-          </div>
-          <div class="m-num">90%</div>
-          <div class="m-sub">público no seguidor</div>
-        </div>
-        <div class="m-box">
-          <div class="m-label">
-            <span>TikTok</span>
-            <span class="mono">TOP REACH</span>
-          </div>
-          <div class="m-num">238K+</div>
-          <div class="m-sub">vistas / mes</div>
-        </div>
-        <div class="m-box">
-          <div class="m-label">
-            <span>Instagram</span>
-            <span class="mono">TOP ENGAGEMENT</span>
-          </div>
-          <div class="m-num">14.8%</div>
-          <div class="m-sub">tasa de interacción</div>
-        </div>
-      </div>
-
-      <!-- CONTACTO DIRECTO -->
-      <div class="cta-block">
-        <div class="email-txt">drakydzn@gmail.com</div>
-        <div class="cta-actions">
-          <button class="btn-copy" id="copy-btn" onclick="copyEmail()">Copiar</button>
-          <a href="mailto:drakydzn@gmail.com?subject=Propuesta%20de%20Colaboraci%C3%B3n" class="btn-mail">Proponer Campaña ↗</a>
-        </div>
-      </div>
+  <!-- PLATAFORMAS -->
+  <section aria-label="Plataformas">
+    <h2 class="section-heading">Encuéntrame por acá</h2>
+    <div class="platform-row">
+      <a class="pbtn pbtn-ig" href="https://instagram.com/by.draky" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg>
+        <span>Instagram</span>
+        <em class="mono">3.0K</em>
+      </a>
+      <a class="pbtn pbtn-tt" href="https://tiktok.com/@by.draky" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 4v9.5a3.5 3.5 0 1 1-3-3.46"/><path d="M14 4c.6 2.3 2.2 3.7 4.5 4"/></svg>
+        <span>TikTok</span>
+        <em class="mono">11.6K</em>
+      </a>
+      <a class="pbtn pbtn-yt" href="https://youtube.com/@bydraky" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5.5" width="18" height="13" rx="4"/><path d="M10.5 9.5l5 2.5-5 2.5z" fill="currentColor" stroke="none"/></svg>
+        <span>YouTube</span>
+        <em class="mono">1.8K</em>
+      </a>
+      <a class="pbtn pbtn-kick" href="https://kick.com/srdraky" target="_blank" rel="noopener">
+        <svg viewBox="0 0 512 512" fill="currentColor"><path d="M37 .036h164.448v113.621h54.71v-56.82h54.731V.036h164.448v170.777h-54.73v56.82h-54.711v56.8h54.71v56.82h54.73V512.03H310.89v-56.82h-54.73v-56.8h-54.711v113.62H37V.036z"/></svg>
+        <span>Kick</span>
+        <em class="mono">Partner</em>
+      </a>
     </div>
   </section>
 
-  <!-- KICK LIVE BLOCK -->
-  <section class="bento-section">
-    <div class="bento-kick bento-full">
-      <div class="kick-content">
-        <span class="kick-badge">Comunidad &amp; Directos</span>
-        <h2>Transmisiones en Kick</h2>
-        <p>Espacio sin filtros: gameplays de nicho, interacción cercana con la comunidad y charlas técnicas.</p>
-        <a class="btn-kick" href="https://kick.com/srdraky" target="_blank" rel="noopener">
-          <span>Unirse al Stream</span>
-          <span>↗</span>
-        </a>
+  <!-- KICK EN VIVO -->
+  <section class="kick" aria-label="Kick en vivo">
+    <div class="kick-accent">
+      <img src="assets/Drakyhablando.webp" alt="Draky Kick">
+    </div>
+    <div class="kick-inner">
+      <div class="live-row">
+        <span class="live-dot"></span>
+        <span class="live-label">Streams sin horario fijo</span>
       </div>
-      <div class="kick-mascot">
-        <img src="assets/Drakyhablando.webp" alt="Draky Kick">
-      </div>
+      <h2>Ven a verme en Stream!</h2>
+      <p>Streameo seguido, juguemos algo y aprovecha de conversar conmigo.</p>
+      <a class="btn-kick" href="https://kick.com/srdraky" target="_blank" rel="noopener">Ver canal en Kick</a>
     </div>
   </section>
 
-  <!-- SHOWCASE DE CONTENIDO (Bento de 5 videos resuelto) -->
-  <section style="margin-top: 36px;">
-    <div class="section-title">
-      <span>Contenido Seleccionado</span>
-    </div>
-    <div class="video-showcase">
-      <!-- Destacado: Bodycam -->
-      <a class="v-card-featured" href="https://youtube.com/shorts/KvYZ5nXEDJU?si=Q886yOHT5pGNFNm0" target="_blank" rel="noopener">
-        <div class="v-thumb">
+  <!-- CONTENIDO DESTACADO (5 VIDEOS) -->
+  <section aria-label="Contenido destacado">
+    <h2 class="section-heading">Lo último</h2>
+    <div class="video-grid">
+      <!-- Bodycam como destacado horizontal -->
+      <a class="video-card-lead" href="https://youtube.com/shorts/KvYZ5nXEDJU?si=Q886yOHT5pGNFNm0" target="_blank" rel="noopener">
+        <div class="lead-thumb">
           <img src="assets/bodycam.webp" alt="Bodycam">
         </div>
-        <div class="v-featured-info">
-          <span class="tag-badge" style="width: fit-content;">Lanzamiento Destacado</span>
-          <b>¿Por qué BODYCAM parece real? (Te está engañando)</b>
-          <p>Desglose de dirección de arte, shaders en Unreal Engine 5 y emulación de cámara corporal.</p>
-        </div>
+        <div class="lead-title">¿Por qué BODYCAM parece real? (Te está engañando)</div>
       </a>
 
-      <!-- Grilla secundaria -->
-      <a class="v-card" href="https://youtube.com/shorts/_JvAty0v-pI?si=upV1tOVxmIFkZWkn" target="_blank" rel="noopener">
+      <!-- 4 videos en cuadrícula uniforme 2x2 -->
+      <a class="video-card" href="https://youtube.com/shorts/_JvAty0v-pI?si=upV1tOVxmIFkZWkn" target="_blank" rel="noopener">
         <img src="assets/Dlss5.webp" alt="DLSS 5">
-        <span class="v-card-label">¿A alguien le gusta de verdad el DLSS 5?</span>
+        <span class="video-label">¿A alguien le gusta de verdad el DLSS 5?</span>
       </a>
-      <a class="v-card" href="https://youtube.com/shorts/pSYhielGIPs?si=O7BYWMBODuz1-g0S" target="_blank" rel="noopener">
+      <a class="video-card" href="https://youtube.com/shorts/pSYhielGIPs?si=O7BYWMBODuz1-g0S" target="_blank" rel="noopener">
         <img src="assets/resident2(1).webp" alt="Resident Evil 2">
-        <span class="v-card-label">El port IMPOSIBLE de Resident Evil 2 en N64</span>
+        <span class="video-label">El port IMPOSIBLE de Resident Evil 2 en N64</span>
       </a>
-      <a class="v-card" href="https://youtube.com/shorts/4PnDf965cd8?si=Jv-lv2OoiT2sO2Fk" target="_blank" rel="noopener">
+      <a class="video-card" href="https://youtube.com/shorts/4PnDf965cd8?si=Jv-lv2OoiT2sO2Fk" target="_blank" rel="noopener">
         <img src="assets/lavanda.webp" alt="Pueblo Lavanda">
-        <span class="v-card-label">La perturbadora leyenda de Pueblo Lavanda</span>
+        <span class="video-label">La perturbadora leyenda de Pueblo Lavanda</span>
       </a>
-      <a class="v-card" href="https://youtube.com/shorts/BMfAuWAZ3iI?si=ooFoZZW8NJITfglU" target="_blank" rel="noopener">
+      <a class="video-card" href="https://youtube.com/shorts/BMfAuWAZ3iI?si=ooFoZZW8NJITfglU" target="_blank" rel="noopener">
         <img src="assets/Gameloft.webp" alt="Gameloft">
-        <span class="v-card-label">La era dorada de Gameloft</span>
+        <span class="video-label">La era dorada de Gameloft</span>
       </a>
-    </div>
-  </section>
-
-  <!-- LA DRAKYMACHINE (BLUEPRINT) -->
-  <section style="margin-top: 28px;">
-    <div class="bento-rig">
-      <details class="rig-details">
-        <summary class="rig-summary">
-          <div class="rig-summary-left">
-            <h2>La DrakyMachine</h2>
-            <span class="tag-badge mono">// WORKSTATION</span>
-          </div>
-          <svg class="rig-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="6 9 12 15 18 9"></polyline>
-          </svg>
-        </summary>
-        <div class="rig-body">
-          <div class="rig-img">
-            <img src="assets/smart.webp" alt="Setup">
-          </div>
-          <div class="specs-blueprint">
-            <div class="spec-item">
-              <span class="spec-label">GPU //</span>
-              <span class="spec-val">ASUS ROG Strix RTX 3070 8GB</span>
-            </div>
-            <div class="spec-item">
-              <span class="spec-label">CPU //</span>
-              <span class="spec-val">AMD Ryzen 5 5600</span>
-            </div>
-            <div class="spec-item">
-              <span class="spec-label">COOLING //</span>
-              <span class="spec-val">BeQuiet! Pure Rock 2</span>
-            </div>
-            <div class="spec-item">
-              <span class="spec-label">RAM //</span>
-              <span class="spec-val">16GB (2x8) Crucial Ballistix 3600MHz</span>
-            </div>
-            <div class="spec-item">
-              <span class="spec-label">STORAGE //</span>
-              <span class="spec-val">500GB NVMe Samsung 980</span>
-            </div>
-            <div class="spec-item">
-              <span class="spec-label">CHASSIS //</span>
-              <span class="spec-val">CM MasterBox K501L + DA600</span>
-            </div>
-          </div>
-        </div>
-      </details>
     </div>
   </section>
 
   <!-- SOBRE MÍ -->
-  <section style="margin-top: 28px;">
-    <div class="bento-about">
-      <div class="about-avatar">
-        <img src="assets/Drakypensando.webp" alt="Draky bio">
+  <section aria-label="Sobre mí">
+    <h2 class="section-heading">Sobre mí</h2>
+    <div class="about">
+      <div class="about-portrait">
+        <img src="assets/Drakypensando.webp" alt="Draky pensando">
       </div>
       <div class="about-body">
-        <p>Diseñador, creador de contenido y <strong>KICK Partner</strong> desde el sur de Chile. Me enfoco en rescatar la cultura de los 2000, desmontar mitos técnicos y analizar el desarrollo de videojuegos con humor y edición al detalle.</p>
+        <p>Diseñador, creador de contenido y <em>KICK Partner</em> desde Chile. Exploro videojuegos retro, tecnología, rarezas de internet y cultura pop con un toque de humor y edición al detalle.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- LA DRAKYMACHINE -->
+  <section aria-label="La DrakyMachine">
+    <details class="setup-details">
+      <summary class="setup-summary">
+        <div class="setup-summary-left">
+          <h2>La DrakyMachine</h2>
+          <span class="setup-tag">Specs</span>
+        </div>
+        <svg class="setup-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </summary>
+      <div class="setup-body">
+        <div class="setup-img-wrap">
+          <img src="assets/smart.webp" alt="CoolerMaster MasterBox K501L Setup">
+        </div>
+        <div class="setup-list">
+          <div class="spec-item">
+            <span class="spec-label">GPU</span>
+            <span class="spec-val">ASUS ROG Strix RTX 3070 (8GB)</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-label">CPU &amp; Cooler</span>
+            <span class="spec-val">Ryzen 5 5600 + BeQuiet Pure Rock 2</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-label">Placa Madre</span>
+            <span class="spec-val">Gigabyte B450 Gaming X</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-label">RAM</span>
+            <span class="spec-val">16GB (8x2) 3600MHz Crucial Ballistix</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-label">Almacenamiento</span>
+            <span class="spec-val">500GB NVMe Samsung 980</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-label">Fuente &amp; Chasis</span>
+            <span class="spec-val">DeepCool DA600 Bronze / CM MasterBox K501L</span>
+          </div>
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <!-- MÉTRICAS / ¿TRABAJAMOS JUNTOS? -->
+  <section aria-label="Colaboraciones y marcas">
+    <div class="brand-card">
+      <h2>¿Trabajamos juntos?</h2>
+      <p class="brand-subtitle">Métricas verificadas de los últimos 30 días en mis plataformas principales.</p>
+
+      <div class="metrics-list">
+        <!-- Impacto Combinado -->
+        <div class="metric-row metric-lead">
+          <div class="metric-platform">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            <span>Impacto Total</span>
+          </div>
+          <div class="metric-stats">
+            <div class="metric-stat-group">
+              <b>460K+</b>
+              <em>vistas / mes</em>
+            </div>
+            <div class="metric-stat-group">
+              <b style="color: var(--gold);">90%</b>
+              <em>público nuevo</em>
+            </div>
+          </div>
+          <span class="ribbon-badge ribbon-gold">Alto Alcance</span>
+        </div>
+
+        <!-- Instagram -->
+        <div class="metric-row">
+          <div class="metric-platform">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg>
+            <span>Instagram</span>
+          </div>
+          <div class="metric-stats">
+            <div class="metric-stat-group">
+              <b>186K+</b>
+              <em>vistas / mes</em>
+            </div>
+            <div class="metric-stat-group">
+              <b style="color: var(--gold);">14.8%</b>
+              <em>engagement</em>
+            </div>
+          </div>
+          <span class="ribbon-badge ribbon-gold">Top 5%</span>
+        </div>
+
+        <!-- TikTok -->
+        <div class="metric-row">
+          <div class="metric-platform">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 4v9.5a3.5 3.5 0 1 1-3-3.46"/><path d="M14 4c.6 2.3 2.2 3.7 4.5 4"/></svg>
+            <span>TikTok</span>
+          </div>
+          <div class="metric-stats">
+            <div class="metric-stat-group">
+              <b>238K+</b>
+              <em>vistas / mes</em>
+            </div>
+            <div class="metric-stat-group">
+              <b style="color: var(--gold);">8.0%</b>
+              <em>engagement</em>
+            </div>
+          </div>
+          <span class="ribbon-badge ribbon-silver">Top 10%</span>
+        </div>
+
+        <!-- YouTube Shorts -->
+        <div class="metric-row">
+          <div class="metric-platform">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5.5" width="18" height="13" rx="4"/><path d="M10.5 9.5l5 2.5-5 2.5z" fill="currentColor" stroke="none"/></svg>
+            <span>Shorts</span>
+          </div>
+          <div class="metric-stats">
+            <div class="metric-stat-group">
+              <b>36K+</b>
+              <em>vistas / mes</em>
+            </div>
+            <div class="metric-stat-group">
+              <b style="color: var(--gold);">5.5%</b>
+              <em>engagement</em>
+            </div>
+          </div>
+          <span class="ribbon-badge ribbon-silver">Top 10%</span>
+        </div>
+      </div>
+
+      <!-- Zona de contacto directo -->
+      <div class="brand-contact-wrap">
+        <a href="mailto:drakydzn@gmail.com?subject=Propuesta%20de%20Colaboraci%C3%B3n" class="btn-full">
+          Enviar propuesta por correo ↗
+        </a>
+        <div class="contact-copy-bar">
+          <span class="contact-email-val">drakydzn@gmail.com</span>
+          <button class="copy-btn" id="copy-btn" onclick="copyEmail()">Copiar correo</button>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- FOOTER -->
   <footer>
-    <div class="foot-row">
+    <div class="foot-icons">
       <a href="https://instagram.com/by.draky" target="_blank" rel="noopener" aria-label="Instagram">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg>
       </a>
@@ -946,7 +983,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <svg viewBox="0 0 512 512" fill="currentColor"><path d="M37 .036h164.448v113.621h54.71v-56.82h54.731V.036h164.448v170.777h-54.73v56.82h-54.711v56.8h54.71v56.82h54.73V512.03H310.89v-56.82h-54.73v-56.8h-54.711v113.62H37V.036z"/></svg>
       </a>
     </div>
-    <p style="margin: 0; font-size: 0.76rem; color: var(--text-faint);" class="mono">&copy; Draky // Todos los derechos reservados.</p>
+    <p class="copy">&copy; Draky. Todos los derechos reservados.</p>
   </footer>
 
 </div>
@@ -957,10 +994,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     navigator.clipboard.writeText(email).then(() => {
       const btn = document.getElementById('copy-btn');
       btn.innerText = '¡Copiado!';
-      btn.style.background = 'var(--gold)';
-      btn.style.color = '#1A0F03';
+      btn.style.background = 'var(--live)';
+      btn.style.color = '#122008';
       setTimeout(() => {
-        btn.innerText = 'Copiar';
+        btn.innerText = 'Copiar correo';
         btn.style.background = '';
         btn.style.color = '';
       }, 2000);
