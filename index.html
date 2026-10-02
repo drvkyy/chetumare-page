@@ -427,7 +427,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     gap: 12px;
   }
 
-  /* Cartuchos Promos Horizontales (Nuevos) */
+  /* Cartuchos Promos Horizontales */
   .v-promo-cartridge {
     display: grid;
     grid-template-columns: 95px 1fr;
@@ -684,6 +684,92 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     border-radius: 6px;
     color: var(--text);
     box-shadow: inset 0 1px 2px rgba(0,0,0,0.4);
+  }
+
+  /* Sistema de Logros / Achievements */
+  .achievements-shell {
+    margin-top: 24px;
+    padding: 22px;
+  }
+  .achievements-shell h2 {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 1.15rem;
+    margin: 0 0 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .achievements-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  .achievement-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 14px;
+    background: var(--purple-slot);
+    border: 1px solid var(--shell-border);
+    border-top: 1.5px solid var(--shell-highlight);
+    border-radius: var(--radius-slot);
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.5);
+    transition: transform 0.15s ease, border-color 0.15s ease;
+  }
+  .achievement-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(227, 162, 60, 0.4);
+  }
+  .ach-icon-box {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: linear-gradient(145deg, rgba(227, 162, 60, 0.2) 0%, rgba(38, 17, 58, 0.9) 100%);
+    border: 1px solid var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+  }
+  .ach-icon-box svg {
+    width: 18px;
+    height: 18px;
+    color: var(--gold);
+  }
+  .ach-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+  }
+  .ach-title-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .ach-title {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .ach-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.58rem;
+    font-weight: 800;
+    padding: 1px 5px;
+    border-radius: 3px;
+    background: rgba(143, 191, 91, 0.2);
+    border: 1px solid var(--live);
+    color: var(--live);
+    text-transform: uppercase;
+  }
+  .ach-desc {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    line-height: 1.35;
+    margin: 0;
   }
 
   /* Métricas */
@@ -970,7 +1056,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .about-char { width: 72px; }
     .platform-grid { grid-template-columns: repeat(2, 1fr); }
     
-    /* En móvil: las promos y bodycam se apilan usando el ancho completo */
     .v-promo-cartridge { grid-column: span 2; grid-template-columns: 110px 1fr; }
     .v-lead-cartridge { grid-template-columns: 1fr; }
     .v-lead-cartridge .v-lead-thumb { aspect-ratio: 16/9; }
@@ -978,6 +1063,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .setup-body { flex-direction: column; align-items: center; }
     .setup-img-wrap { width: 140px; margin-bottom: 8px; }
     .setup-list { width: 100%; }
+    .achievements-grid { grid-template-columns: 1fr; }
     .metric-row { flex-wrap: wrap; }
     .metric-stats { justify-content: flex-start; width: 100%; }
     .kick-inner { max-width: 100%; }
@@ -1027,7 +1113,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </div>
 
-  <!-- SOBRE MÍ (CUADRO DE DIÁLOGO: PERSONAJE LIBRE A LA IZQUIERDA) -->
+  <!-- SOBRE MÍ -->
   <section class="translucent-shell about-shell" aria-label="Sobre mí">
     <div class="about-char">
       <img src="assets/Drakypensando.webp" alt="Draky pensando">
@@ -1087,7 +1173,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <h2 class="section-heading">Lo último</h2>
     <div class="video-grid">
 
-      <!-- NUEVOS VIDEOS PROMO (Mitad de ancho c/u en PC, apilados en móvil) -->
+      <!-- Promos Horizontales -->
       <div class="v-promo-cartridge sfx-click" onclick="openVideoModal('yikw82WndsI')">
         <div class="v-promo-thumb">
           <img src="https://i.ytimg.com/vi/yikw82WndsI/hqdefault.jpg" alt="Order of the Sinking Star">
@@ -1108,7 +1194,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
       </div>
 
-      <!-- Bodycam: Cartucho Ancho (Debajo de los Promos) -->
+      <!-- Bodycam: Cartucho Ancho -->
       <div class="v-lead-cartridge sfx-click" onclick="openVideoModal('KvYZ5nXEDJU')">
         <div class="v-lead-thumb">
           <img src="assets/bodycam.webp" alt="Bodycam">
@@ -1189,6 +1275,76 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </details>
   </section>
 
+  <!-- LOGROS DESBLOQUEADOS -->
+  <section class="translucent-shell achievements-shell" aria-label="Logros y reconocimientos">
+    <div class="shell-screws" style="padding: 0 0 10px 0;">
+      <div class="screw"></div>
+      <div class="screw"></div>
+    </div>
+    <h2>
+      <span>Logros desbloqueados</span>
+      <span class="tech-sticker-small">STATUS</span>
+    </h2>
+
+    <div class="achievements-grid">
+      <!-- Logro 1: KICK Partner -->
+      <div class="achievement-card sfx-click">
+        <div class="ach-icon-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+        </div>
+        <div class="ach-content">
+          <div class="ach-title-row">
+            <span class="ach-title">KICK Partner</span>
+            <span class="ach-tag">Verificado</span>
+          </div>
+          <p class="ach-desc">Creador asociado oficial y comunidad activa en streaming directo.</p>
+        </div>
+      </div>
+
+      <!-- Logro 2: Medio Millón -->
+      <div class="achievement-card sfx-click">
+        <div class="ach-icon-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        </div>
+        <div class="ach-content">
+          <div class="ach-title-row">
+            <span class="ach-title">Medio Millón</span>
+            <span class="ach-tag">Alcance</span>
+          </div>
+          <p class="ach-desc">+525K vistas acumuladas en formato corto durante los últimos 30 días.</p>
+        </div>
+      </div>
+
+      <!-- Logro 3: Alta Retención -->
+      <div class="achievement-card sfx-click">
+        <div class="ach-icon-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+        </div>
+        <div class="ach-content">
+          <div class="ach-title-row">
+            <span class="ach-title">Alta Retención</span>
+            <span class="ach-tag">76%+</span>
+          </div>
+          <p class="ach-desc">Ritmo dinámico y enganche en los primeros segundos de video.</p>
+        </div>
+      </div>
+
+      <!-- Logro 4: Postpro & Diseño -->
+      <div class="achievement-card sfx-click">
+        <div class="ach-icon-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <div class="ach-content">
+          <div class="ach-title-row">
+            <span class="ach-title">Postpro &amp; Diseño</span>
+            <span class="ach-tag">DaVinci Studio</span>
+          </div>
+          <p class="ach-desc">Flujo técnico propio: edición de ritmo, montaje visual y diseño de miniaturas.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- MÉTRICAS ACTUALIZADAS / ¿TRABAJAMOS JUNTOS? -->
   <section class="translucent-shell brand-shell" aria-label="Colaboraciones y marcas" id="metrics-section">
     <div class="shell-screws" style="padding: 0 0 10px 0;">
@@ -1207,11 +1363,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
         <div class="metric-stats">
           <div class="metric-stat-group">
-            <b class="counter-num" data-target="570" data-suffix="K+">0</b>
+            <b class="counter-num" data-target="525" data-suffix="K+">0</b>
             <em>vistas / mes</em>
           </div>
           <div class="metric-stat-group">
-            <b style="color: var(--gold);" class="counter-num" data-target="92.0" data-decimals="1" data-suffix="%">0</b>
+            <b style="color: var(--gold);" class="counter-num" data-target="92.3" data-decimals="1" data-suffix="%">0</b>
             <em>público nuevo</em>
           </div>
         </div>
@@ -1226,11 +1382,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
         <div class="metric-stats">
           <div class="metric-stat-group">
-            <b class="counter-num" data-target="269" data-suffix="K+">0</b>
+            <b class="counter-num" data-target="281" data-suffix="K+">0</b>
             <em>vistas / mes</em>
           </div>
           <div class="metric-stat-group">
-            <b style="color: var(--gold);" class="counter-num" data-target="16.9" data-decimals="1" data-suffix="%">0</b>
+            <b style="color: var(--gold);" class="counter-num" data-target="17.2" data-decimals="1" data-suffix="%">0</b>
             <em>engagement</em>
           </div>
         </div>
@@ -1245,11 +1401,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
         <div class="metric-stats">
           <div class="metric-stat-group">
-            <b class="counter-num" data-target="264" data-suffix="K+">0</b>
+            <b class="counter-num" data-target="213" data-suffix="K+">0</b>
             <em>vistas / mes</em>
           </div>
           <div class="metric-stat-group">
-            <b style="color: var(--gold);" class="counter-num" data-target="8.1" data-decimals="1" data-suffix="%">0</b>
+            <b style="color: var(--gold);" class="counter-num" data-target="8.3" data-decimals="1" data-suffix="%">0</b>
             <em>engagement</em>
           </div>
         </div>
@@ -1264,11 +1420,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
         <div class="metric-stats">
           <div class="metric-stat-group">
-            <b class="counter-num" data-target="37" data-suffix="K+">0</b>
+            <b class="counter-num" data-target="31" data-suffix="K+">0</b>
             <em>vistas / mes</em>
           </div>
           <div class="metric-stat-group">
-            <b style="color: var(--gold);" class="counter-num" data-target="78.4" data-decimals="1" data-suffix="%">0</b>
+            <b style="color: var(--gold);" class="counter-num" data-target="76.8" data-decimals="1" data-suffix="%">0</b>
             <em>retención</em>
           </div>
         </div>
