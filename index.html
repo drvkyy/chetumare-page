@@ -39,9 +39,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     --wine: #A8384A;
     --gold: #E3A23C;
     --gold-glow: rgba(227, 162, 60, 0.28);
+    --accent: #C9B8E8;
+    --accent-dim: rgba(201, 184, 232, 0.18);
     --live: #8FBF5B;
     --text: #F7EFFB;
-    --text-muted: #BBA9C9;
+    --text-muted: #C9BBDB;
     --text-faint: #7C6793;
     --radius-shell: 20px;
     --radius-slot: 12px;
@@ -239,6 +241,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     box-shadow: inset 0 1px 2px rgba(0,0,0,0.6);
   }
 
+  .scroll-hint {
+    display: flex;
+    justify-content: center;
+    margin-top: 16px;
+    color: var(--text-faint);
+    animation: bounce-hint 1.8s ease-in-out infinite;
+  }
+  .scroll-hint svg { width: 18px; height: 18px; }
+  @keyframes bounce-hint {
+    0%, 100% { transform: translateY(0); opacity: 0.55; }
+    50% { transform: translateY(5px); opacity: 1; }
+  }
+
   /* Sobre Mí */
   .about-shell {
     margin-bottom: 24px;
@@ -289,6 +304,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     gap: 8px;
   }
 
+  .content-heading-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 6px 14px;
+    margin-bottom: 14px;
+  }
+  .section-heading-lead {
+    font-size: 1.55rem;
+    margin-bottom: 0;
+  }
+  .content-count {
+    font-size: 0.72rem;
+    color: var(--text-faint);
+  }
+
   .platform-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -316,7 +348,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     transform: translateY(1px);
     box-shadow: inset 0 2px 4px rgba(0,0,0,0.8);
   }
-  .pbtn svg { width: 22px; height: 22px; color: var(--gold); }
+  .pbtn svg { width: 22px; height: 22px; color: var(--accent); }
   .pbtn-kick svg { width: 19px; height: 19px; }
   .pbtn-ig:hover svg { color: #FF4D8D; filter: drop-shadow(0 0 6px rgba(255,77,141,0.6)); }
   .pbtn-tt:hover svg { color: #32FBFB; filter: drop-shadow(0 0 6px rgba(50,251,251,0.6)); }
@@ -356,21 +388,27 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     gap: 8px;
     margin-bottom: 8px;
   }
-  .live-led {
+  .status-dot {
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background: var(--live);
-    box-shadow: 0 0 10px var(--live), inset 0 1px 2px #FFF;
+    background: var(--text-faint);
+    transition: background 0.2s ease, box-shadow 0.2s ease;
   }
   .live-label {
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.74rem;
     font-weight: 700;
-    color: var(--live);
+    color: var(--text-faint);
     letter-spacing: 0.04em;
     text-transform: uppercase;
+    transition: color 0.2s ease;
   }
+  .live-row[data-live="true"] .status-dot {
+    background: var(--live);
+    box-shadow: 0 0 10px var(--live), inset 0 1px 2px #FFF;
+  }
+  .live-row[data-live="true"] .live-label { color: var(--live); }
   .kick-shell h2 {
     font-family: 'Unbounded', sans-serif;
     font-size: 1.15rem;
@@ -507,7 +545,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     color: #211105;
     padding: 2px 6px;
     border-radius: 4px;
-    border-left: 2px solid var(--gold);
+    border-left: 2px solid var(--accent);
   }
 
   /* Etiqueta flotante para el video nuevo */
@@ -522,7 +560,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     color: #211105;
     padding: 3px 8px;
     border-radius: 4px;
-    border-left: 2px solid var(--gold);
+    border-left: 2px solid var(--accent);
     z-index: 2;
     box-shadow: 0 4px 10px rgba(0,0,0,0.6);
     letter-spacing: 0.05em;
@@ -570,6 +608,27 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     line-height: 1.3;
   }
 
+  /* Quiebre visual sin carcasa */
+  .breather {
+    margin: 36px 0 8px;
+    padding: 4px 10px;
+    text-align: center;
+  }
+  .breather p {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 700;
+    font-size: clamp(1.25rem, 5.2vw, 1.75rem);
+    line-height: 1.35;
+    margin: 0;
+    color: var(--text);
+    letter-spacing: -0.01em;
+  }
+  .breather p span {
+    color: var(--text-muted);
+    font-weight: 600;
+    font-size: 0.82em;
+  }
+
   /* La DrakyMachine & Software Stack */
   .setup-shell {
     margin-top: 24px;
@@ -597,7 +656,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   }
   .setup-arrow {
     width: 20px; height: 20px;
-    color: var(--gold);
+    color: var(--accent);
     transition: transform 0.25s ease;
   }
   .setup-shell[open] .setup-arrow { transform: rotate(180deg); }
@@ -640,7 +699,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.64rem;
     font-weight: 700;
-    color: var(--gold);
+    color: var(--accent);
     text-transform: uppercase;
     letter-spacing: 0.04em;
   }
@@ -724,8 +783,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     width: 36px;
     height: 36px;
     border-radius: 8px;
-    background: linear-gradient(145deg, rgba(227, 162, 60, 0.2) 0%, rgba(38, 17, 58, 0.9) 100%);
-    border: 1px solid var(--gold);
+    background: linear-gradient(145deg, var(--accent-dim) 0%, rgba(38, 17, 58, 0.9) 100%);
+    border: 1px solid var(--accent);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -735,7 +794,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .ach-icon-box svg {
     width: 18px;
     height: 18px;
-    color: var(--gold);
+    color: var(--accent);
   }
   .ach-content {
     display: flex;
@@ -760,9 +819,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     font-weight: 800;
     padding: 1px 5px;
     border-radius: 3px;
-    background: rgba(143, 191, 91, 0.2);
-    border: 1px solid var(--live);
-    color: var(--live);
+    background: var(--accent-dim);
+    border: 1px solid var(--accent);
+    color: var(--accent);
     text-transform: uppercase;
   }
   .ach-desc {
@@ -917,24 +976,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     gap: 14px;
     text-align: center;
   }
-  .foot-icons { display: flex; gap: 12px; }
-  .foot-icons a {
-    width: 42px; height: 42px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--purple-slot);
-    border: 1px solid var(--shell-border);
-    border-top: 1px solid var(--shell-highlight);
-    border-radius: 10px;
+  .back-to-top {
+    font-size: 0.78rem;
+    font-weight: 600;
     color: var(--text-muted);
-    transition: transform 0.15s ease, color 0.15s ease;
+    border: 1px solid var(--shell-border);
+    padding: 7px 16px;
+    border-radius: 999px;
+    transition: color 0.15s ease, border-color 0.15s ease;
   }
-  .foot-icons a:hover {
+  .back-to-top:hover {
     color: var(--gold);
-    transform: translateY(-2px);
+    border-color: var(--gold);
   }
-  .foot-icons svg { width: 19px; height: 19px; }
 
   /* Video Modal In-Situ */
   .video-modal-backdrop {
@@ -1079,7 +1133,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
-<div class="wrap">
+<div class="wrap" id="top">
 
   <!-- HERO -->
   <div class="translucent-shell hero-shell">
@@ -1107,16 +1161,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </div>
     <div class="chips">
-      <span class="chip">Gaming &amp; esports</span>
-      <span class="chip">Entretenimiento</span>
-      <span class="chip">Cultura pop &amp; memes</span>
+      <span class="chip">43 videos</span>
+      <span class="chip">16.3K comunidad</span>
+      <span class="chip">KICK Partner</span>
+    </div>
+    <div class="scroll-hint" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
     </div>
   </div>
 
   <!-- SOBRE MÍ -->
   <section class="translucent-shell about-shell" aria-label="Sobre mí">
     <div class="about-char">
-      <img src="assets/Drakypensando.webp" alt="Draky pensando">
+      <img src="assets/Drakypensando.webp" alt="Draky pensando" loading="lazy" decoding="async">
     </div>
     <div class="about-body">
       <p>Diseñador, creador de contenido y <em>KICK Partner</em> desde Chile. Exploro videojuegos retro, tecnología, rarezas de internet y cultura pop con un toque de humor y edición al detalle.</p>
@@ -1155,11 +1212,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- KICK EN VIVO -->
   <section class="translucent-shell kick-shell" aria-label="Kick en vivo">
     <div class="kick-accent">
-      <img src="assets/Drakyhablando.webp" alt="Draky Kick">
+      <img src="assets/Drakyhablando.webp" alt="Draky Kick" loading="lazy" decoding="async">
     </div>
     <div class="kick-inner">
-      <div class="live-row">
-        <span class="live-led"></span>
+      <!-- Cuando estés transmitiendo de verdad: cambia data-live a "true" y el texto a "EN VIVO AHORA" -->
+      <div class="live-row" data-live="false">
+        <span class="status-dot"></span>
         <span class="live-label">Streams sin horario fijo</span>
       </div>
       <h2>Ven a verme en Stream!</h2>
@@ -1170,13 +1228,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <!-- CONTENIDO DESTACADO CON MODAL -->
   <section aria-label="Contenido destacado" style="margin-top: 28px;">
-    <h2 class="section-heading">Lo último</h2>
+    <div class="content-heading-row">
+      <h2 class="section-heading section-heading-lead">Lo último</h2>
+      <span class="content-count mono">43 videos · recién actualizado</span>
+    </div>
     <div class="video-grid">
 
       <!-- Promos Horizontales -->
-      <div class="v-promo-cartridge sfx-click" onclick="openVideoModal('yikw82WndsI')">
+      <div class="v-promo-cartridge sfx-click" onclick="openVideoModal('yikw82WndsI')" role="button" tabindex="0" aria-label="Reproducir: Esta demo dura 9 HORAS y te cocina el cerebro">
         <div class="v-promo-thumb">
-          <img src="https://i.ytimg.com/vi/yikw82WndsI/hqdefault.jpg" alt="Order of the Sinking Star">
+          <img src="https://i.ytimg.com/vi/yikw82WndsI/hqdefault.jpg" alt="Order of the Sinking Star" loading="lazy" decoding="async">
         </div>
         <div class="v-promo-details">
           <span class="tech-sticker-small">PROMO</span>
@@ -1184,9 +1245,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
       </div>
 
-      <div class="v-promo-cartridge sfx-click" onclick="openVideoModal('6Lkn19xmJT4')">
+      <div class="v-promo-cartridge sfx-click" onclick="openVideoModal('6Lkn19xmJT4')" role="button" tabindex="0" aria-label="Reproducir: Kyle Crane volvió... pero ahora tú eres el monstruo">
         <div class="v-promo-thumb">
-          <img src="https://i.ytimg.com/vi/6Lkn19xmJT4/hqdefault.jpg" alt="Dying Light The Beast">
+          <img src="https://i.ytimg.com/vi/6Lkn19xmJT4/hqdefault.jpg" alt="Dying Light The Beast" loading="lazy" decoding="async">
         </div>
         <div class="v-promo-details">
           <span class="tech-sticker-small">PROMO</span>
@@ -1195,9 +1256,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
 
       <!-- Bodycam: Cartucho Ancho -->
-      <div class="v-lead-cartridge sfx-click" onclick="openVideoModal('KvYZ5nXEDJU')">
+      <div class="v-lead-cartridge sfx-click" onclick="openVideoModal('KvYZ5nXEDJU')" role="button" tabindex="0" aria-label="Reproducir: ¿Por qué BODYCAM parece real?">
         <div class="v-lead-thumb">
-          <img src="assets/bodycam.webp" alt="Bodycam">
+          <img src="assets/bodycam.webp" alt="Bodycam" loading="lazy" decoding="async">
         </div>
         <div class="v-lead-details">
           <span class="tech-sticker-small">DESTACADO</span>
@@ -1206,81 +1267,26 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
 
       <!-- Cuadrícula Verticales -->
-      <div class="video-card sfx-click" onclick="openVideoModal('8t7EFloFn7A')">
+      <div class="video-card sfx-click" onclick="openVideoModal('8t7EFloFn7A')" role="button" tabindex="0" aria-label="Reproducir: Una persona está a punto de enterrar a Adobe">
         <span class="v-badge">NUEVO</span>
-        <img src="https://i.ytimg.com/vi/8t7EFloFn7A/hqdefault.jpg" alt="Alternativa a Photoshop">
+        <img src="https://i.ytimg.com/vi/8t7EFloFn7A/hqdefault.jpg" alt="Alternativa a Photoshop" loading="lazy" decoding="async">
         <span class="video-label">Una persona está a punto de ENTERRAR a Adobe 💀</span>
       </div>
-      <div class="video-card sfx-click" onclick="openVideoModal('_JvAty0v-pI')">
-        <img src="assets/Dlss5.webp" alt="DLSS 5">
+      <div class="video-card sfx-click" onclick="openVideoModal('_JvAty0v-pI')" role="button" tabindex="0" aria-label="Reproducir: ¿A alguien le gusta de verdad el DLSS 5?">
+        <img src="assets/Dlss5.webp" alt="DLSS 5" loading="lazy" decoding="async">
         <span class="video-label">¿A alguien le gusta de verdad el DLSS 5?</span>
       </div>
 
     </div>
   </section>
 
-  <!-- LA DRAKYMACHINE -->
-  <section aria-label="La DrakyMachine">
-    <details class="translucent-shell setup-shell" id="setup-details">
-      <summary class="setup-summary sfx-click">
-        <div class="setup-summary-left">
-          <h2>La DrakyMachine</h2>
-          <span class="tech-sticker-small">SPECS</span>
-        </div>
-        <svg class="setup-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="6 9 12 15 18 9"></polyline>
-        </svg>
-      </summary>
-      <div class="setup-body">
-        <div class="setup-img-wrap">
-          <img src="assets/smart.webp" alt="CoolerMaster MasterBox K501L Setup">
-        </div>
-        <div class="setup-list">
-          <div class="spec-slot">
-            <span class="spec-label">GPU</span>
-            <span class="spec-val">ASUS ROG Strix RTX 3070 (8GB)</span>
-          </div>
-          <div class="spec-slot">
-            <span class="spec-label">CPU &amp; Cooler</span>
-            <span class="spec-val">Ryzen 5 5600 + BeQuiet Pure Rock 2</span>
-          </div>
-          <div class="spec-slot">
-            <span class="spec-label">Placa Madre</span>
-            <span class="spec-val">Gigabyte B450 Gaming X</span>
-          </div>
-          <div class="spec-slot">
-            <span class="spec-label">RAM</span>
-            <span class="spec-val">16GB (8x2) 3600MHz Crucial Ballistix</span>
-          </div>
-          <div class="spec-slot">
-            <span class="spec-label">Almacenamiento</span>
-            <span class="spec-val">500GB NVMe Samsung 980</span>
-          </div>
-          <div class="spec-slot">
-            <span class="spec-label">Fuente &amp; Chasis</span>
-            <span class="spec-val">DeepCool DA600 Bronze / CM MasterBox K501L</span>
-          </div>
-        </div>
-      </div>
-      <!-- Software Stack Minimal -->
-      <div class="software-row">
-        <span class="software-label">// Soft &amp; Tools</span>
-        <div class="software-tags">
-          <span class="sw-badge">DaVinci Resolve Studio</span>
-          <span class="sw-badge">Adobe Photoshop</span>
-          <span class="sw-badge">OBS Studio</span>
-          <span class="sw-badge">Linux</span>
-        </div>
-      </div>
-    </details>
+  <!-- QUIEBRE VISUAL -->
+  <section class="breather" aria-hidden="true">
+    <p>Desde ports imposibles hasta teorías raras de internet —<br><span>sigo encontrando historias que vale la pena contar.</span></p>
   </section>
 
   <!-- LOGROS DESBLOQUEADOS -->
   <section class="translucent-shell achievements-shell" aria-label="Logros y reconocimientos">
-    <div class="shell-screws" style="padding: 0 0 10px 0;">
-      <div class="screw"></div>
-      <div class="screw"></div>
-    </div>
     <h2>
       <span>Logros desbloqueados</span>
       <span class="tech-sticker-small">STATUS</span>
@@ -1290,7 +1296,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <!-- Logro 1: KICK Partner -->
       <div class="achievement-card sfx-click">
         <div class="ach-icon-box">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+          <svg viewBox="0 0 16 16" fill="currentColor"><rect x="6" y="0" width="4" height="2"/><rect x="4" y="2" width="8" height="2"/><rect x="4" y="4" width="8" height="4"/><rect x="5" y="8" width="6" height="2"/><rect x="6" y="10" width="4" height="2"/><rect x="7" y="12" width="2" height="2"/></svg>
         </div>
         <div class="ach-content">
           <div class="ach-title-row">
@@ -1304,7 +1310,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <!-- Logro 2: Medio Millón -->
       <div class="achievement-card sfx-click">
         <div class="ach-icon-box">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          <svg viewBox="0 0 16 16" fill="currentColor"><rect x="2" y="7" width="2" height="2"/><rect x="4" y="5" width="2" height="2"/><rect x="6" y="4" width="4" height="2"/><rect x="10" y="5" width="2" height="2"/><rect x="12" y="7" width="2" height="2"/><rect x="4" y="9" width="2" height="2"/><rect x="10" y="9" width="2" height="2"/><rect x="6" y="10" width="4" height="2"/><rect x="7" y="7" width="2" height="2"/></svg>
         </div>
         <div class="ach-content">
           <div class="ach-title-row">
@@ -1318,7 +1324,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <!-- Logro 3: Retención en Shorts -->
       <div class="achievement-card sfx-click">
         <div class="ach-icon-box">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+          <svg viewBox="0 0 16 16" fill="currentColor"><rect x="1" y="1" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"/><rect x="6" y="5" width="2" height="2"/><rect x="6" y="7" width="2" height="2"/><rect x="6" y="9" width="2" height="2"/><rect x="8" y="6" width="2" height="2"/><rect x="8" y="8" width="2" height="2"/><rect x="10" y="7" width="2" height="2"/></svg>
         </div>
         <div class="ach-content">
           <div class="ach-title-row">
@@ -1332,7 +1338,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <!-- Logro 4: Producción Propia -->
       <div class="achievement-card sfx-click">
         <div class="ach-icon-box">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 16 16" fill="currentColor"><rect x="3" y="2" width="10" height="2"/><rect x="2" y="4" width="2" height="8"/><rect x="12" y="4" width="2" height="8"/><rect x="3" y="12" width="10" height="2"/><rect x="6" y="6" width="4" height="4"/></svg>
         </div>
         <div class="ach-content">
           <div class="ach-title-row">
@@ -1347,10 +1353,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <!-- MÉTRICAS ACTUALIZADAS / ¿TRABAJAMOS JUNTOS? -->
   <section class="translucent-shell brand-shell" aria-label="Colaboraciones y marcas" id="metrics-section">
-    <div class="shell-screws" style="padding: 0 0 10px 0;">
-      <div class="screw"></div>
-      <div class="screw"></div>
-    </div>
     <h2>¿Trabajamos juntos?</h2>
     <p class="brand-subtitle">Métricas verificadas de los últimos 30 días en mis plataformas principales.</p>
 
@@ -1443,22 +1445,65 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </section>
 
+  <!-- LA DRAKYMACHINE -->
+  <section aria-label="La DrakyMachine">
+    <details class="translucent-shell setup-shell" id="setup-details">
+      <summary class="setup-summary sfx-click">
+        <div class="setup-summary-left">
+          <h2>La DrakyMachine</h2>
+          <span class="tech-sticker-small">SPECS</span>
+        </div>
+        <svg class="setup-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </summary>
+      <div class="setup-body">
+        <div class="setup-img-wrap">
+          <img src="assets/smart.webp" alt="CoolerMaster MasterBox K501L Setup" loading="lazy" decoding="async">
+        </div>
+        <div class="setup-list">
+          <div class="spec-slot">
+            <span class="spec-label">GPU</span>
+            <span class="spec-val">ASUS ROG Strix RTX 3070 (8GB)</span>
+          </div>
+          <div class="spec-slot">
+            <span class="spec-label">CPU &amp; Cooler</span>
+            <span class="spec-val">Ryzen 5 5600 + BeQuiet Pure Rock 2</span>
+          </div>
+          <div class="spec-slot">
+            <span class="spec-label">Placa Madre</span>
+            <span class="spec-val">Gigabyte B450 Gaming X</span>
+          </div>
+          <div class="spec-slot">
+            <span class="spec-label">RAM</span>
+            <span class="spec-val">16GB (8x2) 3600MHz Crucial Ballistix</span>
+          </div>
+          <div class="spec-slot">
+            <span class="spec-label">Almacenamiento</span>
+            <span class="spec-val">500GB NVMe Samsung 980</span>
+          </div>
+          <div class="spec-slot">
+            <span class="spec-label">Fuente &amp; Chasis</span>
+            <span class="spec-val">DeepCool DA600 Bronze / CM MasterBox K501L</span>
+          </div>
+        </div>
+      </div>
+      <!-- Software Stack Minimal -->
+      <div class="software-row">
+        <span class="software-label">// Soft &amp; Tools</span>
+        <div class="software-tags">
+          <span class="sw-badge">DaVinci Resolve Studio</span>
+          <span class="sw-badge">Adobe Photoshop</span>
+          <span class="sw-badge">OBS Studio</span>
+          <span class="sw-badge">Linux</span>
+        </div>
+      </div>
+    </details>
+  </section>
+
   <!-- FOOTER -->
   <footer>
-    <div class="foot-icons">
-      <a href="https://instagram.com/by.draky" class="sfx-click" target="_blank" rel="noopener" aria-label="Instagram">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg>
-      </a>
-      <a href="https://tiktok.com/@by.draky" class="sfx-click" target="_blank" rel="noopener" aria-label="TikTok">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 4v9.5a3.5 3.5 0 1 1-3-3.46"/><path d="M14 4c.6 2.3 2.2 3.7 4.5 4"/></svg>
-      </a>
-      <a href="https://youtube.com/@bydraky" class="sfx-click" target="_blank" rel="noopener" aria-label="YouTube">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5.5" width="18" height="13" rx="4"/><path d="M10.5 9.5l5 2.5-5 2.5z" fill="currentColor" stroke="none"/></svg>
-      </a>
-      <a href="https://kick.com/srdraky" class="sfx-click" target="_blank" rel="noopener" aria-label="Kick">
-        <svg viewBox="0 0 512 512" fill="currentColor"><path d="M37 .036h164.448v113.621h54.71v-56.82h54.731V.036h164.448v170.777h-54.73v56.82h-54.711v56.8h54.71v56.82h54.73V512.03H310.89v-56.82h-54.73v-56.8h-54.711v113.62H37V.036z"/></svg>
-      </a>
-    </div>
+    <a href="#top" class="back-to-top mono sfx-click">↑ Volver arriba</a>
     <p style="margin: 0; font-size: 0.76rem; color: var(--text-faint);" class="mono">&copy; Draky. Todos los derechos reservados.</p>
   </footer>
 
@@ -1466,8 +1511,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- REPRODUCTOR DE VIDEO MODAL -->
 <div class="video-modal-backdrop" id="video-modal" onclick="handleModalBackdropClick(event)">
-  <div class="video-modal-shell">
-    <button class="modal-close-btn sfx-click" onclick="closeVideoModal()" aria-label="Cerrar video">&times;</button>
+  <div class="video-modal-shell" role="dialog" aria-modal="true" aria-label="Reproductor de video">
+    <button class="modal-close-btn sfx-click" id="modal-close-btn" onclick="closeVideoModal()" aria-label="Cerrar video">&times;</button>
     <iframe id="video-iframe" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
   </div>
 </div>
@@ -1545,6 +1590,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     elem.addEventListener('click', () => playTactileClick(680, 0.024));
   });
 
+  // Activación por teclado para las tarjetas de video (role="button")
+  document.querySelectorAll('[role="button"][tabindex="0"]').forEach(elem => {
+    elem.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        elem.click();
+      }
+    });
+  });
+
   // ---------- Toast y Copia de Correo ----------
   let toastTimer = null;
 
@@ -1576,13 +1631,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   }
 
   // ---------- Reproductor Modal In-situ ----------
+  let lastFocusedTrigger = null;
+
   function openVideoModal(videoId) {
     playTactileClick(550, 0.03);
+    lastFocusedTrigger = document.activeElement;
     const modal = document.getElementById('video-modal');
     const iframe = document.getElementById('video-iframe');
     iframe.src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0`;
     modal.classList.add('open');
     document.body.style.overflow = 'hidden';
+    const closeBtn = document.getElementById('modal-close-btn');
+    if (closeBtn) closeBtn.focus();
   }
 
   function closeVideoModal() {
@@ -1592,6 +1652,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     modal.classList.remove('open');
     iframe.src = '';
     document.body.style.overflow = '';
+    if (lastFocusedTrigger && typeof lastFocusedTrigger.focus === 'function') {
+      lastFocusedTrigger.focus();
+    }
   }
 
   function handleModalBackdropClick(e) {
@@ -1600,8 +1663,35 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     }
   }
 
+  // Trampa de foco: mientras el modal está abierto, Tab solo recorre sus elementos focuseables
+  function getModalFocusable() {
+    const modal = document.getElementById('video-modal');
+    return Array.from(modal.querySelectorAll('button, iframe, [tabindex]:not([tabindex="-1"])'));
+  }
+
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeVideoModal();
+    const modal = document.getElementById('video-modal');
+    const isOpen = modal.classList.contains('open');
+
+    if (e.key === 'Escape' && isOpen) {
+      closeVideoModal();
+      return;
+    }
+
+    if (e.key === 'Tab' && isOpen) {
+      const focusable = getModalFocusable();
+      if (focusable.length === 0) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
   });
 
   // ---------- Contadores animados (Count-up) ----------
