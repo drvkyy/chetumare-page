@@ -107,6 +107,24 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       0 20px 42px rgba(0, 0, 0, 0.65),
       0 0 20px rgba(227, 162, 60, 0.08);
   }
+  /* Esquina tipo cartucho: une el lenguaje "glass" con el motivo retro/pixel */
+  .translucent-shell::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 20px;
+    height: 20px;
+    background: linear-gradient(135deg, transparent 50%, var(--accent-dim) 51%);
+    border-top-right-radius: var(--radius-shell);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .shell-notch {
+    clip-path: polygon(0 0, calc(100% - 22px) 0, 100% 22px, 100% 100%, 0 100%);
+    -webkit-clip-path: polygon(0 0, calc(100% - 22px) 0, 100% 22px, 100% 100%, 0 100%);
+  }
 
   .shell-screws {
     display: flex;
@@ -1105,6 +1123,114 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     color: var(--text);
   }
 
+  /* Aparición al hacer scroll */
+  .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Personaje acompañando el scroll */
+  .achievements-shell { position: relative; overflow: hidden; }
+  .char-peek {
+    position: absolute;
+    right: -8px;
+    bottom: -12px;
+    width: 84px;
+    opacity: 0.14;
+    pointer-events: none;
+    filter: grayscale(0.25);
+  }
+  .char-peek img { width: 100%; display: block; }
+
+  /* Navegación rápida */
+  .quick-nav {
+    position: sticky;
+    top: 10px;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: fit-content;
+    margin: 0 auto 24px;
+    padding: 8px 18px;
+    background: var(--purple-shell);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid var(--shell-border);
+    border-top: 1px solid var(--shell-highlight);
+    border-radius: 999px;
+    font-size: 0.76rem;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+  }
+  .quick-nav a { color: var(--text-muted); font-weight: 600; transition: color 0.15s ease; }
+  .quick-nav a:hover { color: var(--gold); }
+  .quick-nav-sep { color: var(--text-faint); }
+
+  /* Pantalla de carga estilo terminal Linux */
+  .boot-screen {
+    position: fixed;
+    inset: 0;
+    background: #06030C;
+    color: #CFE8D8;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.82rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 24px;
+    z-index: 500;
+    transition: opacity 0.4s ease;
+    cursor: pointer;
+  }
+  .boot-screen.boot-hide { opacity: 0; pointer-events: none; }
+  .boot-lines { max-width: 420px; margin: 0 auto; width: 100%; }
+  .boot-lines p {
+    margin: 0 0 7px;
+    opacity: 0;
+    animation: boot-line-in 0.25s ease forwards;
+  }
+  .boot-lines p:nth-child(1) { animation-delay: 0.1s; }
+  .boot-lines p:nth-child(2) { animation-delay: 0.45s; }
+  .boot-lines p:nth-child(3) { animation-delay: 0.8s; }
+  .boot-lines p:nth-child(4) { animation-delay: 1.15s; }
+  .boot-lines p.boot-ready { animation-delay: 1.5s; color: var(--accent); font-weight: 700; }
+  @keyframes boot-line-in {
+    from { opacity: 0; transform: translateY(2px); }
+    to { opacity: 1; transform: none; }
+  }
+  .boot-cursor {
+    display: inline-block;
+    margin-left: 4px;
+    animation: boot-blink 1s step-end infinite;
+  }
+  @keyframes boot-blink { 50% { opacity: 0; } }
+  .boot-skip {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background: none;
+    border: 1px solid rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.5);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    padding: 5px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  .boot-skip:hover { color: #fff; border-color: rgba(255,255,255,0.5); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+    .boot-screen { display: none !important; }
+    .scroll-hint { animation: none !important; }
+  }
+
   @media (max-width: 520px) {
     .about-shell { gap: 12px; padding: 14px 16px; }
     .about-char { width: 72px; }
@@ -1123,10 +1249,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .kick-inner { max-width: 100%; }
     .kick-accent { opacity: 0.25; right: -25px; }
     .retro-toast { left: 20px; right: 20px; bottom: 16px; }
+    .quick-nav { font-size: 0.7rem; padding: 7px 14px; gap: 6px; }
   }
 </style>
 </head>
 <body>
+
+<!-- PANTALLA DE CARGA ESTILO TERMINAL -->
+<div id="boot-screen" class="boot-screen" role="status" aria-live="polite">
+  <div class="boot-lines">
+    <p>[ok] draky-kernel 5.1.0 iniciando…</p>
+    <p>[ok] montando /dev/chetumare</p>
+    <p>[ok] iniciando kick.service tiktok.service youtube.service</p>
+    <p>[ok] cultura-gamer.target alcanzado</p>
+    <p class="boot-ready">listo.<span class="boot-cursor">_</span></p>
+  </div>
+  <button class="boot-skip mono" id="boot-skip" aria-label="Saltar animación de carga" type="button">saltar ↵</button>
+</div>
 
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-57W9XG4R"
@@ -1170,8 +1309,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </div>
 
+  <!-- NAV RÁPIDA -->
+  <nav class="quick-nav mono" aria-label="Navegación rápida">
+    <a href="#content-section" class="sfx-click">Contenido</a>
+    <span class="quick-nav-sep">·</span>
+    <a href="#kick-section" class="sfx-click">Kick</a>
+    <span class="quick-nav-sep">·</span>
+    <a href="#metrics-section" class="sfx-click">Marcas</a>
+  </nav>
+
   <!-- SOBRE MÍ -->
-  <section class="translucent-shell about-shell" aria-label="Sobre mí">
+  <section class="translucent-shell about-shell reveal" aria-label="Sobre mí">
     <div class="about-char">
       <img src="assets/Drakypensando.webp" alt="Draky pensando" loading="lazy" decoding="async">
     </div>
@@ -1181,7 +1329,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </section>
 
   <!-- PLATAFORMAS -->
-  <section aria-label="Plataformas">
+  <section aria-label="Plataformas" class="reveal">
     <h2 class="section-heading">
       <span>Encuéntrame por acá</span>
     </h2>
@@ -1210,7 +1358,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </section>
 
   <!-- KICK EN VIVO -->
-  <section class="translucent-shell kick-shell" aria-label="Kick en vivo">
+  <section class="translucent-shell kick-shell shell-notch reveal" aria-label="Kick en vivo" id="kick-section">
     <div class="kick-accent">
       <img src="assets/Drakyhablando.webp" alt="Draky Kick" loading="lazy" decoding="async">
     </div>
@@ -1227,7 +1375,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </section>
 
   <!-- CONTENIDO DESTACADO CON MODAL -->
-  <section aria-label="Contenido destacado" style="margin-top: 28px;">
+  <section aria-label="Contenido destacado" id="content-section" class="reveal" style="margin-top: 28px;">
     <div class="content-heading-row">
       <h2 class="section-heading section-heading-lead">Lo último</h2>
       <span class="content-count mono">43 videos · recién actualizado</span>
@@ -1281,12 +1429,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </section>
 
   <!-- QUIEBRE VISUAL -->
-  <section class="breather" aria-hidden="true">
+  <section class="breather reveal" aria-hidden="true">
     <p>Desde ports imposibles hasta teorías raras de internet —<br><span>sigo encontrando historias que vale la pena contar.</span></p>
   </section>
 
   <!-- LOGROS DESBLOQUEADOS -->
-  <section class="translucent-shell achievements-shell" aria-label="Logros y reconocimientos">
+  <section class="translucent-shell achievements-shell reveal" aria-label="Logros y reconocimientos">
+    <div class="char-peek" aria-hidden="true">
+      <img src="assets/Drakypensando.webp" alt="" loading="lazy" decoding="async">
+    </div>
     <h2>
       <span>Logros desbloqueados</span>
       <span class="tech-sticker-small">STATUS</span>
@@ -1296,7 +1447,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <!-- Logro 1: KICK Partner -->
       <div class="achievement-card sfx-click">
         <div class="ach-icon-box">
-          <svg viewBox="0 0 16 16" fill="currentColor"><rect x="6" y="0" width="4" height="2"/><rect x="4" y="2" width="8" height="2"/><rect x="4" y="4" width="8" height="4"/><rect x="5" y="8" width="6" height="2"/><rect x="6" y="10" width="4" height="2"/><rect x="7" y="12" width="2" height="2"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.3l2.3 2.3 4.7-4.7"/></svg>
         </div>
         <div class="ach-content">
           <div class="ach-title-row">
@@ -1310,7 +1461,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <!-- Logro 2: Medio Millón -->
       <div class="achievement-card sfx-click">
         <div class="ach-icon-box">
-          <svg viewBox="0 0 16 16" fill="currentColor"><rect x="2" y="7" width="2" height="2"/><rect x="4" y="5" width="2" height="2"/><rect x="6" y="4" width="4" height="2"/><rect x="10" y="5" width="2" height="2"/><rect x="12" y="7" width="2" height="2"/><rect x="4" y="9" width="2" height="2"/><rect x="10" y="9" width="2" height="2"/><rect x="6" y="10" width="4" height="2"/><rect x="7" y="7" width="2" height="2"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 12s4-7 10.5-7 10.5 7 10.5 7-4 7-10.5 7-10.5-7-10.5-7z"/><circle cx="12" cy="12" r="3"/></svg>
         </div>
         <div class="ach-content">
           <div class="ach-title-row">
@@ -1324,7 +1475,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <!-- Logro 3: Retención en Shorts -->
       <div class="achievement-card sfx-click">
         <div class="ach-icon-box">
-          <svg viewBox="0 0 16 16" fill="currentColor"><rect x="1" y="1" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"/><rect x="6" y="5" width="2" height="2"/><rect x="6" y="7" width="2" height="2"/><rect x="6" y="9" width="2" height="2"/><rect x="8" y="6" width="2" height="2"/><rect x="8" y="8" width="2" height="2"/><rect x="10" y="7" width="2" height="2"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M10 8.3l5 3.7-5 3.7V8.3z" fill="currentColor" stroke="none"/></svg>
         </div>
         <div class="ach-content">
           <div class="ach-title-row">
@@ -1338,7 +1489,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <!-- Logro 4: Producción Propia -->
       <div class="achievement-card sfx-click">
         <div class="ach-icon-box">
-          <svg viewBox="0 0 16 16" fill="currentColor"><rect x="3" y="2" width="10" height="2"/><rect x="2" y="4" width="2" height="8"/><rect x="12" y="4" width="2" height="8"/><rect x="3" y="12" width="10" height="2"/><rect x="6" y="6" width="4" height="4"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.8 2.8-2-2 2.8-2.8z"/></svg>
         </div>
         <div class="ach-content">
           <div class="ach-title-row">
@@ -1352,7 +1503,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </section>
 
   <!-- MÉTRICAS ACTUALIZADAS / ¿TRABAJAMOS JUNTOS? -->
-  <section class="translucent-shell brand-shell" aria-label="Colaboraciones y marcas" id="metrics-section">
+  <section class="translucent-shell brand-shell shell-notch reveal" aria-label="Colaboraciones y marcas" id="metrics-section">
     <h2>¿Trabajamos juntos?</h2>
     <p class="brand-subtitle">Métricas verificadas de los últimos 30 días en mis plataformas principales.</p>
 
@@ -1446,7 +1597,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </section>
 
   <!-- LA DRAKYMACHINE -->
-  <section aria-label="La DrakyMachine">
+  <section aria-label="La DrakyMachine" class="reveal">
     <details class="translucent-shell setup-shell" id="setup-details">
       <summary class="setup-summary sfx-click">
         <div class="setup-summary-left">
@@ -1527,6 +1678,59 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 
 <script>
+  // ---------- Pantalla de carga (boot) ----------
+  (function() {
+    const boot = document.getElementById('boot-screen');
+    if (!boot) return;
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let alreadyBooted = false;
+    try { alreadyBooted = sessionStorage.getItem('draky-booted') === '1'; } catch (e) {}
+
+    if (reduceMotion || alreadyBooted) {
+      boot.remove();
+      return;
+    }
+
+    document.body.style.overflow = 'hidden';
+
+    function finishBoot() {
+      boot.classList.add('boot-hide');
+      try { sessionStorage.setItem('draky-booted', '1'); } catch (e) {}
+      document.body.style.overflow = '';
+      setTimeout(() => boot.remove(), 450);
+    }
+
+    const autoTimer = setTimeout(finishBoot, 2200);
+
+    boot.addEventListener('click', () => { clearTimeout(autoTimer); finishBoot(); });
+    document.getElementById('boot-skip').addEventListener('click', (e) => {
+      e.stopPropagation();
+      clearTimeout(autoTimer);
+      finishBoot();
+    });
+    document.addEventListener('keydown', function skipBootKey() {
+      clearTimeout(autoTimer);
+      finishBoot();
+      document.removeEventListener('keydown', skipBootKey);
+    }, { once: true });
+  })();
+
+  // ---------- Aparición de secciones al hacer scroll ----------
+  (function() {
+    const revealEls = document.querySelectorAll('.reveal');
+    if (!revealEls.length) return;
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => revealObserver.observe(el));
+  })();
+
   // ---------- Motor de Audio y Respuesta Háptica ----------
   let audioCtx = null;
   let sfxEnabled = true;
