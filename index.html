@@ -339,17 +339,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     box-shadow: inset 0 1px 2px rgba(0,0,0,0.6);
   }
 
+  .chip-lead {
+    font-size: 0.95rem;
+    font-weight: 700;
+    padding: 7px 16px;
+    color: var(--text);
+    border-color: rgba(201, 184, 232, 0.35);
+  }
+
   .hero-positioning {
     margin: 14px 0 0;
     color: var(--text-muted);
-    font-size: 0.88rem;
-  }
-
-  .hero-brand-line {
-    margin: 16px 0 0;
-    color: var(--text);
-    font-weight: 600;
-    font-size: 0.95rem;
+    font-size: 0.84rem;
+    text-wrap: balance;
   }
 
   .scroll-hint {
@@ -367,7 +369,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   /* Sobre Mí */
   .about-shell {
-    margin-top: 28px;
     margin-bottom: 24px;
     padding: 16px 20px;
     display: flex;
@@ -425,10 +426,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     font-size: 1.55rem;
     margin-bottom: 0;
   }
-  .content-count {
-    font-size: 0.72rem;
-    color: var(--text-faint);
-  }
 
   .platform-grid {
     display: grid;
@@ -439,8 +436,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 6px;
-    padding: 15px 6px 12px;
+    gap: 3px;
+    padding: 10px 6px 9px;
     background: linear-gradient(180deg, rgba(55, 26, 84, 0.7) 0%, rgba(26, 12, 42, 0.8) 100%);
     border: 1px solid var(--shell-border);
     border-top: 1.5px solid var(--shell-highlight);
@@ -457,8 +454,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     transform: translateY(1px);
     box-shadow: inset 0 2px 4px rgba(0,0,0,0.8);
   }
-  .pbtn svg { width: 22px; height: 22px; color: var(--accent); }
-  .pbtn-kick svg { width: 19px; height: 19px; }
+  .pbtn svg { width: 18px; height: 18px; color: var(--accent); }
+  .pbtn-kick svg { width: 16px; height: 16px; }
   .pbtn-ig:hover svg { color: #FF4D8D; filter: drop-shadow(0 0 6px rgba(255,77,141,0.6)); }
   .pbtn-tt:hover svg { color: #32FBFB; filter: drop-shadow(0 0 6px rgba(50,251,251,0.6)); }
   .pbtn-yt:hover svg { color: #FF3B3B; filter: drop-shadow(0 0 6px rgba(255,59,59,0.6)); }
@@ -657,6 +654,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     z-index: 1;
   }
 
+  .v-promo-thumb::after {
+    width: 28px;
+    height: 28px;
+    margin: -14px 0 0 -14px;
+    background-size: 13px, auto;
+  }
+
   .tech-sticker-small {
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.65rem;
@@ -735,7 +739,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .breather p {
     font-family: 'Unbounded', sans-serif;
     font-weight: 700;
-    font-size: clamp(1.25rem, 5.2vw, 1.75rem);
+    font-size: clamp(1.05rem, 4.4vw, 1.45rem);
     line-height: 1.35;
     margin: 0;
     color: var(--text);
@@ -1087,10 +1091,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     color: #FFFFFF;
     box-shadow: 0 2px 6px rgba(0,0,0,0.3);
   }
-  .ribbon-silver {
-    background: #DDD0E8;
-    color: #170826;
-  }
 
   .metric-lead { flex-wrap: wrap; padding: 16px 18px 34px; }
   .metric-lead .metric-platform { order: 1; flex: 1; }
@@ -1122,20 +1122,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   }
   .btn-gold { box-shadow: 0 4px 14px rgba(0,0,0,0.5), 0 0 22px var(--gold-glow), inset 0 1px 0 rgba(255,255,255,0.4); }
   .btn-gold:hover { filter: brightness(1.08); }
-  .btn-outline {
-    background: transparent;
-    color: var(--text);
-    border: 1px solid var(--accent);
-    width: 100%;
-    min-height: 44px;
-    padding: 12px;
-    box-shadow: none;
-  }
-  .btn-outline:hover { background: var(--accent-dim); }
   .hero-cta {
     width: auto;
     min-height: 44px;
-    margin-top: 12px;
+    margin-top: 18px;
     padding: 12px 28px;
   }
 
@@ -1606,11 +1596,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
     <div class="chips">
       <span class="chip">43 videos</span>
-      <span class="chip">17.1K comunidad</span>
-      <span class="chip">Gaming &amp; Tech</span>
+      <span class="chip chip-lead">17.1K comunidad</span>
     </div>
     <p class="hero-positioning">Gaming · tecnología · cultura pop · edición visual</p>
-    <p class="hero-brand-line">Contenido vertical de gaming y tecnología para marcas</p>
     <a class="btn-tactile btn-gold hero-cta sfx-click" href="#collab-section" data-track="cta_trabajemos_juntos">Trabajemos juntos</a>
     <div class="scroll-hint" aria-hidden="true">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
@@ -1626,11 +1614,49 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <a href="#collab-section" class="sfx-click">Colaborar</a>
   </nav>
 
+  <!-- SOBRE MÍ -->
+  <section class="translucent-shell about-shell reveal" aria-label="Sobre mí">
+    <div class="about-char">
+      <img src="assets/Drakypensando.webp" alt="Draky pensando" loading="lazy" decoding="async">
+    </div>
+    <div class="about-body">
+      <p>Diseñador, creador de contenido y <em>KICK Partner</em> desde Chile. Exploro videojuegos retro, tecnología, rarezas de internet y cultura pop con un toque de humor y edición al detalle.</p>
+    </div>
+  </section>
+
+  <!-- PLATAFORMAS -->
+  <section aria-label="Plataformas" class="reveal">
+    <h2 class="section-heading">
+      <span>Encuéntrame por acá</span>
+    </h2>
+    <div class="platform-grid">
+      <a class="pbtn pbtn-ig sfx-click" data-track="red_social" data-track-label="ig" href="https://instagram.com/by.draky" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg>
+        <span>Instagram</span>
+        <em>3.4K</em>
+      </a>
+      <a class="pbtn pbtn-tt sfx-click" data-track="red_social" data-track-label="tt" href="https://tiktok.com/@by.draky" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 4v9.5a3.5 3.5 0 1 1-3-3.46"/><path d="M14 4c.6 2.3 2.2 3.7 4.5 4"/></svg>
+        <span>TikTok</span>
+        <em>11.8K</em>
+      </a>
+      <a class="pbtn pbtn-yt sfx-click" data-track="red_social" data-track-label="yt" href="https://youtube.com/@bydraky" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5.5" width="18" height="13" rx="4"/><path d="M10.5 9.5l5 2.5-5 2.5z" fill="currentColor" stroke="none"/></svg>
+        <span>YouTube</span>
+        <em>1.9K</em>
+      </a>
+      <a class="pbtn pbtn-kick sfx-click" data-track="red_social" data-track-label="kick" href="https://kick.com/srdraky" target="_blank" rel="noopener">
+        <svg viewBox="0 0 512 512" fill="currentColor"><path d="M37 .036h164.448v113.621h54.71v-56.82h54.731V.036h164.448v170.777h-54.73v56.82h-54.711v56.8h54.71v56.82h54.73V512.03H310.89v-56.82h-54.73v-56.8h-54.711v113.62H37V.036z"/></svg>
+        <span>Kick</span>
+        <em>Partner</em>
+      </a>
+    </div>
+  </section>
+
   <!-- CONTENIDO DESTACADO CON MODAL -->
-  <section aria-label="Contenido destacado" id="content-section" class="reveal">
+  <section style="margin-top: 28px;" aria-label="Contenido destacado" id="content-section" class="reveal">
     <div class="content-heading-row">
       <h2 class="section-heading section-heading-lead">Lo último</h2>
-      <span class="content-count mono">43 videos · recién actualizado</span>
     </div>
     <div class="video-grid">
 
@@ -1675,45 +1701,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="video-label">¿A alguien le gusta de verdad el DLSS 5?</span>
       </button>
 
-    </div>
-  </section>
-
-  <!-- SOBRE MÍ -->
-  <section class="translucent-shell about-shell reveal" aria-label="Sobre mí">
-    <div class="about-char">
-      <img src="assets/Drakypensando.webp" alt="Draky pensando" loading="lazy" decoding="async">
-    </div>
-    <div class="about-body">
-      <p>Diseñador, creador de contenido y <em>KICK Partner</em> desde Chile. Exploro videojuegos retro, tecnología, rarezas de internet y cultura pop con un toque de humor y edición al detalle.</p>
-    </div>
-  </section>
-
-  <!-- PLATAFORMAS -->
-  <section aria-label="Plataformas" class="reveal">
-    <h2 class="section-heading">
-      <span>Encuéntrame por acá</span>
-    </h2>
-    <div class="platform-grid">
-      <a class="pbtn pbtn-ig sfx-click" data-track="red_social" data-track-label="ig" href="https://instagram.com/by.draky" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg>
-        <span>Instagram</span>
-        <em>3.4K</em>
-      </a>
-      <a class="pbtn pbtn-tt sfx-click" data-track="red_social" data-track-label="tt" href="https://tiktok.com/@by.draky" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 4v9.5a3.5 3.5 0 1 1-3-3.46"/><path d="M14 4c.6 2.3 2.2 3.7 4.5 4"/></svg>
-        <span>TikTok</span>
-        <em>11.8K</em>
-      </a>
-      <a class="pbtn pbtn-yt sfx-click" data-track="red_social" data-track-label="yt" href="https://youtube.com/@bydraky" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5.5" width="18" height="13" rx="4"/><path d="M10.5 9.5l5 2.5-5 2.5z" fill="currentColor" stroke="none"/></svg>
-        <span>YouTube</span>
-        <em>1.9K</em>
-      </a>
-      <a class="pbtn pbtn-kick sfx-click" data-track="red_social" data-track-label="kick" href="https://kick.com/srdraky" target="_blank" rel="noopener">
-        <svg viewBox="0 0 512 512" fill="currentColor"><path d="M37 .036h164.448v113.621h54.71v-56.82h54.731V.036h164.448v170.777h-54.73v56.82h-54.711v56.8h54.71v56.82h54.73V512.03H310.89v-56.82h-54.73v-56.8h-54.711v113.62H37V.036z"/></svg>
-        <span>Kick</span>
-        <em>Partner</em>
-      </a>
     </div>
   </section>
 
@@ -1872,7 +1859,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <em>engagement</em>
           </div>
         </div>
-        <span class="ribbon-badge ribbon-gold">ENGAGEMENT</span>
         <span class="metric-bar" aria-hidden="true"><span style="width:53.5%"></span></span>
       </div>
 
@@ -1892,7 +1878,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <em>engagement</em>
           </div>
         </div>
-        <span class="ribbon-badge ribbon-silver">RENDIMIENTO</span>
         <span class="metric-bar" aria-hidden="true"><span style="width:40.6%"></span></span>
       </div>
 
@@ -1912,7 +1897,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <em>retención</em>
           </div>
         </div>
-        <span class="ribbon-badge ribbon-silver">RENDIMIENTO</span>
         <span class="metric-bar" aria-hidden="true"><span style="width:5.9%"></span></span>
       </div>
     </div>
@@ -1930,7 +1914,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <span class="contact-email-val">drakydzn@gmail.com</span>
           <button class="copy-btn" id="copy-btn" onclick="copyEmail()" data-track="copiar_correo">Copiar correo</button>
         </div>
-        <a class="btn-tactile btn-outline sfx-click" href="https://beacons.ai/bydraky/mediakit" target="_blank" rel="noopener" data-track="media_kit">Ver media kit</a>
       </div>
     </div>
   </section>
