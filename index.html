@@ -11,12 +11,16 @@
 <meta property="og:title" content="Draky — Gaming, tecnología y cultura pop">
 <meta property="og:description" content="KICK Partner, creador de contenido y cultura gamer. Métricas y proyectos.">
 <meta property="og:image" content="https://drvkyy.github.io/chetumare-page/assets/Imagenperfil.webp">
+<meta property="og:url" content="https://drvkyy.github.io/chetumare-page/">
+<meta property="og:site_name" content="Draky">
+<meta property="og:locale" content="es_CL">
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Draky — Gaming, tecnología y cultura pop">
 <meta name="twitter:description" content="KICK Partner, creador de contenido y cultura gamer. Métricas y proyectos.">
 <meta name="twitter:image" content="https://drvkyy.github.io/chetumare-page/assets/Imagenperfil.webp">
+<link rel="canonical" href="https://drvkyy.github.io/chetumare-page/">
 
 <!-- Barra de estado del navegador sincronizada con el fondo base -->
 <meta name="theme-color" content="#0D0517">
@@ -36,6 +40,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-57W9XG4R');</script>
 <!-- End Google Tag Manager -->
 
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Draky",
+  "url": "https://drvkyy.github.io/chetumare-page/",
+  "jobTitle": "Creador de contenido y diseñador gráfico",
+  "sameAs": [
+    "https://instagram.com/by.draky",
+    "https://tiktok.com/@by.draky",
+    "https://youtube.com/@bydraky",
+    "https://kick.com/srdraky"
+  ]
+}
+</script>
 <!-- Blindaje sin JavaScript: el contenido nunca queda invisible ni tapado -->
 <noscript>
   <style>
@@ -104,7 +124,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   /* Márgenes para que la nav sticky no tape encabezados al saltar */
   #kick-section,
   #content-section,
-  #metrics-section {
+  #metrics-section,
+  #collab-section {
     scroll-margin-top: 75px;
   }
 
@@ -1033,6 +1054,99 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     border-color: var(--gold);
   }
 
+  /* Colaboraciones / Brands */
+  .collaborations-shell {
+    margin-top: 24px;
+    padding: 24px;
+  }
+  .collab-heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 6px;
+  }
+  .collab-heading h2 {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 1.25rem;
+    line-height: 1.2;
+    margin: 5px 0 0;
+  }
+  .section-kicker {
+    display: block;
+    color: var(--gold);
+    font-size: 0.64rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+  }
+  .collab-heading .tech-sticker-small {
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .collab-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    margin-top: 18px;
+  }
+  .collab-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    min-width: 0;
+    padding: 14px;
+    background: var(--purple-slot);
+    border: 1px solid var(--shell-border);
+    border-top: 1.5px solid var(--shell-highlight);
+    border-radius: var(--radius-slot);
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.45);
+    transition: transform 0.15s ease, border-color 0.15s ease;
+  }
+  .collab-item:hover {
+    transform: translateY(-2px);
+    border-color: rgba(227, 162, 60, 0.4);
+  }
+  .collab-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    flex: 0 0 34px;
+    border-radius: 8px;
+    background: var(--accent-dim);
+    border: 1px solid rgba(201, 184, 232, 0.32);
+    color: var(--gold);
+    font: 800 0.68rem/1 'JetBrains Mono', monospace;
+  }
+  .collab-item > div {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .collab-item b {
+    font-size: 0.82rem;
+    line-height: 1.25;
+  }
+  .collab-item > div > span {
+    color: var(--text-muted);
+    font-size: 0.72rem;
+    line-height: 1.4;
+  }
+
+  /* Reset para tarjetas de video convertidas en botones */
+  .video-trigger {
+    appearance: none;
+    -webkit-appearance: none;
+    font: inherit;
+    color: inherit;
+    text-align: left;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+  }
+
   /* Video Modal con dimensiones seguras para móviles y bloqueo de arrastre */
   .video-modal-backdrop {
     position: fixed;
@@ -1209,10 +1323,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     animation: boot-line-in 0.25s ease forwards;
   }
   .boot-lines p:nth-child(1) { animation-delay: 0.1s; }
-  .boot-lines p:nth-child(2) { animation-delay: 0.45s; }
-  .boot-lines p:nth-child(3) { animation-delay: 0.8s; }
-  .boot-lines p:nth-child(4) { animation-delay: 1.15s; }
-  .boot-lines p.boot-ready { animation-delay: 1.5s; color: var(--accent); font-weight: 700; }
+  .boot-lines p:nth-child(2) { animation-delay: 0.18s; }
+  .boot-lines p:nth-child(3) { animation-delay: 0.26s; }
+  .boot-lines p:nth-child(4) { animation-delay: 0.34s; }
+  .boot-lines p.boot-ready { animation-delay: 0.42s; color: var(--accent); font-weight: 700; }
   @keyframes boot-line-in {
     from { opacity: 0; transform: translateY(2px); }
     to { opacity: 1; transform: none; }
@@ -1258,6 +1372,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .setup-list { width: 100%; }
     .achievements-grid { grid-template-columns: 1fr; }
     .metric-row { flex-wrap: wrap; }
+    .collaborations-shell { padding: 20px; }
+    .collab-grid { grid-template-columns: 1fr; }
+    .hero-positioning { line-height: 1.5; }
     .metric-stats { justify-content: flex-start; width: 100%; }
     .kick-inner { max-width: 100%; }
     .kick-accent { opacity: 0.25; right: -25px; }
@@ -1286,6 +1403,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
 <div class="wrap" id="top">
+  <main id="main-content">
 
   <!-- HERO -->
   <div class="translucent-shell hero-shell">
@@ -1296,10 +1414,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     
     <div class="hero-meta-bar">
       <!-- Switch Silenciador SFX -->
-      <button class="sfx-toggle" id="sfx-toggle" onclick="toggleSfx()" aria-label="Alternar sonido retro">
-        <svg id="sfx-icon-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
-        <svg id="sfx-icon-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>
-        <span class="mono" id="sfx-status">SFX: ON</span>
+      <button class="sfx-toggle" id="sfx-toggle" onclick="toggleSfx()" aria-label="Activar sonido retro" aria-pressed="false">
+        <svg id="sfx-icon-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+        <svg id="sfx-icon-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>
+        <span class="mono" id="sfx-status">SFX: OFF</span>
       </button>
     </div>
 
@@ -1317,6 +1435,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <span class="chip">16.3K comunidad</span>
       <span class="chip">Gaming &amp; Tech</span>
     </div>
+    <p class="hero-positioning">Gaming · tecnología · cultura pop · edición visual</p>
     <div class="scroll-hint" aria-hidden="true">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
     </div>
@@ -1328,7 +1447,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <span class="quick-nav-sep">·</span>
     <a href="#kick-section" class="sfx-click">Kick</a>
     <span class="quick-nav-sep">·</span>
-    <a href="#metrics-section" class="sfx-click">Marcas</a>
+    <a href="#collab-section" class="sfx-click">Colaborar</a>
   </nav>
 
   <!-- SOBRE MÍ -->
@@ -1395,7 +1514,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="video-grid">
 
       <!-- Promos Horizontales -->
-      <div class="v-promo-cartridge sfx-click" onclick="openVideoModal('yikw82WndsI')" role="button" tabindex="0" aria-label="Reproducir: Esta demo dura 9 HORAS y te cocina el cerebro">
+      <button type="button" class="v-promo-cartridge video-trigger" onclick="openVideoModal('yikw82WndsI')" aria-label="Reproducir: Esta demo dura 9 HORAS y te cocina el cerebro">
         <div class="v-promo-thumb">
           <img src="https://i.ytimg.com/vi/yikw82WndsI/hqdefault.jpg" alt="Order of the Sinking Star" loading="lazy" decoding="async">
         </div>
@@ -1403,9 +1522,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <span class="tech-sticker-small">PROMO</span>
           <div class="v-promo-title">Esta demo dura 9 HORAS y te cocina el cerebro</div>
         </div>
-      </div>
+      </button>
 
-      <div class="v-promo-cartridge sfx-click" onclick="openVideoModal('6Lkn19xmJT4')" role="button" tabindex="0" aria-label="Reproducir: Kyle Crane volvió... pero ahora tú eres el monstruo">
+      <button type="button" class="v-promo-cartridge video-trigger" onclick="openVideoModal('6Lkn19xmJT4')" aria-label="Reproducir: Kyle Crane volvió... pero ahora tú eres el monstruo">
         <div class="v-promo-thumb">
           <img src="https://i.ytimg.com/vi/6Lkn19xmJT4/hqdefault.jpg" alt="Dying Light The Beast" loading="lazy" decoding="async">
         </div>
@@ -1413,10 +1532,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <span class="tech-sticker-small">PROMO</span>
           <div class="v-promo-title">Kyle Crane volvió... pero ahora tú eres el monstruo</div>
         </div>
-      </div>
+      </button>
 
       <!-- Bodycam: Cartucho Ancho -->
-      <div class="v-lead-cartridge sfx-click" onclick="openVideoModal('KvYZ5nXEDJU')" role="button" tabindex="0" aria-label="Reproducir: ¿Por qué BODYCAM parece real?">
+      <button type="button" class="v-lead-cartridge video-trigger" onclick="openVideoModal('KvYZ5nXEDJU')" aria-label="Reproducir: ¿Por qué BODYCAM parece real?">
         <div class="v-lead-thumb">
           <img src="assets/bodycam.webp" alt="Bodycam" loading="lazy" decoding="async">
         </div>
@@ -1424,18 +1543,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <span class="tech-sticker-small">DESTACADO</span>
           <div class="v-lead-title">¿Por qué BODYCAM parece real? (Te está engañando)</div>
         </div>
-      </div>
+      </button>
 
       <!-- Cuadrícula Verticales -->
-      <div class="video-card sfx-click" onclick="openVideoModal('8t7EFloFn7A')" role="button" tabindex="0" aria-label="Reproducir: Una persona está a punto de enterrar a Adobe">
+      <button type="button" class="video-card video-trigger" onclick="openVideoModal('8t7EFloFn7A')" aria-label="Reproducir: Una persona está a punto de enterrar a Adobe">
         <span class="v-badge">NUEVO</span>
         <img src="https://i.ytimg.com/vi/8t7EFloFn7A/hqdefault.jpg" alt="Alternativa a Photoshop" loading="lazy" decoding="async">
         <span class="video-label">Una persona está a punto de ENTERRAR a Adobe 💀</span>
-      </div>
-      <div class="video-card sfx-click" onclick="openVideoModal('_JvAty0v-pI')" role="button" tabindex="0" aria-label="Reproducir: ¿A alguien le gusta de verdad el DLSS 5?">
+      </button>
+      <button type="button" class="video-card video-trigger" onclick="openVideoModal('_JvAty0v-pI')" aria-label="Reproducir: ¿A alguien le gusta de verdad el DLSS 5?">
         <img src="assets/Dlss5.webp" alt="DLSS 5" loading="lazy" decoding="async">
         <span class="video-label">¿A alguien le gusta de verdad el DLSS 5?</span>
-      </div>
+      </button>
 
     </div>
   </section>
@@ -1514,10 +1633,41 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </section>
 
+  <!-- COLABORACIONES -->
+  <section class="translucent-shell collaborations-shell reveal" aria-label="Colaboraciones" id="collab-section">
+    <div class="collab-heading">
+      <div>
+        <span class="section-kicker mono">COLLAB / OPEN</span>
+        <h2>¿Qué podemos hacer juntos?</h2>
+      </div>
+      <span class="tech-sticker-small">BRANDS</span>
+    </div>
+    <p class="brand-subtitle">Contenido pensado para gaming, tecnología y cultura pop, con foco en edición, humor y una identidad visual propia.</p>
+
+    <div class="collab-grid">
+      <div class="collab-item">
+        <span class="collab-icon">01</span>
+        <div><b>Shorts &amp; Reels</b><span>Contenido vertical para TikTok, Instagram y YouTube.</span></div>
+      </div>
+      <div class="collab-item">
+        <span class="collab-icon">02</span>
+        <div><b>Reviews &amp; cobertura</b><span>Videojuegos, productos, actualizaciones y primeras impresiones.</span></div>
+      </div>
+      <div class="collab-item">
+        <span class="collab-icon">03</span>
+        <div><b>Streaming</b><span>Integraciones, menciones y contenido alrededor de directos.</span></div>
+      </div>
+      <div class="collab-item">
+        <span class="collab-icon">04</span>
+        <div><b>Diseño &amp; edición</b><span>Piezas gráficas y edición audiovisual para proyectos concretos.</span></div>
+      </div>
+    </div>
+  </section>
+
   <!-- MÉTRICAS ACTUALIZADAS / ¿TRABAJAMOS JUNTOS? -->
-  <section class="translucent-shell brand-shell shell-notch reveal" aria-label="Colaboraciones y marcas" id="metrics-section">
+  <section class="translucent-shell brand-shell shell-notch reveal" aria-label="Métricas y contacto para marcas" id="metrics-section">
     <h2>¿Trabajamos juntos?</h2>
-    <p class="brand-subtitle">Métricas verificadas de los últimos 30 días en mis plataformas principales.</p>
+    <p class="brand-subtitle">Rendimiento reciente de mis plataformas principales. Periodo: últimos 30 días.</p>
 
     <div class="metrics-list">
       <!-- Impacto Total -->
@@ -1536,7 +1686,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <em>público nuevo</em>
           </div>
         </div>
-        <span class="ribbon-badge ribbon-gold">Alto Alcance</span>
+        <span class="ribbon-badge ribbon-gold">ALCANCE</span>
       </div>
 
       <!-- Instagram -->
@@ -1555,7 +1705,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <em>engagement</em>
           </div>
         </div>
-        <span class="ribbon-badge ribbon-gold">Top 5%</span>
+        <span class="ribbon-badge ribbon-gold">ENGAGEMENT</span>
       </div>
 
       <!-- TikTok -->
@@ -1574,7 +1724,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <em>engagement</em>
           </div>
         </div>
-        <span class="ribbon-badge ribbon-silver">Top 10%</span>
+        <span class="ribbon-badge ribbon-silver">RENDIMIENTO</span>
       </div>
 
       <!-- YouTube Shorts -->
@@ -1593,9 +1743,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <em>retención</em>
           </div>
         </div>
-        <span class="ribbon-badge ribbon-silver">Top 10%</span>
+        <span class="ribbon-badge ribbon-silver">RENDIMIENTO</span>
       </div>
     </div>
+
+    <p class="metrics-note mono">Datos presentados como referencia comercial · actualizar cuando cambien las métricas.</p>
 
     <div class="brand-contact-wrap">
       <a href="mailto:drakydzn@gmail.com?subject=Propuesta%20de%20Colaboraci%C3%B3n" class="btn-tactile btn-gold sfx-click">
@@ -1603,7 +1755,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </a>
       <div class="contact-copy-bar">
         <span class="contact-email-val">drakydzn@gmail.com</span>
-        <button class="copy-btn sfx-click" id="copy-btn" onclick="copyEmail()">Copiar correo</button>
+        <button class="copy-btn" id="copy-btn" onclick="copyEmail()">Copiar correo</button>
       </div>
     </div>
   </section>
@@ -1664,6 +1816,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </details>
   </section>
 
+  </main>
+
   <!-- FOOTER -->
   <footer>
     <a href="#top" class="back-to-top mono sfx-click">↑ Volver arriba</a>
@@ -1675,7 +1829,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- REPRODUCTOR DE VIDEO MODAL -->
 <div class="video-modal-backdrop" id="video-modal" onclick="handleModalBackdropClick(event)">
   <div class="video-modal-shell" role="dialog" aria-modal="true" aria-label="Reproductor de video">
-    <button class="modal-close-btn sfx-click" id="modal-close-btn" onclick="closeVideoModal()" aria-label="Cerrar video">&times;</button>
+    <button class="modal-close-btn" id="modal-close-btn" onclick="closeVideoModal()" aria-label="Cerrar video">&times;</button>
     <iframe id="video-iframe" src="" title="Reproductor de video destacado" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
   </div>
 </div>
@@ -1713,7 +1867,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       setTimeout(() => boot.remove(), 450);
     }
 
-    const autoTimer = setTimeout(finishBoot, 2200);
+    const autoTimer = setTimeout(finishBoot, 900);
 
     boot.addEventListener('click', () => { clearTimeout(autoTimer); finishBoot(); });
     document.getElementById('boot-skip').addEventListener('click', (e) => {
@@ -1745,7 +1899,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   // ---------- Motor de Audio y Respuesta Háptica ----------
   let audioCtx = null;
-  let sfxEnabled = true;
+  let sfxEnabled = false;
 
   function triggerHaptic(ms = 18) {
     if ('vibrate' in navigator) {
@@ -1788,32 +1942,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     const iconOn = document.getElementById('sfx-icon-on');
     const iconOff = document.getElementById('sfx-icon-off');
     const statusText = document.getElementById('sfx-status');
+    const toggle = document.getElementById('sfx-toggle');
 
     if (sfxEnabled) {
       iconOn.style.display = 'inline-block';
       iconOff.style.display = 'none';
       statusText.innerText = 'SFX: ON';
+      if (toggle) { toggle.setAttribute('aria-pressed', 'true'); toggle.setAttribute('aria-label', 'Desactivar sonido retro'); }
       playTactileClick(800, 0.03);
     } else {
       iconOn.style.display = 'none';
       iconOff.style.display = 'inline-block';
       statusText.innerText = 'SFX: OFF';
+      if (toggle) { toggle.setAttribute('aria-pressed', 'false'); toggle.setAttribute('aria-label', 'Activar sonido retro'); }
     }
   }
 
   // Micro-clicks a elementos interactivos
   document.querySelectorAll('.sfx-click').forEach(elem => {
     elem.addEventListener('click', () => playTactileClick(680, 0.024));
-  });
-
-  // Accesibilidad por teclado para las tarjetas con role="button"
-  document.querySelectorAll('[role="button"][tabindex="0"]').forEach(elem => {
-    elem.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        elem.click();
-      }
-    });
   });
 
   // ---------- Toast y Copia de Correo con Fallback ----------
