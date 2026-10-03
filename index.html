@@ -80,7 +80,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     --live: #8FBF5B;
     --text: #F7EFFB;
     --text-muted: #C9BBDB;
-    --text-faint: #7C6793;
+    --text-faint: #9985B0;
     --radius-shell: 20px;
     --radius-slot: 12px;
     --radius-tag: 6px;
@@ -113,6 +113,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   }
 
   .mono { font-family: 'JetBrains Mono', monospace; }
+
+  .skip-link {
+    position: absolute;
+    left: 12px;
+    top: -80px;
+    z-index: 600;
+    background: var(--gold);
+    color: #1A0D03;
+    font-weight: 700;
+    font-size: 0.82rem;
+    padding: 10px 16px;
+    border-radius: 8px;
+    transition: top 0.15s ease;
+  }
+  .skip-link:focus { top: max(12px, env(safe-area-inset-top, 0px)); }
+  #main-content:focus { outline: none; }
 
   .wrap {
     max-width: var(--max);
@@ -164,9 +180,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     z-index: 1;
   }
 
+  /* Lenguaje de esquinas único: borde redondeado + acento triangular (::before).
+     .shell-notch se conserva en el HTML pero ya no recorta con clip-path:
+     el recorte chocaba con el ::before y eliminaba sombras y brillo. */
   .shell-notch {
-    clip-path: polygon(0 0, calc(100% - 22px) 0, 100% 22px, 100% 100%, 0 100%);
-    -webkit-clip-path: polygon(0 0, calc(100% - 22px) 0, 100% 22px, 100% 100%, 0 100%);
+    clip-path: none;
+    -webkit-clip-path: none;
   }
 
   .shell-screws {
@@ -203,7 +222,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     color: var(--text-muted);
     font-size: 0.68rem;
     font-weight: 700;
-    padding: 4px 10px;
+    padding: 4px 12px;
+    min-height: 44px;
     border-radius: 999px;
     cursor: pointer;
     transition: all 0.2s ease;
@@ -216,8 +236,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   /* Hero */
   .hero-shell {
-    padding: 16px 24px 26px;
+    --hero-pad-x: 24px;
+    --hero-portrait: 106px;
+    padding: 16px var(--hero-pad-x) 26px;
     margin-bottom: 24px;
+    isolation: isolate;
   }
   .hero-meta-bar {
     display: flex;
@@ -232,6 +255,25 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     gap: 16px;
   }
   .hero-text { flex: 1; min-width: 0; }
+
+  /* Glow decorativo detrás del avatar: estático, sin clics, contenido dentro de la carcasa */
+  .hero-top { position: relative; }
+  .hero-top::before {
+    content: "";
+    position: absolute;
+    top: -40px;
+    bottom: -40px;
+    left: calc(-1 * var(--hero-pad-x));
+    right: calc(-1 * var(--hero-pad-x));
+    background: radial-gradient(
+      circle 130px at calc(100% - var(--hero-pad-x) - var(--hero-portrait) / 2) calc(40px + var(--hero-portrait) / 2),
+      var(--gold-glow) 0%,
+      var(--accent-dim) 38%,
+      transparent 70%
+    );
+    pointer-events: none;
+    z-index: -1;
+  }
 
   h1.name {
     font-family: 'Unbounded', sans-serif;
@@ -267,8 +309,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .exclaim:hover { transform: rotate(0deg) scale(1.03); }
 
   .hero-portrait {
-    width: 106px;
-    height: 106px;
+    width: var(--hero-portrait);
+    height: var(--hero-portrait);
     border-radius: 20px;
     overflow: hidden;
     border: 2px solid var(--gold);
@@ -300,6 +342,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     border-radius: 6px;
     color: var(--text-muted);
     box-shadow: inset 0 1px 2px rgba(0,0,0,0.6);
+  }
+
+  .hero-positioning {
+    margin: 14px 0 0;
+    color: var(--text-muted);
+    font-size: 0.88rem;
   }
 
   .scroll-hint {
@@ -759,9 +807,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     font-size: 0.8rem;
     font-weight: 600;
     color: var(--text);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    white-space: normal;
+    overflow-wrap: anywhere;
   }
 
   .software-row {
@@ -814,7 +861,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   }
   .achievements-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 10px;
   }
   .achievement-card {
@@ -884,6 +931,28 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     line-height: 1.35;
     margin: 0;
   }
+  /* Bento moderado: el primer logro ocupa todo el ancho; los otros tres se reparten debajo */
+  .achievement-card.achievement-featured {
+    grid-column: 1 / -1;
+    align-items: center;
+    gap: 16px;
+    padding: 18px 20px;
+    background: linear-gradient(145deg, rgba(201, 184, 232, 0.14) 0%, var(--purple-slot) 70%);
+    border-color: rgba(227, 162, 60, 0.35);
+  }
+  .achievement-featured .ach-icon-box {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+  }
+  .achievement-featured .ach-icon-box svg { width: 24px; height: 24px; }
+  .achievement-featured .ach-title { font-size: 1.05rem; }
+  .achievement-featured .ach-desc { font-size: 0.84rem; }
+  .achievement-card:not(.achievement-featured) {
+    flex-direction: column;
+    gap: 10px;
+  }
+
   .char-peek {
     position: absolute;
     right: -8px;
@@ -918,11 +987,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     margin-bottom: 20px;
   }
   .metric-row {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 12px;
-    padding: 12px 16px;
+    padding: 12px 16px 26px;
     background: var(--purple-slot);
     border: 1px solid var(--shell-border);
     border-top: 1px solid var(--shell-highlight);
@@ -932,6 +1002,35 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .metric-lead {
     background: linear-gradient(145deg, rgba(227,162,60,0.14) 0%, rgba(38, 17, 58, 0.8) 100%);
     border-color: rgba(227,162,60,0.35);
+  }
+
+  /* Barra decorativa: ancho = peso de la plataforma sobre las vistas totales.
+     El dato real sigue siendo el texto; funciona sin JavaScript. */
+  .metric-bar {
+    position: absolute;
+    left: 16px;
+    right: 16px;
+    bottom: 9px;
+    height: 5px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.09);
+    overflow: hidden;
+    pointer-events: none;
+  }
+  .metric-bar > span {
+    display: block;
+    height: 100%;
+    border-radius: inherit;
+    background: var(--accent);
+  }
+  .metric-lead .metric-bar {
+    height: 8px;
+    bottom: 8px;
+    box-shadow: inset 0 0 0 1px rgba(227, 162, 60, 0.35);
+  }
+  .metric-lead .metric-bar > span {
+    background: linear-gradient(90deg, var(--wine), var(--gold));
+    box-shadow: 0 0 10px var(--gold-glow);
   }
 
   .metric-platform {
@@ -984,6 +1083,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     color: #170826;
   }
 
+  .metrics-note {
+    margin: 0 0 16px;
+    color: var(--text-faint);
+    font-size: 0.68rem;
+    line-height: 1.5;
+  }
+
   .brand-contact-wrap {
     display: flex;
     flex-direction: column;
@@ -999,6 +1105,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     font-weight: 700;
   }
   .btn-gold:hover { filter: brightness(1.08); }
+  .hero-cta {
+    width: auto;
+    min-height: 44px;
+    margin-top: 18px;
+    padding: 12px 28px;
+  }
 
   .contact-copy-bar {
     display: flex;
@@ -1022,7 +1134,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.72rem;
     font-weight: 700;
-    padding: 5px 12px;
+    padding: 5px 14px;
+    min-height: 44px;
     border-radius: 6px;
     cursor: pointer;
     transition: all 0.15s ease;
@@ -1045,7 +1158,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     font-weight: 600;
     color: var(--text-muted);
     border: 1px solid var(--shell-border);
-    padding: 7px 16px;
+    padding: 7px 18px;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
     border-radius: 999px;
     transition: color 0.15s ease, border-color 0.15s ease;
   }
@@ -1074,7 +1190,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   }
   .section-kicker {
     display: block;
-    color: var(--gold);
+    color: var(--accent);
     font-size: 0.64rem;
     font-weight: 800;
     letter-spacing: 0.08em;
@@ -1104,7 +1220,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   }
   .collab-item:hover {
     transform: translateY(-2px);
-    border-color: rgba(227, 162, 60, 0.4);
+    border-color: rgba(201, 184, 232, 0.45);
+  }
+  .collaborations-shell:hover {
+    border-color: rgba(201, 184, 232, 0.4);
+    box-shadow:
+      0 20px 42px rgba(0, 0, 0, 0.65),
+      0 0 20px var(--accent-dim);
   }
   .collab-icon {
     display: inline-flex;
@@ -1116,7 +1238,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     border-radius: 8px;
     background: var(--accent-dim);
     border: 1px solid rgba(201, 184, 232, 0.32);
-    color: var(--gold);
+    color: var(--accent);
     font: 800 0.68rem/1 'JetBrains Mono', monospace;
   }
   .collab-item > div {
@@ -1161,11 +1283,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     opacity: 0;
     pointer-events: none;
     touch-action: none;
-    transition: opacity 0.25s ease;
+    visibility: hidden;
+    transition: opacity 0.25s ease, visibility 0s linear 0.25s;
   }
   .video-modal-backdrop.open {
     opacity: 1;
     pointer-events: auto;
+    visibility: visible;
+    transition: opacity 0.25s ease, visibility 0s;
   }
   .video-modal-shell {
     width: min(390px, calc(84dvh * 9 / 16));
@@ -1273,6 +1398,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     opacity: 1;
     transform: translateY(0);
   }
+  .translucent-shell.reveal {
+    transition: opacity 0.6s ease, transform 0.6s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .translucent-shell.reveal.in-view:hover { transform: translateY(-2px); }
 
   /* Quick Nav con Safe Area Superior */
   .quick-nav {
@@ -1282,10 +1411,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
+    gap: 4px;
     width: fit-content;
     margin: 0 auto 24px;
-    padding: 8px 18px;
+    padding: 0 12px;
     background: var(--purple-shell);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
@@ -1295,7 +1424,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     font-size: 0.76rem;
     box-shadow: 0 8px 20px rgba(0,0,0,0.4);
   }
-  .quick-nav a { color: var(--text-muted); font-weight: 600; transition: color 0.15s ease; }
+  .quick-nav a { color: var(--text-muted); font-weight: 600; padding: 12px 8px; transition: color 0.15s ease; }
   .quick-nav a:hover { color: var(--gold); }
   .quick-nav-sep { color: var(--text-faint); }
 
@@ -1356,6 +1485,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
     .boot-screen { display: none !important; }
     .scroll-hint { animation: none !important; }
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { transition-duration: 0.01ms !important; }
+    .exclaim, .exclaim:hover { transform: none; }
+    .translucent-shell:hover, .translucent-shell.reveal.in-view:hover,
+    .pbtn:hover, .video-card:hover, .collab-item:hover, .achievement-card:hover { transform: none; }
   }
 
   @media (max-width: 520px) {
@@ -1371,6 +1505,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .setup-img-wrap { width: 140px; margin-bottom: 8px; }
     .setup-list { width: 100%; }
     .achievements-grid { grid-template-columns: 1fr; }
+    .hero-cta { width: 100%; }
     .metric-row { flex-wrap: wrap; }
     .collaborations-shell { padding: 20px; }
     .collab-grid { grid-template-columns: 1fr; }
@@ -1379,7 +1514,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .kick-inner { max-width: 100%; }
     .kick-accent { opacity: 0.25; right: -25px; }
     .retro-toast { left: 20px; right: 20px; bottom: 16px; }
-    .quick-nav { font-size: 0.7rem; padding: 7px 14px; gap: 6px; }
+    .quick-nav { font-size: 0.7rem; padding: 0 8px; gap: 2px; }
+    .quick-nav a { padding: 12px 6px; }
+  }
+
+  /* Bento en una sola columna en móvil / tablet pequeña */
+  @media (max-width: 640px) {
+    .achievements-grid { grid-template-columns: 1fr; }
+    .achievement-card:not(.achievement-featured) { flex-direction: row; gap: 12px; }
+  }
+
+  /* 320–360px: hero más compacto para que "Draky" y el avatar no se pisen */
+  @media (max-width: 360px) {
+    .hero-shell { --hero-pad-x: 18px; --hero-portrait: 88px; }
+    .hero-top { gap: 12px; }
+    h1.name { font-size: 1.9rem; }
   }
 </style>
 </head>
@@ -1402,8 +1551,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
+<a class="skip-link" href="#main-content">Saltar al contenido</a>
+
 <div class="wrap" id="top">
-  <main id="main-content">
+  <main id="main-content" tabindex="-1">
 
   <!-- HERO -->
   <div class="translucent-shell hero-shell">
@@ -1432,10 +1583,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
     <div class="chips">
       <span class="chip">43 videos</span>
-      <span class="chip">16.3K comunidad</span>
+      <span class="chip">17.1K comunidad</span>
       <span class="chip">Gaming &amp; Tech</span>
     </div>
     <p class="hero-positioning">Gaming · tecnología · cultura pop · edición visual</p>
+    <a class="btn-tactile btn-gold hero-cta sfx-click" href="#collab-section">Trabajemos juntos</a>
     <div class="scroll-hint" aria-hidden="true">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
     </div>
@@ -1469,17 +1621,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <a class="pbtn pbtn-ig sfx-click" href="https://instagram.com/by.draky" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg>
         <span>Instagram</span>
-        <em>3.0K</em>
+        <em>3.4K</em>
       </a>
       <a class="pbtn pbtn-tt sfx-click" href="https://tiktok.com/@by.draky" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 4v9.5a3.5 3.5 0 1 1-3-3.46"/><path d="M14 4c.6 2.3 2.2 3.7 4.5 4"/></svg>
         <span>TikTok</span>
-        <em>11.6K</em>
+        <em>11.8K</em>
       </a>
       <a class="pbtn pbtn-yt sfx-click" href="https://youtube.com/@bydraky" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5.5" width="18" height="13" rx="4"/><path d="M10.5 9.5l5 2.5-5 2.5z" fill="currentColor" stroke="none"/></svg>
         <span>YouTube</span>
-        <em>1.8K</em>
+        <em>1.9K</em>
       </a>
       <a class="pbtn pbtn-kick sfx-click" href="https://kick.com/srdraky" target="_blank" rel="noopener">
         <svg viewBox="0 0 512 512" fill="currentColor"><path d="M37 .036h164.448v113.621h54.71v-56.82h54.731V.036h164.448v170.777h-54.73v56.82h-54.711v56.8h54.71v56.82h54.73V512.03H310.89v-56.82h-54.73v-56.8h-54.711v113.62H37V.036z"/></svg>
@@ -1576,7 +1728,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <div class="achievements-grid">
       <!-- Logro 1: KICK Partner -->
-      <div class="achievement-card sfx-click">
+      <div class="achievement-card achievement-featured sfx-click">
         <div class="ach-icon-box">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.3l2.3 2.3 4.7-4.7"/></svg>
         </div>
@@ -1687,6 +1839,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </div>
         </div>
         <span class="ribbon-badge ribbon-gold">ALCANCE</span>
+        <span class="metric-bar" aria-hidden="true"><span style="width:100%"></span></span>
       </div>
 
       <!-- Instagram -->
@@ -1706,6 +1859,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </div>
         </div>
         <span class="ribbon-badge ribbon-gold">ENGAGEMENT</span>
+        <span class="metric-bar" aria-hidden="true"><span style="width:53.5%"></span></span>
       </div>
 
       <!-- TikTok -->
@@ -1725,6 +1879,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </div>
         </div>
         <span class="ribbon-badge ribbon-silver">RENDIMIENTO</span>
+        <span class="metric-bar" aria-hidden="true"><span style="width:40.6%"></span></span>
       </div>
 
       <!-- YouTube Shorts -->
@@ -1744,6 +1899,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </div>
         </div>
         <span class="ribbon-badge ribbon-silver">RENDIMIENTO</span>
+        <span class="metric-bar" aria-hidden="true"><span style="width:5.9%"></span></span>
       </div>
     </div>
 
