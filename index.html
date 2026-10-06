@@ -321,37 +321,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     display: block;
   }
 
-  .chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin: 18px 0 0;
-  }
-  .chip {
-    font-size: 0.74rem;
-    font-family: 'JetBrains Mono', monospace;
-    font-weight: 500;
-    padding: 5px 12px;
-    background: var(--purple-slot);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 6px;
+  .hero-bio {
+    margin: 16px 0 0;
     color: var(--text-muted);
-    box-shadow: inset 0 1px 2px rgba(0,0,0,0.6);
-  }
-
-  .chip-lead {
-    font-size: 0.95rem;
-    font-weight: 700;
-    padding: 7px 16px;
-    color: var(--text);
-    border-color: rgba(201, 184, 232, 0.35);
-  }
-
-  .hero-positioning {
-    margin: 14px 0 0;
-    color: var(--text-muted);
-    font-size: 0.84rem;
+    font-size: 0.88rem;
+    line-height: 1.5;
     text-wrap: balance;
+  }
+  .hero-bio em {
+    color: var(--text);
+    font-style: normal;
+    font-weight: 600;
   }
 
   .scroll-hint {
@@ -1511,7 +1491,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .metric-row { flex-wrap: wrap; }
     .collaborations-shell { padding: 20px; }
     .collab-grid { grid-template-columns: 1fr; }
-    .hero-positioning { line-height: 1.5; }
     .metric-stats { justify-content: flex-start; width: 100%; }
     .kick-inner { max-width: 100%; }
     .kick-accent { opacity: 0.25; right: -25px; }
@@ -1594,11 +1573,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <img src="assets/Imagenperfil.webp" alt="Avatar de Draky" fetchpriority="high">
       </div>
     </div>
-    <div class="chips">
-      <span class="chip">43 videos</span>
-      <span class="chip chip-lead">17.1K comunidad</span>
-    </div>
-    <p class="hero-positioning">Gaming · tecnología · cultura pop · edición visual</p>
+    <p class="hero-bio">Diseñador, creador de contenido y <em>KICK Partner</em> desde el sur de Chile. Exploro videojuegos retro, tecnología, rarezas de internet y cultura pop con un toque de humor y edición al detalle.</p>
     <a class="btn-tactile btn-gold hero-cta sfx-click" href="#collab-section" data-track="cta_trabajemos_juntos">Trabajemos juntos</a>
     <div class="scroll-hint" aria-hidden="true">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
@@ -1613,16 +1588,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <span class="quick-nav-sep">·</span>
     <a href="#collab-section" class="sfx-click">Colaborar</a>
   </nav>
-
-  <!-- SOBRE MÍ -->
-  <section class="translucent-shell about-shell reveal" aria-label="Sobre mí">
-    <div class="about-char">
-      <img src="assets/Drakypensando.webp" alt="Draky pensando" loading="lazy" decoding="async">
-    </div>
-    <div class="about-body">
-      <p>Diseñador, creador de contenido y <em>KICK Partner</em> desde Chile. Exploro videojuegos retro, tecnología, rarezas de internet y cultura pop con un toque de humor y edición al detalle.</p>
-    </div>
-  </section>
 
   <!-- PLATAFORMAS -->
   <section aria-label="Plataformas" class="reveal">
@@ -1660,27 +1625,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
     <div class="video-grid">
 
-      <!-- Promos Horizontales -->
-      <button type="button" class="v-promo-cartridge video-trigger" onclick=\"openVideoModal('yikw82WndsI')\" data-track=\"video\" data-track-label=\"yikw82WndsI\" aria-label="Reproducir: Esta demo dura 9 HORAS y te cocina el cerebro">
+      <!-- Promo: ⚠️ confirma el título real, por ahora es un placeholder -->
+      <button type="button" class="v-promo-cartridge video-trigger" onclick="openVideoModal('YhPULgAOIEs')" data-track="video" data-track-label="YhPULgAOIEs" aria-label="Reproducir: Peliemo SUAVEMENTE 💀">
         <div class="v-promo-thumb">
-          <img src="https://i.ytimg.com/vi/yikw82WndsI/hqdefault.jpg" alt="Order of the Sinking Star" loading="lazy" decoding="async">
+          <img src="https://i.ytimg.com/vi/YhPULgAOIEs/hqdefault.jpg" alt="Promo" loading="lazy" decoding="async">
         </div>
         <div class="v-promo-details">
-          <div class="v-promo-title">Esta demo dura 9 HORAS y te cocina el cerebro</div>
-        </div>
-      </button>
-
-      <button type="button" class="v-promo-cartridge video-trigger" onclick=\"openVideoModal('6Lkn19xmJT4')\" data-track=\"video\" data-track-label=\"6Lkn19xmJT4\" aria-label="Reproducir: Kyle Crane volvió... pero ahora tú eres el monstruo">
-        <div class="v-promo-thumb">
-          <img src="https://i.ytimg.com/vi/6Lkn19xmJT4/hqdefault.jpg" alt="Dying Light The Beast" loading="lazy" decoding="async">
-        </div>
-        <div class="v-promo-details">
-          <div class="v-promo-title">Kyle Crane volvió... pero ahora tú eres el monstruo</div>
+          <span class="tech-sticker-small">PROMO</span>
+          <div class="v-promo-title">Peliemo SUAVEMENTE 💀 #deadasdiscodahlia #deadasdisco</div>
         </div>
       </button>
 
       <!-- Bodycam: Cartucho Ancho -->
-      <button type="button" class="v-lead-cartridge video-trigger" onclick=\"openVideoModal('KvYZ5nXEDJU')\" data-track=\"video\" data-track-label=\"KvYZ5nXEDJU\" aria-label="Reproducir: ¿Por qué BODYCAM parece real?">
+      <button type="button" class="v-lead-cartridge video-trigger" onclick="openVideoModal('KvYZ5nXEDJU')" data-track="video" data-track-label="KvYZ5nXEDJU" aria-label="Reproducir: ¿Por qué BODYCAM parece real?">
         <div class="v-lead-thumb">
           <img src="assets/bodycam.webp" alt="Bodycam" loading="lazy" decoding="async">
         </div>
@@ -1691,12 +1648,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </button>
 
       <!-- Cuadrícula Verticales -->
-      <button type="button" class="video-card video-trigger" onclick=\"openVideoModal('8t7EFloFn7A')\" data-track=\"video\" data-track-label=\"8t7EFloFn7A\" aria-label="Reproducir: Una persona está a punto de enterrar a Adobe">
+      <button type="button" class="video-card video-trigger" onclick="openVideoModal('8t7EFloFn7A')" data-track="video" data-track-label="8t7EFloFn7A" aria-label="Reproducir: Una persona está a punto de enterrar a Adobe">
         <span class="v-badge">NUEVO</span>
         <img src="https://i.ytimg.com/vi/8t7EFloFn7A/hqdefault.jpg" alt="Alternativa a Photoshop" loading="lazy" decoding="async">
         <span class="video-label">Una persona está a punto de ENTERRAR a Adobe 💀</span>
       </button>
-      <button type="button" class="video-card video-trigger" onclick=\"openVideoModal('_JvAty0v-pI')\" data-track=\"video\" data-track-label=\"_JvAty0v-pI\" aria-label="Reproducir: ¿A alguien le gusta de verdad el DLSS 5?">
+      <button type="button" class="video-card video-trigger" onclick="openVideoModal('_JvAty0v-pI')" data-track="video" data-track-label="_JvAty0v-pI" aria-label="Reproducir: ¿A alguien le gusta de verdad el DLSS 5?">
         <img src="assets/Dlss5.webp" alt="DLSS 5" loading="lazy" decoding="async">
         <span class="video-label">¿A alguien le gusta de verdad el DLSS 5?</span>
       </button>
