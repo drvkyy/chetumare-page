@@ -724,6 +724,171 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     object-position: center;
   }
 
+  /* Tarjeta Herobrine con panel de stats (hover en escritorio, toque en celular) */
+  .video-card.video-feature { cursor: default; }
+  .video-feature::after { display: none; }
+  .vf-toggle {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+    border-radius: inherit;
+  }
+  .vf-chip {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.62rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    color: var(--text);
+    background: rgba(13, 5, 23, 0.72);
+    border: 1px solid var(--accent);
+    border-radius: 999px;
+    padding: 4px 9px;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+  }
+  .vf-chip svg { width: 11px; height: 11px; color: var(--accent); }
+  .vf-panel {
+    position: absolute;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    z-index: 4;
+    padding: 14px;
+    background: rgba(13, 5, 23, 0.94);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid var(--shell-border);
+    border-top: 1px solid var(--shell-highlight);
+    border-radius: 14px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.6);
+    max-height: calc(100% - 20px);
+    overflow-y: auto;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0s linear 0.2s;
+  }
+  .video-feature.is-open .vf-panel {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0s;
+  }
+  .video-feature.is-open .vf-chip { opacity: 0; }
+  @media (hover: hover) and (pointer: fine) {
+    .video-feature:hover .vf-panel {
+      opacity: 1;
+      visibility: visible;
+      transform: none;
+      transition: opacity 0.2s ease, transform 0.2s ease, visibility 0s;
+    }
+    .video-feature:hover .vf-chip { opacity: 0; }
+  }
+  .vf-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+  }
+  .vf-close {
+    width: 44px;
+    height: 44px;
+    margin: -10px -10px -10px 0;
+    border: 0;
+    background: transparent;
+    color: var(--text-muted);
+    font-size: 1.4rem;
+    line-height: 1;
+    cursor: pointer;
+  }
+  .vf-close:hover { color: var(--text); }
+  .vf-total {
+    margin: 0 0 10px;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+  }
+  .vf-total b {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.15rem;
+    color: var(--text);
+    margin-right: 4px;
+  }
+  .vf-group + .vf-group { margin-top: 10px; }
+  .vf-plat {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 0.62rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    color: var(--text-faint);
+  }
+  .vf-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 6px;
+  }
+  .vf-grid > div {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    min-width: 0;
+    padding: 6px 7px;
+    background: var(--purple-slot);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 8px;
+  }
+  .vf-grid b {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.86rem;
+    font-weight: 800;
+    color: var(--text);
+    line-height: 1.15;
+  }
+  .vf-grid span {
+    font-size: 0.6rem;
+    line-height: 1.25;
+    color: var(--text-muted);
+  }
+  .vf-play {
+    width: 100%;
+    min-height: 44px;
+    margin-top: 12px;
+    border: 0;
+    border-radius: 10px;
+    background: linear-gradient(180deg, #D8CBF0 0%, #A794CB 100%);
+    color: #170826;
+    font: inherit;
+    font-weight: 700;
+    font-size: 0.86rem;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.4);
+  }
+  .vf-play:hover { filter: brightness(1.06); }
+  .vf-note {
+    margin: 8px 0 0;
+    font-size: 0.6rem;
+    color: var(--text-faint);
+    text-align: center;
+  }
+  @media (max-width: 380px) {
+    .vf-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+
   /* Quiebre visual */
   .breather {
     margin: 36px 0 8px;
@@ -1641,12 +1806,59 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
     <div class="video-grid">
 
-      <!-- Destacado vertical: Herobrine (NUEVO) -->
-      <button type="button" class="video-card video-card-feature video-trigger" onclick="openVideoModal('uCM87ZbrvJ0')" data-track="video" data-track-label="uCM87ZbrvJ0" aria-label="Reproducir: Creaste a Herobrine sin saberlo">
+      <!-- Destacado vertical: Herobrine (NUEVO) con tarjeta de stats -->
+      <div class="video-card video-card-feature video-feature">
         <span class="v-badge">NUEVO</span>
+        <span class="vf-chip mono" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 20V11M12 20V4M19 20v-6"/></svg>
+          STATS
+        </span>
         <img src="assets/HEROBRINE.webp" alt="Herobrine en Minecraft" loading="lazy" decoding="async">
         <span class="video-label">CREASTE A HEROBRINE SIN SABERLO</span>
-      </button>
+
+        <button type="button" class="vf-toggle" aria-expanded="false" aria-controls="herobrine-stats" aria-label="Ver estadísticas de: Creaste a Herobrine sin saberlo" onclick="toggleFeatureStats(this)" data-track="video_stats_toggle" data-track-label="uCM87ZbrvJ0"></button>
+
+        <div class="vf-panel" id="herobrine-stats" role="group" aria-label="Estadísticas del video Herobrine">
+          <div class="vf-head">
+            <span class="section-kicker mono">STATS · HEROBRINE</span>
+            <button type="button" class="vf-close" onclick="closeFeatureStats(this)" aria-label="Cerrar estadísticas">&times;</button>
+          </div>
+          <p class="vf-total"><b>515K</b> vistas entre las 3 plataformas</p>
+
+          <div class="vf-group">
+            <span class="vf-plat mono">INSTAGRAM</span>
+            <div class="vf-grid">
+              <div><b>343K</b><span>vistas</span></div>
+              <div><b>6.1K</b><span>compartidos</span></div>
+              <div><b>3.1K</b><span>guardados</span></div>
+              <div><b>+98</b><span>seguidores</span></div>
+            </div>
+          </div>
+
+          <div class="vf-group">
+            <span class="vf-plat mono">YOUTUBE SHORTS</span>
+            <div class="vf-grid">
+              <div><b>11.2K</b><span>vistas</span></div>
+              <div><b>87.7%</b><span>reproducción prom.</span></div>
+              <div><b>447</b><span>me gusta</span></div>
+              <div><b>#1</b><span>de mis últimos 10</span></div>
+            </div>
+          </div>
+
+          <div class="vf-group">
+            <span class="vf-plat mono">TIKTOK</span>
+            <div class="vf-grid">
+              <div><b>161K</b><span>vistas</span></div>
+              <div><b>17K</b><span>me gusta</span></div>
+              <div><b>32.8%</b><span>lo vio completo</span></div>
+              <div><b>+100</b><span>seguidores</span></div>
+            </div>
+          </div>
+
+          <button type="button" class="vf-play sfx-click" onclick="openVideoModal('uCM87ZbrvJ0')" data-track="video" data-track-label="uCM87ZbrvJ0" aria-label="Reproducir: Creaste a Herobrine sin saberlo">&#9654; Reproducir video</button>
+          <p class="vf-note mono">Datos al 12 oct 2026</p>
+        </div>
+      </div>
 
       <!-- Adobe: formato ancho -->
       <button type="button" class="v-lead-cartridge video-trigger" onclick="openVideoModal('8t7EFloFn7A')" data-track="video" data-track-label="8t7EFloFn7A" aria-label="Reproducir: Una persona está a punto de enterrar a Adobe">
@@ -1743,7 +1955,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
         <div class="ach-content">
           <div class="ach-title-row">
-            <span class="ach-title">+520K Vistas</span>
+            <span class="ach-title">+800K Vistas</span>
           </div>
           <p class="ach-desc">Reproducciones orgánicas en Reels, TikTok y Shorts durante el último mes.</p>
         </div>
@@ -1756,7 +1968,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
         <div class="ach-content">
           <div class="ach-title-row">
-            <span class="ach-title">76.8% Retención</span>
+            <span class="ach-title">75.4% Retención</span>
           </div>
           <p class="ach-desc">Audiencia que decide quedarse a mirar el video en vez de deslizar.</p>
         </div>
@@ -1808,7 +2020,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <div class="brand-shell" id="metrics-section" role="group" aria-labelledby="metrics-title">
       <h3 id="metrics-title">Mis números</h3>
-      <p class="brand-subtitle">Rendimiento reciente de mis plataformas principales. Periodo: últimos 30 días.</p>
+      <p class="brand-subtitle">Rendimiento reciente de mis plataformas principales. Periodo: últimos 28–30 días, según cada plataforma.</p>
 
     <div class="metrics-list">
       <!-- Impacto Total -->
@@ -1819,11 +2031,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
         <div class="metric-stats">
           <div class="metric-stat-group">
-            <b class="counter-num" data-target="525" data-suffix="K+">525K+</b>
+            <b class="counter-num" data-target="805.5" data-decimals="1" data-suffix="K">805.5K</b>
             <em>vistas / mes</em>
           </div>
           <div class="metric-stat-group">
-            <b style="color: var(--accent);" class="counter-num" data-target="92.3" data-decimals="1" data-suffix="%">92.3%</b>
+            <b style="color: var(--accent);" class="counter-num" data-target="96.3" data-decimals="1" data-suffix="%">96.3%</b>
             <em>público nuevo</em>
           </div>
         </div>
@@ -1839,15 +2051,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
         <div class="metric-stats">
           <div class="metric-stat-group">
-            <b class="counter-num" data-target="281" data-suffix="K+">281K+</b>
+            <b class="counter-num" data-target="523" data-decimals="1" data-suffix="K">523.0K</b>
             <em>vistas / mes</em>
           </div>
           <div class="metric-stat-group">
-            <b style="color: var(--accent);" class="counter-num" data-target="17.2" data-decimals="1" data-suffix="%">17.2%</b>
+            <b style="color: var(--accent);" class="counter-num" data-target="17.5" data-decimals="1" data-suffix="%">17.5%</b>
             <em>engagement</em>
           </div>
         </div>
-        <span class="metric-bar" aria-hidden="true"><span style="width:53.5%"></span></span>
+        <span class="metric-bar" aria-hidden="true"><span style="width:64.9%"></span></span>
       </div>
 
       <!-- TikTok -->
@@ -1858,15 +2070,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
         <div class="metric-stats">
           <div class="metric-stat-group">
-            <b class="counter-num" data-target="213" data-suffix="K+">213K+</b>
+            <b class="counter-num" data-target="246.6" data-decimals="1" data-suffix="K">246.6K</b>
             <em>vistas / mes</em>
           </div>
           <div class="metric-stat-group">
-            <b style="color: var(--accent);" class="counter-num" data-target="8.3" data-decimals="1" data-suffix="%">8.3%</b>
+            <b style="color: var(--accent);" class="counter-num" data-target="9.2" data-decimals="1" data-suffix="%">9.2%</b>
             <em>engagement</em>
           </div>
         </div>
-        <span class="metric-bar" aria-hidden="true"><span style="width:40.6%"></span></span>
+        <span class="metric-bar" aria-hidden="true"><span style="width:30.6%"></span></span>
       </div>
 
       <!-- YouTube Shorts -->
@@ -1877,15 +2089,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
         <div class="metric-stats">
           <div class="metric-stat-group">
-            <b class="counter-num" data-target="31" data-suffix="K+">31K+</b>
+            <b class="counter-num" data-target="35.9" data-decimals="1" data-suffix="K">35.9K</b>
             <em>vistas / mes</em>
           </div>
           <div class="metric-stat-group">
-            <b style="color: var(--accent);" class="counter-num" data-target="76.8" data-decimals="1" data-suffix="%">76.8%</b>
+            <b style="color: var(--accent);" class="counter-num" data-target="75.4" data-decimals="1" data-suffix="%">75.4%</b>
             <em>retención</em>
           </div>
         </div>
-        <span class="metric-bar" aria-hidden="true"><span style="width:5.9%"></span></span>
+        <span class="metric-bar" aria-hidden="true"><span style="width:4.5%"></span></span>
       </div>
     </div>
 
@@ -2224,6 +2436,34 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         first.focus();
       }
     }
+  });
+
+  // ---------- Tarjeta de stats del video destacado ----------
+  function closeFeature(wrap) {
+    wrap.classList.remove('is-open');
+    const t = wrap.querySelector('.vf-toggle');
+    if (t) t.setAttribute('aria-expanded', 'false');
+  }
+  function toggleFeatureStats(btn) {
+    playTactileClick(600, 0.025);
+    const wrap = btn.closest('.video-feature');
+    const open = wrap.classList.toggle('is-open');
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+  function closeFeatureStats(btn) {
+    const wrap = btn.closest('.video-feature');
+    closeFeature(wrap);
+    const t = wrap.querySelector('.vf-toggle');
+    if (t) t.focus();
+  }
+  document.addEventListener('click', (e) => {
+    document.querySelectorAll('.video-feature.is-open').forEach(w => {
+      if (!w.contains(e.target)) closeFeature(w);
+    });
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Escape') return;
+    document.querySelectorAll('.video-feature.is-open').forEach(closeFeature);
   });
 
   // ---------- Contadores animados (Count-up) ----------
