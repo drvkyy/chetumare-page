@@ -1693,6 +1693,153 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .hero-top { gap: 12px; }
     h1.name { font-size: 1.9rem; }
   }
+
+  /* ---------- Banner Tenzen Studio ---------- */
+  .tz-banner {
+    position: relative;
+    margin: 0 0 28px;
+    padding: 18px 18px 16px;
+    border-radius: var(--radius-shell);
+    overflow: hidden;
+    isolation: isolate;
+    background:
+      radial-gradient(circle at 12% 0%, rgba(227,162,60,.22), transparent 55%),
+      linear-gradient(135deg, rgba(168,56,74,.38), rgba(33,15,51,.88) 60%, rgba(227,162,60,.14));
+    border: 1px solid rgba(227,162,60,.38);
+    box-shadow: 0 10px 30px rgba(0,0,0,.45), 0 0 28px var(--gold-glow), inset 0 1px 0 var(--shell-highlight);
+  }
+
+  /* Destello que cruza el banner cada pocos segundos */
+  .tz-sheen {
+    position: absolute; inset: 0; z-index: -1; pointer-events: none;
+    background: linear-gradient(105deg, transparent 35%, rgba(255,255,255,.14) 50%, transparent 65%);
+    transform: translateX(-130%);
+    animation: tz-sheen 6s ease-in-out infinite;
+  }
+  @keyframes tz-sheen {
+    0%        { transform: translateX(-130%); }
+    45%, 100% { transform: translateX(130%); }
+  }
+
+  /* Partículas doradas que suben */
+  .tz-dot {
+    position: absolute; bottom: -8px; z-index: -1; pointer-events: none;
+    width: 4px; height: 4px; border-radius: 50%;
+    background: var(--gold); opacity: 0;
+    box-shadow: 0 0 8px var(--gold);
+    animation: tz-rise 7s linear infinite;
+  }
+  .tz-dot:nth-of-type(1) { left: 8%;  animation-delay: 0s;   animation-duration: 7s; }
+  .tz-dot:nth-of-type(2) { left: 24%; animation-delay: 2.2s; animation-duration: 8.5s; width:3px; height:3px; }
+  .tz-dot:nth-of-type(3) { left: 46%; animation-delay: 4.1s; animation-duration: 6.5s; }
+  .tz-dot:nth-of-type(4) { left: 63%; animation-delay: 1.1s; animation-duration: 9s;   width:3px; height:3px; }
+  .tz-dot:nth-of-type(5) { left: 81%; animation-delay: 3.3s; animation-duration: 7.5s; }
+  .tz-dot:nth-of-type(6) { left: 93%; animation-delay: 5.2s; animation-duration: 8s;   width:3px; height:3px; }
+  @keyframes tz-rise {
+    0%   { transform: translateY(0) scale(1);       opacity: 0; }
+    12%  { opacity: .85; }
+    100% { transform: translateY(-150px) scale(.4); opacity: 0; }
+  }
+
+  .tz-link {
+    display: flex; align-items: center; gap: 16px;
+    border-radius: 14px;
+  }
+  .tz-link:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
+
+  /* Abanico de iconos de las apps */
+  .tz-icons { display: flex; flex-shrink: 0; padding-left: 10px; }
+  .tz-icons img {
+    width: 46px; height: 46px; border-radius: 12px;
+    margin-left: -12px;
+    background: #1a0d2b;
+    border: 2px solid rgba(13,5,23,.9);
+    box-shadow: 0 6px 14px rgba(0,0,0,.5);
+    transform: rotate(var(--r, 0deg));
+    animation: tz-float 3.4s ease-in-out infinite alternate;
+    transition: transform .25s ease;
+  }
+  .tz-icons img:nth-child(1) { --r: -8deg; animation-delay: 0s; }
+  .tz-icons img:nth-child(2) { --r: -3deg; animation-delay: .35s; }
+  .tz-icons img:nth-child(3) { --r:  3deg; animation-delay: .7s; }
+  .tz-icons img:nth-child(4) { --r:  8deg; animation-delay: 1.05s; }
+  @keyframes tz-float {
+    from { transform: translateY(0)    rotate(var(--r)); }
+    to   { transform: translateY(-6px) rotate(calc(var(--r) * -.4)); }
+  }
+  .tz-link:hover .tz-icons img { animation-play-state: paused; transform: translateY(-8px) rotate(0deg) scale(1.06); }
+
+  .tz-text { min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+  .tz-kicker {
+    font-size: .66rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+    color: var(--gold);
+  }
+  .tz-title {
+    font-family: 'Unbounded', 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.02rem; font-weight: 800; line-height: 1.2; color: var(--text);
+  }
+
+  /* Texto rotativo: una línea por app, solo CSS */
+  .tz-rotor { position: relative; display: block; height: 1.3em; font-size: .76rem; color: var(--text-muted); }
+  .tz-rotor span {
+    position: absolute; left: 0; top: 0; width: 100%;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    opacity: 0; animation: tz-rot 9.6s ease-in-out infinite;
+  }
+  .tz-rotor span:nth-child(2) { animation-delay: 2.4s; }
+  .tz-rotor span:nth-child(3) { animation-delay: 4.8s; }
+  .tz-rotor span:nth-child(4) { animation-delay: 7.2s; }
+  @keyframes tz-rot {
+    0%   { opacity: 0; transform: translateY(8px); }
+    4%, 21% { opacity: 1; transform: translateY(0); }
+    25%, 100% { opacity: 0; transform: translateY(-8px); }
+  }
+  .tz-rotor b { color: var(--gold); font-weight: 700; }
+
+  /* Fila del código */
+  .tz-code-row { display: flex; align-items: center; gap: 10px; margin-top: 14px; flex-wrap: wrap; }
+  .tz-off {
+    font-family: 'Unbounded', sans-serif; font-weight: 900; font-size: .9rem;
+    padding: 8px 12px; border-radius: 10px;
+    color: #1A0D03; background: var(--gold);
+    box-shadow: 0 0 18px var(--gold-glow);
+    animation: tz-pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes tz-pulse {
+    0%, 100% { box-shadow: 0 0 10px var(--gold-glow); transform: scale(1); }
+    50%      { box-shadow: 0 0 24px rgba(227,162,60,.6); transform: scale(1.05); }
+  }
+  .tz-code {
+    flex: 1 1 200px; min-width: 0; min-height: 44px;
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    padding: 9px 12px 9px 14px;
+    font-size: .88rem; font-weight: 800; letter-spacing: .08em; color: var(--text);
+    background: rgba(13,5,23,.55);
+    border: 1.5px dashed rgba(227,162,60,.65);
+    border-radius: 10px; cursor: pointer;
+    transition: background .2s ease, border-color .2s ease, transform .15s ease;
+  }
+  .tz-code:hover { background: rgba(227,162,60,.12); border-color: var(--gold); }
+  .tz-code:active { transform: scale(.98); }
+  .tz-code-hint { font-size: .64rem; letter-spacing: .1em; text-transform: uppercase; color: var(--gold); white-space: nowrap; }
+  .tz-code[data-state="copied"] { border-style: solid; border-color: var(--live); background: rgba(143,191,91,.12); }
+  .tz-code[data-state="copied"] .tz-code-hint { color: var(--live); }
+
+  .tz-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+  @media (max-width: 420px) {
+    .tz-link { gap: 12px; }
+    .tz-icons img { width: 38px; height: 38px; margin-left: -10px; }
+    .tz-title { font-size: .92rem; }
+  }
+
+  /* Accesibilidad: sin movimiento */
+  @media (prefers-reduced-motion: reduce) {
+    .tz-sheen, .tz-dot, .tz-icons img, .tz-off { animation: none !important; }
+    .tz-dot { display: none; }
+    .tz-rotor span { animation: none !important; opacity: 0; }
+    .tz-rotor span:first-child { opacity: 1; }
+  }
 </style>
 </head>
 <body>
@@ -1760,6 +1907,47 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <a href="#collab-section" class="sfx-click">Colaborar</a>
   </nav>
 
+  <!-- BANNER TENZEN STUDIO -->
+  <aside class="tz-banner reveal" aria-label="Promoción de Tenzen Studio">
+    <span class="tz-sheen" aria-hidden="true"></span>
+    <span class="tz-dot" aria-hidden="true"></span>
+    <span class="tz-dot" aria-hidden="true"></span>
+    <span class="tz-dot" aria-hidden="true"></span>
+    <span class="tz-dot" aria-hidden="true"></span>
+    <span class="tz-dot" aria-hidden="true"></span>
+    <span class="tz-dot" aria-hidden="true"></span>
+
+    <a class="tz-link sfx-click" href="https://tenzen.studio/" target="_blank" rel="noopener sponsored"
+       data-track="tenzen_banner" data-track-label="link">
+      <span class="tz-icons" aria-hidden="true">
+        <img src="https://tenzen.studio/assets/brand/apps/photon.webp"  alt="" width="46" height="46" loading="lazy" decoding="async">
+        <img src="https://tenzen.studio/assets/brand/apps/light.webp"   alt="" width="46" height="46" loading="lazy" decoding="async">
+        <img src="https://tenzen.studio/assets/brand/apps/vector.webp"  alt="" width="46" height="46" loading="lazy" decoding="async">
+        <img src="https://tenzen.studio/assets/brand/apps/capture.webp" alt="" width="46" height="46" loading="lazy" decoding="async">
+      </span>
+      <span class="tz-text">
+        <span class="tz-kicker mono">Lo que uso · Tenzen Studio</span>
+        <strong class="tz-title">Software creativo sin suscripción</strong>
+        <span class="tz-rotor mono" aria-hidden="true">
+          <span><b>Photon</b> · alternativa a Photoshop · gratis</span>
+          <span><b>Light</b> · alternativa a Lightroom · $59 una vez</span>
+          <span><b>Vector</b> · alternativa a Illustrator · $59 una vez</span>
+          <span><b>Capture</b> · grabador y editor de video · $59</span>
+        </span>
+        <span class="tz-sr">Photon es gratis. Light, Vector y Capture cuestan 59 dólares una sola vez. La suite completa cuesta 89 dólares.</span>
+      </span>
+    </a>
+
+    <div class="tz-code-row">
+      <span class="tz-off">-20%</span>
+      <button type="button" class="tz-code mono sfx-click" id="tz-code-btn" data-code="DRAKYFRIENDS"
+              data-track="tenzen_code_copy" aria-label="Copiar código de descuento DRAKYFRIENDS">
+        <span>DRAKYFRIENDS</span>
+        <span class="tz-code-hint" id="tz-code-hint">Copiar</span>
+      </button>
+    </div>
+  </aside>
+
   <!-- PLATAFORMAS -->
   <section aria-label="Plataformas" class="reveal">
     <h2 class="section-heading">
@@ -1769,7 +1957,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <a class="pbtn pbtn-ig sfx-click" data-track="red_social" data-track-label="ig" href="https://instagram.com/by.draky" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg>
         <span>Instagram</span>
-        <em>3.5K</em>
+        <em>3.6K</em>
       </a>
       <a class="pbtn pbtn-tt sfx-click" data-track="red_social" data-track-label="tt" href="https://tiktok.com/@by.draky" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 4v9.5a3.5 3.5 0 1 1-3-3.46"/><path d="M14 4c.6 2.3 2.2 3.7 4.5 4"/></svg>
@@ -1813,40 +2001,40 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <span class="section-kicker mono">STATS · HEROBRINE</span>
             <button type="button" class="vf-close" onclick="closeFeatureStats(this)" aria-label="Cerrar estadísticas">&times;</button>
           </div>
-          <p class="vf-total"><b>565K</b> vistas entre las 3 plataformas</p>
+          <p class="vf-total"><b>596K</b> vistas entre las 3 plataformas</p>
 
           <div class="vf-group">
             <span class="vf-plat mono">INSTAGRAM</span>
             <div class="vf-grid">
-              <div><b>357K</b><span>vistas</span></div>
-              <div><b>39.9K</b><span>me gusta</span></div>
-              <div><b>6.4K</b><span>compartidos</span></div>
-              <div><b>3.3K</b><span>guardados</span></div>
+              <div><b>378.5K</b><span>vistas</span></div>
+              <div><b>42.4K</b><span>me gusta</span></div>
+              <div><b>6.8K</b><span>compartidos</span></div>
+              <div><b>3.6K</b><span>guardados</span></div>
             </div>
           </div>
 
           <div class="vf-group">
             <span class="vf-plat mono">YOUTUBE SHORTS</span>
             <div class="vf-grid">
-              <div><b>27.8K</b><span>vistas</span></div>
-              <div><b>85.8%</b><span>retención prom.</span></div>
-              <div><b>76.5%</b><span>se quedaron</span></div>
-              <div><b>+55</b><span>suscriptores</span></div>
+              <div><b>29.8K</b><span>vistas</span></div>
+              <div><b>85.1%</b><span>retención prom.</span></div>
+              <div><b>76.0%</b><span>se quedaron</span></div>
+              <div><b>+57</b><span>suscriptores</span></div>
             </div>
           </div>
 
           <div class="vf-group">
             <span class="vf-plat mono">TIKTOK</span>
             <div class="vf-grid">
-              <div><b>180K</b><span>vistas</span></div>
-              <div><b>19K</b><span>me gusta</span></div>
-              <div><b>32.5%</b><span>lo vio completo</span></div>
-              <div><b>+117</b><span>seguidores</span></div>
+              <div><b>187.8K</b><span>vistas</span></div>
+              <div><b>20K</b><span>me gusta</span></div>
+              <div><b>32.2%</b><span>lo vio completo</span></div>
+              <div><b>+126</b><span>seguidores</span></div>
             </div>
           </div>
 
           <button type="button" class="vf-play sfx-click" onclick="openVideoModal('uCM87ZbrvJ0')" data-track="video" data-track-label="uCM87ZbrvJ0" aria-label="Reproducir: Creaste a Herobrine sin saberlo">&#9654; Reproducir video</button>
-          <p class="vf-note mono">Datos al 13 oct 2026</p>
+          <p class="vf-note mono">Datos al 18 oct 2026</p>
         </div>
       </div>
 
@@ -1867,25 +2055,35 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <span class="section-kicker mono">STATS · DEAD AS DISCO</span>
             <button type="button" class="vf-close" onclick="closeFeatureStats(this)" aria-label="Cerrar estadísticas">&times;</button>
           </div>
-          <p class="vf-total"><b>230.5K</b> vistas en Instagram</p>
+          <p class="vf-total"><b>278K</b> vistas en Instagram</p>
 
           <div class="vf-group">
-            <span class="vf-plat mono">ALCANCE E INTERACCIONES</span>
+            <span class="vf-plat mono">ORIGEN DE LAS VISTAS</span>
             <div class="vf-grid">
-              <div><b>180.2K</b><span>alcance</span></div>
-              <div><b>2.3K</b><span>me gusta</span></div>
-              <div><b>109</b><span>compartidos</span></div>
-              <div><b>356</b><span>guardados</span></div>
+              <div><b>273.4K</b><span>de anuncios</span></div>
+              <div><b>3.8K</b><span>orgánicas</span></div>
+              <div><b>1.2K</b><span>de seguidores</span></div>
+              <div><b>276K</b><span>de no seguidores</span></div>
             </div>
           </div>
 
           <div class="vf-group">
-            <span class="vf-plat mono">ACTIVIDAD</span>
+            <span class="vf-plat mono">INTERACCIONES</span>
             <div class="vf-grid">
-              <div><b>100</b><span>comentarios</span></div>
-              <div><b>11.3K</b><span>toques al enlace</span></div>
-              <div><b>27</b><span>visitas al perfil</span></div>
-              <div><b>+3</b><span>seguidores</span></div>
+              <div><b>2.7K</b><span>me gusta</span></div>
+              <div><b>421</b><span>guardados</span></div>
+              <div><b>133</b><span>compartidos</span></div>
+              <div><b>127</b><span>comentarios</span></div>
+            </div>
+          </div>
+
+          <div class="vf-group">
+            <span class="vf-plat mono">RENDIMIENTO</span>
+            <div class="vf-grid">
+              <div><b>57.1%</b><span>retención</span></div>
+              <div><b>13K</b><span>toques al enlace</span></div>
+              <div><b>216K</b><span>alcance</span></div>
+              <div><b>+4</b><span>seguidores</span></div>
             </div>
           </div>
 
@@ -1978,7 +2176,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
         <div class="ach-content">
           <div class="ach-title-row">
-            <span class="ach-title">+800K Vistas</span>
+            <span class="ach-title">+900K Vistas</span>
           </div>
           <p class="ach-desc">Reproducciones orgánicas en Reels, TikTok y Shorts durante el último mes.</p>
         </div>
@@ -1991,7 +2189,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
         <div class="ach-content">
           <div class="ach-title-row">
-            <span class="ach-title">76.0% Retención</span>
+            <span class="ach-title">75.2% Retención</span>
           </div>
           <p class="ach-desc">Audiencia que decide quedarse a mirar el video en vez de deslizar.</p>
         </div>
@@ -2054,11 +2252,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
         <div class="metric-stats">
           <div class="metric-stat-group">
-            <b class="counter-num" data-target="833.2" data-decimals="1" data-suffix="K">833.2K</b>
+            <b class="counter-num" data-target="920.8" data-decimals="1" data-suffix="K">920.8K</b>
             <em>vistas / mes</em>
           </div>
           <div class="metric-stat-group">
-            <b style="color: var(--accent);" class="counter-num" data-target="95.7" data-decimals="1" data-suffix="%">95.7%</b>
+            <b style="color: var(--accent);" class="counter-num" data-target="96.4" data-decimals="1" data-suffix="%">96.4%</b>
             <em>público nuevo</em>
           </div>
         </div>
@@ -2074,15 +2272,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
         <div class="metric-stats">
           <div class="metric-stat-group">
-            <b class="counter-num" data-target="470.5" data-decimals="1" data-suffix="K">470.5K</b>
+            <b class="counter-num" data-target="558.4" data-decimals="1" data-suffix="K">558.4K</b>
             <em>vistas / mes</em>
           </div>
           <div class="metric-stat-group">
-            <b style="color: var(--accent);" class="counter-num" data-target="20.1" data-decimals="1" data-suffix="%">20.1%</b>
+            <b style="color: var(--accent);" class="counter-num" data-target="17.3" data-decimals="1" data-suffix="%">17.3%</b>
             <em>engagement</em>
           </div>
         </div>
-        <span class="metric-bar" aria-hidden="true"><span style="width:56.5%"></span></span>
+        <span class="metric-bar" aria-hidden="true"><span style="width:60.6%"></span></span>
       </div>
 
       <!-- TikTok -->
@@ -2093,15 +2291,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
         <div class="metric-stats">
           <div class="metric-stat-group">
-            <b class="counter-num" data-target="307.7" data-decimals="1" data-suffix="K">307.7K</b>
+            <b class="counter-num" data-target="306.9" data-decimals="1" data-suffix="K">306.9K</b>
             <em>vistas / mes</em>
           </div>
           <div class="metric-stat-group">
-            <b style="color: var(--accent);" class="counter-num" data-target="10.0" data-decimals="1" data-suffix="%">10.0%</b>
+            <b style="color: var(--accent);" class="counter-num" data-target="9.9" data-decimals="1" data-suffix="%">9.9%</b>
             <em>engagement</em>
           </div>
         </div>
-        <span class="metric-bar" aria-hidden="true"><span style="width:36.9%"></span></span>
+        <span class="metric-bar" aria-hidden="true"><span style="width:33.3%"></span></span>
       </div>
 
       <!-- YouTube Shorts -->
@@ -2112,15 +2310,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
         <div class="metric-stats">
           <div class="metric-stat-group">
-            <b class="counter-num" data-target="55.0" data-decimals="1" data-suffix="K">55.0K</b>
+            <b class="counter-num" data-target="55.5" data-decimals="1" data-suffix="K">55.5K</b>
             <em>vistas / mes</em>
           </div>
           <div class="metric-stat-group">
-            <b style="color: var(--accent);" class="counter-num" data-target="76.0" data-decimals="1" data-suffix="%">76.0%</b>
+            <b style="color: var(--accent);" class="counter-num" data-target="75.2" data-decimals="1" data-suffix="%">75.2%</b>
             <em>retención</em>
           </div>
         </div>
-        <span class="metric-bar" aria-hidden="true"><span style="width:6.6%"></span></span>
+        <span class="metric-bar" aria-hidden="true"><span style="width:6.0%"></span></span>
       </div>
     </div>
 
@@ -2397,6 +2595,47 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     }
     document.body.removeChild(tempInput);
   }
+
+  // ---------- Código de descuento del banner Tenzen ----------
+  (function () {
+    const btn = document.getElementById('tz-code-btn');
+    const hint = document.getElementById('tz-code-hint');
+    if (!btn || !hint) return;
+    let timer;
+
+    function done(ok) {
+      if (ok) { btn.setAttribute('data-state', 'copied'); }
+      hint.textContent = ok ? '¡Copiado!' : 'Cópialo a mano';
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        btn.removeAttribute('data-state');
+        hint.textContent = 'Copiar';
+      }, 1800);
+    }
+
+    function legacyCopy(text) {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.setAttribute('readonly', '');
+      ta.style.cssText = 'position:fixed;top:-100px;opacity:0;';
+      document.body.appendChild(ta);
+      ta.select();
+      let ok = false;
+      try { ok = document.execCommand('copy'); } catch (e) {}
+      document.body.removeChild(ta);
+      return ok;
+    }
+
+    btn.addEventListener('click', async () => {
+      const code = btn.getAttribute('data-code');
+      try {
+        await navigator.clipboard.writeText(code);
+        done(true);
+      } catch (e) {
+        done(legacyCopy(code));
+      }
+    });
+  })();
 
   // ---------- Reproductor Modal In-situ ----------
   let lastFocusedTrigger = null;
