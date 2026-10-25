@@ -26,8 +26,11 @@
 <meta name="theme-color" content="#0D0517">
 
 <!-- Favicon vectorial -->
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='25' fill='%230D0517'/><path d='M30 42h40v16H30zm8-14h24v40H38z' fill='%23E3A23C'/><circle cx='68' cy='40' r='5' fill='%238FBF5B'/></svg>">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='25' fill='%230D0517'/%3E%3Cpath d='M30 42h40v16H30zm8-14h24v40H38z' fill='%23E3A23C'/%3E%3Ccircle cx='68' cy='40' r='5' fill='%238FBF5B'/%3E%3C/svg%3E">
 
+<link rel="preload" as="image" href="assets/Imagenperfil.webp" fetchpriority="high">
+<link rel="dns-prefetch" href="https://i.ytimg.com">
+<link rel="dns-prefetch" href="https://tenzen.studio">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700;800&family=Plus+Jakarta+Sans:wght@400;600;700&family=Unbounded:wght@600;700;800;900&display=swap" rel="stylesheet">
@@ -175,14 +178,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     z-index: 1;
   }
 
-  /* Lenguaje de esquinas único: borde redondeado + acento triangular (::before).
-     .shell-notch se conserva en el HTML pero ya no recorta con clip-path:
-     el recorte chocaba con el ::before y eliminaba sombras y brillo. */
-  .shell-notch {
-    clip-path: none;
-    -webkit-clip-path: none;
-  }
-
   .shell-screws {
     display: flex;
     justify-content: space-between;
@@ -206,29 +201,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     background: rgba(255, 255, 255, 0.35);
   }
 
-  /* Control SFX */
-  .sfx-toggle {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    background: var(--purple-slot);
-    border: 1px solid var(--shell-border);
-    border-top: 1px solid rgba(255, 255, 255, 0.15);
-    color: var(--text-muted);
-    font-size: 0.68rem;
-    font-weight: 700;
-    padding: 4px 12px;
-    min-height: 44px;
-    border-radius: 999px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-  }
-  .sfx-toggle:hover {
-    color: var(--text);
-    border-color: var(--accent);
-  }
-  .sfx-toggle svg { width: 13px; height: 13px; }
-
   /* Hero */
   .hero-shell {
     --hero-pad-x: 24px;
@@ -236,12 +208,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     padding: 16px var(--hero-pad-x) 26px;
     margin-bottom: 24px;
     isolation: isolate;
-  }
-  .hero-meta-bar {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    margin-bottom: 6px;
   }
   .hero-top {
     display: flex;
@@ -604,17 +570,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     height: 28px;
     margin: -14px 0 0 -14px;
     background-size: 13px, auto;
-  }
-
-  .tech-sticker-small {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    font-weight: 800;
-    background: linear-gradient(180deg, #FDF7ED 0%, #D4C3AB 100%);
-    color: #211105;
-    padding: 2px 6px;
-    border-radius: 4px;
-    border-left: 2px solid var(--accent);
   }
 
   .v-badge {
@@ -1270,8 +1225,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     border-radius: 10px;
     border: none;
     font-weight: 700;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.5), 0 0 22px var(--gold-glow), inset 0 1px 0 rgba(255,255,255,0.4);
   }
-  .btn-gold { box-shadow: 0 4px 14px rgba(0,0,0,0.5), 0 0 22px var(--gold-glow), inset 0 1px 0 rgba(255,255,255,0.4); }
   .btn-gold:hover { filter: brightness(1.08); }
   .hero-cta {
     width: auto;
@@ -1411,6 +1366,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     font-size: 0.72rem;
     line-height: 1.4;
   }
+
+  /* Los hijos de los botones de video son <span>: se comportan como bloques */
+  .video-trigger .v-promo-thumb, .video-trigger .v-lead-thumb, .video-trigger .v-lead-details,
+  .video-trigger .v-promo-title, .video-trigger .v-lead-title { display: block; }
 
   /* Reset para tarjetas de video convertidas en botones */
   .video-trigger {
@@ -1873,15 +1832,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="screw"></div>
     </div>
     
-    <div class="hero-meta-bar">
-      <!-- Switch Silenciador SFX -->
-      <button class="sfx-toggle" id="sfx-toggle" onclick="toggleSfx()" aria-label="Activar sonido retro" aria-pressed="false">
-        <svg id="sfx-icon-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
-        <svg id="sfx-icon-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>
-        <span class="mono" id="sfx-status">SFX: OFF</span>
-      </button>
-    </div>
-
     <div class="hero-top">
       <div class="hero-text">
         <h1 class="name">Draky</h1>
@@ -1940,7 +1890,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <div class="tz-code-row">
       <span class="tz-off">-20%</span>
-      <button type="button" class="tz-code mono sfx-click" id="tz-code-btn" data-code="DRAKYFRIENDS"
+      <button type="button" class="tz-code mono" id="tz-code-btn" data-code="DRAKYFRIENDS"
               data-track="tenzen_code_copy" aria-label="Copiar código de descuento DRAKYFRIENDS">
         <span>DRAKYFRIENDS</span>
         <span class="tz-code-hint" id="tz-code-hint">Copiar</span>
@@ -2016,7 +1966,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="vf-group">
             <span class="vf-plat mono">YOUTUBE SHORTS</span>
             <div class="vf-grid">
-              <div><b>29.8K</b><span>vistas</span></div>
+              <div><b>30.0K</b><span>vistas</span></div>
               <div><b>85.1%</b><span>retención prom.</span></div>
               <div><b>76.0%</b><span>se quedaron</span></div>
               <div><b>+57</b><span>suscriptores</span></div>
@@ -2094,39 +2044,39 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <!-- Adobe: formato ancho -->
       <button type="button" class="v-lead-cartridge video-trigger" onclick="openVideoModal('8t7EFloFn7A')" data-track="video" data-track-label="8t7EFloFn7A" aria-label="Reproducir: Una persona está a punto de enterrar a Adobe">
-        <div class="v-lead-thumb">
+        <span class="v-lead-thumb">
           <img src="https://i.ytimg.com/vi/8t7EFloFn7A/hqdefault.jpg" alt="Alternativa a Photoshop" loading="lazy" decoding="async">
-        </div>
-        <div class="v-lead-details">
-          <div class="v-lead-title">Una persona está a punto de ENTERRAR a Adobe 💀</div>
-        </div>
+        </span>
+        <span class="v-lead-details">
+          <span class="v-lead-title">Una persona está a punto de ENTERRAR a Adobe 💀</span>
+        </span>
       </button>
 
       <!-- Bodycam, formato horizontal -->
       <button type="button" class="v-promo-cartridge video-trigger" onclick="openVideoModal('KvYZ5nXEDJU')" data-track="video" data-track-label="KvYZ5nXEDJU" aria-label="Reproducir: ¿Por qué BODYCAM parece real?">
-        <div class="v-promo-thumb">
+        <span class="v-promo-thumb">
           <img src="assets/bodycam.webp" alt="Bodycam" loading="lazy" decoding="async">
-        </div>
-        <div class="v-promo-details">
-          <div class="v-promo-title">¿Por qué BODYCAM parece real? (Te está engañando)</div>
-        </div>
+        </span>
+        <span class="v-promo-details">
+          <span class="v-promo-title">¿Por qué BODYCAM parece real? (Te está engañando)</span>
+        </span>
       </button>
 
       <!-- DLSS 5, horizontal y al final -->
       <button type="button" class="v-promo-cartridge video-trigger" onclick="openVideoModal('_JvAty0v-pI')" data-track="video" data-track-label="_JvAty0v-pI" aria-label="Reproducir: ¿A alguien le gusta de verdad el DLSS 5?">
-        <div class="v-promo-thumb">
+        <span class="v-promo-thumb">
           <img src="assets/Dlss5.webp" alt="DLSS 5" loading="lazy" decoding="async">
-        </div>
-        <div class="v-promo-details">
-          <div class="v-promo-title">¿A alguien le gusta de verdad el DLSS 5?</div>
-        </div>
+        </span>
+        <span class="v-promo-details">
+          <span class="v-promo-title">¿A alguien le gusta de verdad el DLSS 5?</span>
+        </span>
       </button>
 
     </div>
   </section>
 
   <!-- KICK EN VIVO -->
-  <section class="translucent-shell kick-shell shell-notch reveal" aria-label="Kick en vivo" id="kick-section">
+  <section class="translucent-shell kick-shell reveal" aria-label="Kick en vivo" id="kick-section">
     <div class="kick-accent">
       <img src="assets/Drakyhablando.webp" alt="Draky Kick" loading="lazy" decoding="async">
     </div>
@@ -2189,7 +2139,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
         <div class="ach-content">
           <div class="ach-title-row">
-            <span class="ach-title">75.2% Retención</span>
+            <span class="ach-title">76.2% Retención</span>
           </div>
           <p class="ach-desc">Audiencia que decide quedarse a mirar el video en vez de deslizar.</p>
         </div>
@@ -2252,11 +2202,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
         <div class="metric-stats">
           <div class="metric-stat-group">
-            <b class="counter-num" data-target="920.8" data-decimals="1" data-suffix="K">920.8K</b>
+            <b class="counter-num" data-target="932.0" data-decimals="1" data-suffix="K">932.0K</b>
             <em>vistas / mes</em>
           </div>
           <div class="metric-stat-group">
-            <b style="color: var(--accent);" class="counter-num" data-target="96.4" data-decimals="1" data-suffix="%">96.4%</b>
+            <b style="color: var(--accent);" class="counter-num" data-target="96.5" data-decimals="1" data-suffix="%">96.5%</b>
             <em>público nuevo</em>
           </div>
         </div>
@@ -2272,15 +2222,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
         <div class="metric-stats">
           <div class="metric-stat-group">
-            <b class="counter-num" data-target="558.4" data-decimals="1" data-suffix="K">558.4K</b>
+            <b class="counter-num" data-target="570.3" data-decimals="1" data-suffix="K">570.3K</b>
             <em>vistas / mes</em>
           </div>
           <div class="metric-stat-group">
-            <b style="color: var(--accent);" class="counter-num" data-target="17.3" data-decimals="1" data-suffix="%">17.3%</b>
+            <b style="color: var(--accent);" class="counter-num" data-target="17.4" data-decimals="1" data-suffix="%">17.4%</b>
             <em>engagement</em>
           </div>
         </div>
-        <span class="metric-bar" aria-hidden="true"><span style="width:60.6%"></span></span>
+        <span class="metric-bar" aria-hidden="true"><span style="width:61.2%"></span></span>
       </div>
 
       <!-- TikTok -->
@@ -2291,7 +2241,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
         <div class="metric-stats">
           <div class="metric-stat-group">
-            <b class="counter-num" data-target="306.9" data-decimals="1" data-suffix="K">306.9K</b>
+            <b class="counter-num" data-target="306.4" data-decimals="1" data-suffix="K">306.4K</b>
             <em>vistas / mes</em>
           </div>
           <div class="metric-stat-group">
@@ -2299,7 +2249,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <em>engagement</em>
           </div>
         </div>
-        <span class="metric-bar" aria-hidden="true"><span style="width:33.3%"></span></span>
+        <span class="metric-bar" aria-hidden="true"><span style="width:32.9%"></span></span>
       </div>
 
       <!-- YouTube Shorts -->
@@ -2310,15 +2260,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
         <div class="metric-stats">
           <div class="metric-stat-group">
-            <b class="counter-num" data-target="55.5" data-decimals="1" data-suffix="K">55.5K</b>
+            <b class="counter-num" data-target="55.3" data-decimals="1" data-suffix="K">55.3K</b>
             <em>vistas / mes</em>
           </div>
           <div class="metric-stat-group">
-            <b style="color: var(--accent);" class="counter-num" data-target="75.2" data-decimals="1" data-suffix="%">75.2%</b>
+            <b style="color: var(--accent);" class="counter-num" data-target="76.2" data-decimals="1" data-suffix="%">76.2%</b>
             <em>retención</em>
           </div>
         </div>
-        <span class="metric-bar" aria-hidden="true"><span style="width:6.0%"></span></span>
+        <span class="metric-bar" aria-hidden="true"><span style="width:5.9%"></span></span>
       </div>
     </div>
 
@@ -2477,7 +2427,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   // ---------- Motor de Audio y Respuesta Háptica ----------
   let audioCtx = null;
-  let sfxEnabled = false;
+
+  function getAudio() {
+    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    if (audioCtx.state === 'suspended') audioCtx.resume();
+    return audioCtx;
+  }
 
   function triggerHaptic(ms = 18) {
     if ('vibrate' in navigator) {
@@ -2487,15 +2442,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   function playTactileClick(freq = 680, duration = 0.024) {
     triggerHaptic(18);
-    if (!sfxEnabled) return;
 
     try {
-      if (!audioCtx) {
-        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-      }
-      if (audioCtx.state === 'suspended') {
-        audioCtx.resume();
-      }
+      getAudio();
       const osc = audioCtx.createOscillator();
       const gain = audioCtx.createGain();
 
@@ -2514,26 +2463,37 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     } catch(e) {}
   }
 
-  function toggleSfx() {
-    sfxEnabled = !sfxEnabled;
-    triggerHaptic(25);
-    const iconOn = document.getElementById('sfx-icon-on');
-    const iconOff = document.getElementById('sfx-icon-off');
-    const statusText = document.getElementById('sfx-status');
-    const toggle = document.getElementById('sfx-toggle');
+  // Jingle de "objeto nuevo" (estilo Zelda): arpegio ascendente + acorde final con brillo
+  function playItemGet() {
+    triggerHaptic([20, 40, 20, 40, 60]);
+    try {
+      getAudio();
+      const t0 = audioCtx.currentTime + 0.02;
 
-    if (sfxEnabled) {
-      iconOn.style.display = 'inline-block';
-      iconOff.style.display = 'none';
-      statusText.innerText = 'SFX: ON';
-      if (toggle) { toggle.setAttribute('aria-pressed', 'true'); toggle.setAttribute('aria-label', 'Desactivar sonido retro'); }
-      playTactileClick(800, 0.03);
-    } else {
-      iconOn.style.display = 'none';
-      iconOff.style.display = 'inline-block';
-      statusText.innerText = 'SFX: OFF';
-      if (toggle) { toggle.setAttribute('aria-pressed', 'false'); toggle.setAttribute('aria-label', 'Activar sonido retro'); }
-    }
+      function tone(freq, start, dur, type, vol) {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, t0 + start);
+        gain.gain.setValueAtTime(0.0001, t0 + start);
+        gain.gain.exponentialRampToValueAtTime(vol, t0 + start + 0.02);
+        gain.gain.exponentialRampToValueAtTime(0.0001, t0 + start + dur);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start(t0 + start);
+        osc.stop(t0 + start + dur + 0.05);
+      }
+
+      // Arpegio rápido (Sol-Si-Re-Sol)
+      [392.00, 493.88, 587.33, 783.99].forEach((f, i) => {
+        tone(f, i * 0.09, 0.16, 'triangle', 0.16);
+        tone(f * 2, i * 0.09, 0.10, 'sine', 0.04);
+      });
+      // Acorde final sostenido
+      [783.99, 987.77, 1174.66].forEach(f => tone(f, 0.40, 0.75, 'triangle', 0.10));
+      // Destellos agudos
+      [2349.32, 3135.96, 2637.02].forEach((f, i) => tone(f, 0.46 + i * 0.07, 0.22, 'sine', 0.03));
+    } catch (e) {}
   }
 
   // Micro-clicks a elementos interactivos
@@ -2546,7 +2506,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   function copyEmail() {
     const email = 'drakydzn@gmail.com';
-    playTactileClick(850, 0.035);
+    playItemGet();
     triggerHaptic(30);
 
     function notifySuccess() {
@@ -2627,6 +2587,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     }
 
     btn.addEventListener('click', async () => {
+      playItemGet();
       const code = btn.getAttribute('data-code');
       try {
         await navigator.clipboard.writeText(code);
@@ -2754,6 +2715,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   }
 
   function animateCounters() {
+    // Con "reducir movimiento" los números quedan fijos en su valor final
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     const counters = document.querySelectorAll('.counter-num');
     counters.forEach(c => c.innerText = '0' + (c.getAttribute('data-suffix') || ''));
     
